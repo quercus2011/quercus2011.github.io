@@ -1,25 +1,51 @@
-<!DOCTYPE html><html lang="ja"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV (FF14) プレイ日記です。"><title>Hello World - さまよえるクエルクス</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.2.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.2.0"><!-- START FAVICON =============================================================--><link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#000000"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><!-- END FAVICON ===============================================================--><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>document.addEventListener('DOMContentLoaded', function() {
-  Array.prototype.forEach.call(document.querySelectorAll('a'), function(e) {
-    if (! e.getAttribute('href')) return;
-    if (! e.getAttribute('href').match(/^\s*(https?:)?\/\//i)) return;
+<!DOCTYPE html><html lang="ja"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV (FF14) プレイ日記です。"><title>Hello World - さまよえるクエルクス</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.2.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.2.0"><!-- START FAVICON =============================================================--><link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#000000"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><!-- END FAVICON ===============================================================--><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>'use strict';
+document.addEventListener('DOMContentLoaded', function() {
+  var config_root = '/'.trim();
+  var config_external_link = 'true'.trim().toLowerCase();
+  if (config_root[0] !== '/') {
+    console.warn('WARNING: Hexo: the value of "root:" in _config.yml is invalid (should start with "/").');
+    config_root = '/' + config_root;
+  }
+  if (config_root[config_root.length-1] !== '/') {
+    console.warn('WARNING: Hexo: the value of "root:" in _config.yml is invalid (should end with "/").');
+    config_root = config_root + '/';
+  }
+  if (! config_external_link.match(/^(?:true|false|)$/)) {
+    console.warn('WARNING: Hexo: the value of "external_link:" in _config.yml is invalid (should be true or false).');
+  }
+  var is_aggressive_mode = config_external_link === 'true';
+  var is_allowed_different_root = false;
+  var is_allowed_other_scheme = true;
+  Array.prototype.forEach.call(document.getElementsByTagName('a'), function(e) {
+    var href = (e.getAttribute('href') || '').trim();
+    if (! href) return;
+    var is_external_link = href.match(/^(https?:)?\/\//i) ||
+                           (href[0] === '/' && ! is_allowed_different_root && href.substr(0, config_root.length) !== config_root) ||
+                           (href[0] !== '/' && ! is_allowed_other_scheme && ! herf.match(/^(?:javascript|data|file|urn):/i));
+    var is_opening_new_window = e.getAttribute('target') ? ! e.getAttribute('target').match(/^(?:_self|_parent|_top)$/)
+                                                         : (is_aggressive_mode && is_external_link);
     var obj = (e.getAttribute('rel') || '')
       .toLowerCase()
       .split(/\s+/)
       .filter(function(e) { return e; })
       .reduce(function(acc, val) { acc[val] = true; return acc; }, {});
-    obj['external'] = true;
-    obj['noopener'] = true;
-    if (obj['noreferrer'] || obj['nofollow']) {
-      obj['nofollow'] = true;
+    if (obj['noreferer']) {
+      console.warn('maybe typo: "noreferer" should be "noreferrer".');
+      console.warn(e);
       obj['noreferrer'] = true;
     }
-    if (obj['noreferer']) {
-      console.warn('maybe typo: "noreferer" should be "noreferrer"');
-      console.warn(e);
+    if (is_aggressive_mode && is_external_link) obj['external'] = true;
+    if (is_opening_new_window) obj['noopener'] = true;
+    if (obj['noreferrer'] || obj['nofollow']) {
+      obj['noreferrer'] = true;
+      obj['nofollow'] = true;
     }
-    e.setAttribute('rel', Object.keys(obj).join(' '));
-    if (! e.getAttribute('target')) {
-        e.setAttribute('target', '_blank');
+    var result = Object.keys(obj).join(' ');
+    if (result) {
+      e.setAttribute('rel', result);
+    }
+    if (is_opening_new_window && ! e.getAttribute('target')) {
+      e.setAttribute('target', '_blank');
     }
   });
 }, false);
