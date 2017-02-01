@@ -1,23 +1,17 @@
-(function() {
+(function() { (function mainOfSearchJSON() {
+    'use strict';
+    if (document.readyState !== 'complete') {
+        // Multiple identical event listeners are safe:
+        // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Multiple_identical_event_listeners
+        document.addEventListener('readystatechange', mainOfSearchJSON, false);
+        return;
+    }
     var keyInput = document.getElementById('search-key'),
         searchForm = document.getElementById('search-form'),
         searchWrap = document.getElementById('result-wrap'),
-        searchMask = document.getElementById('result-mask'),
         searchResult = document.getElementById('search-result'),
         searchTpl = document.getElementById('search-tpl').innerHTML,
-        winWidth, winHeight, searchData;
-    if (window.innerWidth) {
-        winWidth = parseInt(window.innerWidth);
-    } else if ((document.body) && (document.body.clientWidth)) {
-        winWidth = parseInt(document.body.clientWidth);
-    }
-    if (window.innerHeight) {
-        winHeight = parseInt(window.innerHeight);
-    } else if ((document.body) && (document.body.clientHeight)) {
-        winHeight = parseInt(document.body.clientHeight);
-    }
-    searchMask.style.width = winWidth + 'px';
-    searchMask.style.height = winHeight + 'px';
+        searchData;
     function loadData(success) {
         if (!searchData) {
             var xhr = new XMLHttpRequest();
@@ -87,6 +81,7 @@
     function search(e) {
         var key = this.value.trim();
         if (!key) {
+            addClass(searchWrap, 'hide');
             return;
         }
         var regExp = new RegExp(key.replace(/[ ]/g, '|'), 'gmi');
@@ -98,17 +93,30 @@
         });
         e.preventDefault();
         removeClass(searchWrap, 'hide');
-        removeClass(searchMask, 'hide');
-        keyInput.onfocus=function() {
-            removeClass(searchWrap, 'hide');
-            removeClass(searchMask, 'hide');
-        };
     }
-    keyInput.onfocus=function(){
-        keyInput.addEventListener('input', search);
-    };
-    searchMask.onclick=function(){
+    function handlerForEscKey(e) {
+        // 'keypress' event is never fired for ESC key.
+        // 'keyup' event is emitted when the input should be captured by IME.
+        if (e.defaultPrevented) {
+            return;
+        }
+        if (e.key !== 'Escape') {
+            return;
+        }
+        this.value = '';
+        search.call(this, null);
+    }
+    function handlerForClick(e) {
+        if (e.defaultPrevented) {
+            return;
+        }
+        if (searchForm.contains(e.target)) {
+            return;
+        }
         addClass(searchWrap, 'hide');
-        addClass(searchMask, 'hide');
-    };
-})();
+    }
+    keyInput.addEventListener('focus', search);
+    keyInput.addEventListener('input', search);
+    keyInput.addEventListener('keydown', handlerForEscKey);
+    window.addEventListener('click', handlerForClick);
+})();})();

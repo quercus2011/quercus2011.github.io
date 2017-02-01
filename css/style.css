@@ -535,11 +535,6 @@ body {
   left: 56px;
   top: -10px;
 }
-#result-mask {
-  position: fixed;
-  left: 0;
-  top: 0;
-}
 #search-result {
   width: 100%;
   box-sizing: content-box;
