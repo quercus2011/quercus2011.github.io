@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-01-27T15:00:00.000Z</updated>
+  <updated>2017-02-03T06:34:02.659Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -16,26 +16,113 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://quercus2011.github.io/2017/01/22/hello-world/"/>
-    <id>https://quercus2011.github.io/2017/01/22/hello-world/</id>
-    <published>2017-01-22T12:14:38.000Z</published>
-    <updated>2017-01-27T15:00:00.000Z</updated>
+    <title>新ブログのシステムについて</title>
+    <link href="https://quercus2011.github.io/2017/02/03/about-new-system/"/>
+    <id>https://quercus2011.github.io/2017/02/03/about-new-system/</id>
+    <published>2017-02-03T05:33:36.000Z</published>
+    <updated>2017-02-03T06:34:02.659Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<p>新ブログの技術的なお話です。</p>
+<p>この新ブログは、
+<a href="https://hexo.io" target="_blank" rel="external">Hexo</a> というソフトウェアを使ってコンテンツを生成して、
+<a href="https://help.github.com/categories/github-pages-basics/" target="_blank" rel="external">GitHub Pages</a>
+上で運用しています。</p>
+<p>この新ブログを構築するためのファイル（投稿記事の原稿を含む）は、
+すべて GitHub 上で公開されています。<br><a href="https://github.com/quercus2011/site" target="_blank" rel="external">https://github.com/quercus2011/site</a></p>
+<p>ご質問などあれば、お気軽にどうぞ。</p>
+<h2 id="Hexo-とは"><a href="#Hexo-とは" class="headerlink" title="Hexo とは"></a>Hexo とは</h2><p><a href="https://hexo.io" target="_blank" rel="external">Hexo</a> というのは、
+ブログみたいなサイトを自動生成してくれるソフトウェアです。</p>
+<p>一般的にブログ構築システムというと Wordpress とか MovableType とかが有名ですが、
+それらはコンテンツを動的に（ユーザーがサーバーにアクセスしたときに）生成するのに対し、
+Hexo はすべてのコンテンツのファイルを事前に一括生成してしまうのが大きな違いです。
+静的サイトジェネレータ (Static Site Generator, SSG) と呼ばれています。
+Hexo 以外にも Jekyll とかが知られています。</p>
+<p>Hexo は <a href="https://nodejs.org" target="_blank" rel="external">Node.js</a> という JavaScript 処理系で動くプログラムです。
+Web ブラウザ向けの JavaScript が書ける人なら、
+ある程度ソースコードが読めるのが利点です。
+あと、処理速度が速いと言われています。</p>
+<p>もともと趣味で <a href="https://github.com/hexojs/hexo/" target="_blank" rel="external">Hexo のソースコード</a>を改造したりしていたので、
+この新ブログはその実証実験的な意味合いもあります。</p>
+<p>Hexo はいちおう Windows 上でも動くらしいですが（Mac でも動く）、
+クラウド上の仮想サーバ (VPS) に Linux (Ubuntu) をインストールして、
+その上で実行しています。</p>
+<p>Hexo では「テーマ」を選ぶことでサイトのデザイン（見た目）を簡単に変えられます。
+また、HTML/CSS/JavaScript の知識があれば、テーマを自由にカスタマイズすることができます。
+この新ブログは、<a href="https://github.com/chaooo" target="_blank" rel="external">Charles Zheng さん</a> が作られた
+<a href="https://github.com/chaooo/hexo-theme-BlueLake" target="_blank" rel="external">BlueLake というテーマ</a>をベースに、
+<a href="https://github.com/quercus2011/hexo-theme-BlueLake" target="_blank" rel="external">独自にカスタマイズしたテーマ</a>を使用しています。</p>
+<h2 id="GitHub-Pages-とは"><a href="#GitHub-Pages-とは" class="headerlink" title="GitHub Pages とは"></a>GitHub Pages とは</h2><p>What is GitHub Pages? - GitHub<br><a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="external">https://help.github.com/articles/what-is-github-pages/</a></p>
+<p>静的な Web サイトを無料で運用できるサービスです。
+CGI とか PHP とか Ruby とか Perl とかは動かせません。<br><small># なので、このブログにはコメント機能がまだありません（実装する方法はあります）</small></p>
+<p>デフォルトで HTTPS 化されているのが素晴らしいです。
+正直、FF14 の公式サイトとかフォーラムとかが HTTPS 化されていないのが残念。</p>
+<p>広告が入らないのも大きな利点です。</p>
+<p><a href="https://github.com" target="_blank" rel="external">GitHub</a> の提供するサービスなので、当然ながら、
+分散バージョン管理システム Git の恩恵をフルに受けることができます。
+過去の変更履歴をたどったり、誤った変更を元に戻したり、
+手元で変更を加えて十分に動作確認してから正式に公開したり、
+派生版を作ったり、簡単にできます。</p>
+<p>個人的に運営している Web サイトは自前の Web サーバで運用していますが、
+Git と HTML がわかる人なら GitHub Pages はお手軽でオススメです。</p>
+<h2 id="雑感"><a href="#雑感" class="headerlink" title="雑感"></a>雑感</h2><p>FC2 blog は無料ブログの中ではかなり自由度の高いところだと思いますが、
+今後、スクリーンショット画像が増えていくと管理が大変になりそうな予感もあり、
+移転することにしました
+（あと、HTTPS 化したいとかスマホ対応が微妙とか広告が邪魔とかも理由）。</p>
+<p>とりあえず、過去の投稿記事の原稿とかが手元に残っている（Git でバージョン管理できる）
+というのは精神衛生上とてもよいです。</p>
+<p>ちょっと敷居が高いかもしれませんが、オススメです。</p>
+<p>ご質問とかあればお気軽にご連絡ください。
+連絡先はサイドバーに書いてあります。
+もちろんゲーム内でコンタクトしていただいても OK です。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;新ブログの技術的なお話です。&lt;/p&gt;
+&lt;p&gt;この新ブログは、
+&lt;a href=&quot;https://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; というソフトウェアを使ってコンテンツを生成して、
+&lt;a href=&quot;https:
+    
+    </summary>
+    
+    
+      <category term="Technical" scheme="https://quercus2011.github.io/tags/Technical/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新ブログはじめました</title>
+    <link href="https://quercus2011.github.io/2017/01/22/start-new-blog/"/>
+    <id>https://quercus2011.github.io/2017/01/22/start-new-blog/</id>
+    <published>2017-01-22T04:59:51.000Z</published>
+    <updated>2017-02-03T05:36:01.886Z</updated>
+    
+    <content type="html"><![CDATA[<p>新ブログを立ち上げました！</p>
+<p>これまで、FC2 blog (<a href="http://quercus2011.blog.fc2.com" target="_blank" rel="external">http://quercus2011.blog.fc2.com</a>) を使っていたのですが、
+最近ちょっと技術的なことを勉強していて自力でブログを運営できる気がしてきたので、
+<a href="https://hexo.io" target="_blank" rel="external">Hexo</a> + <a href="https://help.github.com/categories/github-pages-basics/" target="_blank" rel="external">GitHub Pages</a>
+での新ブログ構築にトライしました。</p>
+<p>旧ブログの記事を全部（と言ってもたいした数ではありませんが）
+こちらのブログにインポートできたので、旧ブログはそのうち破棄する予定です。
+スクリーンショット画像の取り込みが大変かと思っていたのですが、
+FC2 blog から一括ダウンロードできたので、意外に楽でした。</p>
+<p>唯一、コメントだけは持ってこられませんでした。
+この新ブログにはコメント機能がまだ無いのです。
+そのうち実装予定。</p>
+<p>この新ブログのデザイン（見た目）はかなり気合いを入れてカスタマイズしたので、
+とりあえず満足しています。
+もし表示がおかしかったりしたら教えていただけると助かります。</p>
+<p>ちなみに、スマホ対応です。
+いわゆる「レスポンシブデザイン」というやつです。</p>
+<p>せっかく新ブログを構築しても更新しなきゃ意味ないので、
+ちゃんとマメに記事を書こうと思います。</p>
+<p>どうぞよろしくお願いします！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;新ブログを立ち上げました！&lt;/p&gt;
+&lt;p&gt;これまで、FC2 blog (&lt;a href=&quot;http://quercus2011.blog.fc2.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://quercus2011.blog.fc2.
     
     </summary>
     
@@ -43,54 +130,732 @@
   </entry>
   
   <entry>
-    <title>【旧FF14】 はじめてみました</title>
-    <link href="https://quercus2011.github.io/2011/02/08/hello-ff14/"/>
-    <id>https://quercus2011.github.io/2011/02/08/hello-ff14/</id>
-    <published>2011-02-08T14:59:59.000Z</published>
-    <updated>2017-02-02T01:38:43.658Z</updated>
+    <title>ひさしぶりにミラプリ</title>
+    <link href="https://quercus2011.github.io/2017/01/11/ff14-mirage-prism-once-in-a-while/"/>
+    <id>https://quercus2011.github.io/2017/01/11/ff14-mirage-prism-once-in-a-while/</id>
+    <published>2017-01-11T05:17:38.000Z</published>
+    <updated>2017-02-03T04:49:47.012Z</updated>
     
-    <content type="html"><![CDATA[<p>Quercus Maris （クエルクス・マリス）です！　はじめまして！</p>
-<p>このたび、FINAL FANTASY XIV (FF14) で遊んでみることにしました。</p>
-<p>別のネトゲで知っていた人が「絵がキレイ！」と言っていたので、
-いろいろ悪いウワサも承知でちょっと参加してみることに。
-以前にベンチマークをやってみたら今の PC で動きそうでしたし。</p>
-<p>とりあえず、パッケージを近所のゲーム屋さんで買って（高かった！）、
-インストール待ちの間に攻略本と <a href="http://ff14n.wikiwiki.jp" target="_blank" rel="external">wiki</a> でお勉強です。
-wiki の<a href="http://ff14n.wikiwiki.jp/?FAQ#qd802688" target="_blank" rel="external">「有料オープンベータテスト」</a>という言い方には笑いましたｗ</p>
-<p>まずはキャラ作成。</p>
-<p>最初は「ちょっとインテリっぽい長身スリムな森の住民」を目指して
-エレゼンにしてみたのですが、何回作り直しても気に入った顔になってくれません。
-オープニングムービーですでに違和感が・・・（キャラ作成画面とだいぶ印象が違う）</p>
-<p>で、最終的にヒューランになりました。
-コンセプトは「ちょっと小柄なふつーのひと」です。
-パワーよりスピード、というかんじ。</p>
-<p>「戦って強い人」というよりは「職人」になりたいなぁ、という気持ちがありました。
-というわけで、まずはクラフターへの道を目指すことにしました。
-作れる装備が多そうだった鍛冶師と革細工師で迷ったのですが、
-初期装備の見た目で鍛冶師にしました :-)</p>
-<p>ワールドはとりあえず空いていた Saronia にしました。
-直接の知り合いはいないし、人が多すぎるよりは少ない方が好みなので。</p>
-<p>スタートする国は森の都「グリダニア」にしました。
-自然の中で冒険したかった、というのが理由です。</p>
-<p>名前は、以前から使っているメインの名前には名字がなかったので、
-名字があったサブキャラの名前を使うことにしました。</p>
-<p>以上で、Quercus Maris が誕生！！</p>
-<img src="/2011/02/08/hello-ff14/SS__20110208a.jpg" alt="ちょっと装備は変わってます" title="ちょっと装備は変わってます">
-<p>どうぞよろしくお願いします！</p>
+    <content type="html"><![CDATA[<img src="/2017/01/11/ff14-mirage-prism-once-in-a-while/CaptureSTAFF_20170111_132332_137b.jpg" alt="降神祭" title="降神祭">
+<p>ひさしぶりの投稿です。</p>
+<p>2017年もよろしくお願いいたします。
+2016年はあまり FF14 で遊べてなかったように思うので、
+もうちょっとアクティブに活動したい所存です。</p>
+<p>この年末年始はひたすら採掘＆クラフターをやっていました。
+あと、クラフターのガーロンド装備（IL190 装備）を買いました。
+ひさしぶりに禁断したら、あっさり 4M ギル溶けました。
+やっぱり禁断こわい。</p>
+<hr>
+<p>ここ数ヶ月、ほとんどバトルコンテンツをやっていなかったので、
+モチベーションアップを兼ねて全身ミラプリしてみました。</p>
+<p>参考にしたのは定番のミラプリスナップ。眺めているだけでも楽しいです。</p>
+<blockquote>
+<p>未だかな未だかな - MIRAPRI SNAP<br><a href="http://mirapri.com/6136" target="_blank" rel="external">http://mirapri.com/6136</a></p>
+</blockquote>
+<p>ローブと手袋が暖かそうでかわいいです。
+ジョブを選ばない装備なのもポイント高い！</p>
+<p>とりあえず頭装備はメガネ絶対なので、「ホワイトベレー」は除外。
+足装備は持っていなかったので「スノーフレークブーツ」で代替。
+カララントは「スノウホワイト」で代替。</p>
+<pre><code>頭装備： リムレスグラス
+胴装備： スターライトローブ
+手装備： レインディアグローブ
+脚装備： スノーフレークタイツ
+足装備： スノーフレークブーツ
+</code></pre><p>アクセサリは耳だけ「ラピスラズリイヤリング」で他はエンペラーズ。</p>
+<img src="/2017/01/11/ff14-mirage-prism-once-in-a-while/CaptureSTAFF_20170111_135220_056a.jpg" alt="全身ミラプリ（前から見たところ）" title="全身ミラプリ（前から見たところ）">
+<img src="/2017/01/11/ff14-mirage-prism-once-in-a-while/CaptureSTAFF_20170111_135305_120a.jpg" alt="全身ミラプリ（後ろから見たところ）" title="全身ミラプリ（後ろから見たところ）">
+<p>さらに、以前から気になっていた光る武器も買ってしまいました。
+600,000 ギルと 450,000 ギル。高かった！！</p>
+<p>白魔道士： ケーン・オブ・ラウンド<br><a href="https://eriones.com/22315" target="_blank" rel="external">https://eriones.com/22315</a><br><img src="/2017/01/11/ff14-mirage-prism-once-in-a-while/CaptureSTAFF_20170111_121549_631a.jpg" alt="ケーン・オブ・ラウンド" title="ケーン・オブ・ラウンド"></p>
+<p>吟遊詩人： ボウ・オブ・ラウンド<br><a href="https://eriones.com/22821" target="_blank" rel="external">https://eriones.com/22821</a><br><img src="/2017/01/11/ff14-mirage-prism-once-in-a-while/CaptureSTAFF_20170111_131732_295a.jpg" alt="ボウ・オブ・ラウンド" title="ボウ・オブ・ラウンド"></p>
+<p>派手すぎず、キレイに光るのが最高です。</p>
+<p>所持金がだいぶ減ってしまったので、
+とりあえず金策がんばります。</p>
 ]]></content>
     
     <summary type="html">
     
-      Quercus Maris （クエルクス・マリス）です！　はじめまして！
-このたび、FINAL FANTASY XIV (FF14) で遊んでみることにしました。
+      &lt;img src=&quot;/2017/01/11/ff14-mirage-prism-once-in-a-while/CaptureSTAFF_20170111_132332_137b.jpg&quot; alt=&quot;降神祭&quot; title=&quot;降神祭&quot;&gt;
+&lt;p&gt;ひさしぶりの投稿です。&lt;/p&gt;
+&lt;p&gt;
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>いまさらながら捨身</title>
+    <link href="https://quercus2011.github.io/2016/04/27/ff14-action-blood-for-blood/"/>
+    <id>https://quercus2011.github.io/2016/04/27/ff14-action-blood-for-blood/</id>
+    <published>2016-04-27T11:13:59.000Z</published>
+    <updated>2017-02-03T04:32:00.034Z</updated>
+    
+    <content type="html"><![CDATA[<p>詩人がカンストしたのですが、ふと見てみると、「捨身」が無い。
+まだ槍術士が Lv26 でした・・・・</p>
+<p>というわけで、クォーリーミルとコスタでひたすらギルドリーヴ。
+あっというまに Lv34 になりました。</p>
+<img src="/2016/04/27/ff14-action-blood-for-blood/CaptureSTAFF_20160427_194823_414a.png" alt="スクリーンショット" title="スクリーンショット">
+<p>新しくジョブクエで覚えるスキルと併せて練習しないとですね！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;詩人がカンストしたのですが、ふと見てみると、「捨身」が無い。
+まだ槍術士が Lv26 でした・・・・&lt;/p&gt;
+&lt;p&gt;というわけで、クォーリーミルとコスタでひたすらギルドリーヴ。
+あっというまに Lv34 になりました。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/27/f
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>詩人カンスト</title>
+    <link href="https://quercus2011.github.io/2016/04/23/ff14-archer-lv60/"/>
+    <id>https://quercus2011.github.io/2016/04/23/ff14-archer-lv60/</id>
+    <published>2016-04-22T15:00:00.000Z</published>
+    <updated>2017-02-03T04:24:27.621Z</updated>
+    
+    <content type="html"><![CDATA[<p>いまさらながら、詩人がカンストしました。</p>
+<img src="/2016/04/23/ff14-archer-lv60/CaptureSTAFF_20160422_221519_171aa.png" alt="スクリーンショット" title="スクリーンショット">
+<p>CF のシャキ待ちが我慢できず、FATE のみで上げちゃいました。
+バディがいればソロでもけっこう行けますね。</p>
+<p>ジョブクエをやって、ID でしばらく練習しないとです。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;いまさらながら、詩人がカンストしました。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/23/ff14-archer-lv60/CaptureSTAFF_20160422_221519_171aa.png&quot; alt=&quot;スクリーンショット&quot; title=&quot;スクリーンショット&quot;
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>カルコ</title>
+    <link href="https://quercus2011.github.io/2016/04/19/ff14-calca/"/>
+    <id>https://quercus2011.github.io/2016/04/19/ff14-calca/</id>
+    <published>2016-04-19T11:43:01.000Z</published>
+    <updated>2017-02-03T04:22:34.352Z</updated>
+    
+    <content type="html"><![CDATA[<p>FC の定期活動（月曜夜）の後に、FC メンバーにお願いして、
+「逆さの塔」と「古アムダプール市街(Hard)」に連れて行ってもらいました。</p>
+<p>初見の白でしたが、なんとか誰も落とさずにクリア。</p>
+<p>しかも、ミニオン「カルコ」を GREED 勝ちしてしまいました。
+すみません・・・・・（－－；</p>
+<p>いまさらながら、エキルレまわせるようになりました！</p>
+<img src="/2016/04/19/ff14-calca/CaptureSTAFF_20160419_203329_512.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>とりあえず、メインクエストを進めたいと思います。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;FC の定期活動（月曜夜）の後に、FC メンバーにお願いして、
+「逆さの塔」と「古アムダプール市街(Hard)」に連れて行ってもらいました。&lt;/p&gt;
+&lt;p&gt;初見の白でしたが、なんとか誰も落とさずにクリア。&lt;/p&gt;
+&lt;p&gt;しかも、ミニオン「カルコ」を GREED 勝ちしてしま
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>真いろはす討滅戦</title>
+    <link href="https://quercus2011.github.io/2016/04/03/ff14-ilohas/"/>
+    <id>https://quercus2011.github.io/2016/04/03/ff14-ilohas/</id>
+    <published>2016-04-02T21:31:29.000Z</published>
+    <updated>2017-02-03T04:18:43.098Z</updated>
+    
+    <content type="html"><![CDATA[<p>ものすごくひさしぶりの投稿です。</p>
+<p>真いろはす討滅戦やってきました。<br><a href="https://cam.sej.co.jp/cp/CAPC070.do" target="_blank" rel="external">https://cam.sej.co.jp/cp/CAPC070.do</a></p>
+<p>500ml ペットボトルは14本でカゴが一杯になってしまいました。
+持って帰るのもきびしいので、とりあえずＡコースクリアまで。
+極いろはす討滅戦 (28pt) はこれが飲み終わったら考えます。</p>
+<p>景品のメイド服セットはすごくいいかんじです。
+エプロンドレスの裾はすごくふわふわしてるし、
+頭のリボンもゆらゆらして、かわいい。
+染色もできるので、ちょっと遊んでみます。</p>
+<img src="/2016/04/03/ff14-ilohas/CaptureSTAFF_20160401_192659_860a0.png" alt="スクリーンショット" title="スクリーンショット">
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ものすごくひさしぶりの投稿です。&lt;/p&gt;
+&lt;p&gt;真いろはす討滅戦やってきました。&lt;br&gt;&lt;a href=&quot;https://cam.sej.co.jp/cp/CAPC070.do&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://cam.sej.
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bandicam から After Effects へ</title>
+    <link href="https://quercus2011.github.io/2014/06/05/video-bandicam-to-aftereffects/"/>
+    <id>https://quercus2011.github.io/2014/06/05/video-bandicam-to-aftereffects/</id>
+    <published>2014-06-05T13:23:00.000Z</published>
+    <updated>2017-02-03T04:12:05.234Z</updated>
+    
+    <content type="html"><![CDATA[<p>動画編集やりたい、ということで、まったくのシロウトにもかかわらず、
+<a href="http://www.adobe.com/jp/products/aftereffects.html" target="_blank" rel="external">Adobe After Effects</a>
+にチャレンジすることにしました！</p>
+<p>無謀かもですが、まぁ、がんばってみる。
+月 5000 円の課金も覚悟しました。
+入門書も買ってきました！</p>
+<p>で、さっそく遊んでみようと思ったのですが、ひとつ問題が発生。
+Bandicam で録画した動画ファイルを取り込もうとするとエラーに！</p>
+<p><a href="http://www.videolan.org/" target="_blank" rel="external">VLC media player</a>
+で問題なく再生できていたので気がつかなかったのですが、
+どっか違う avi ファイルのようです。</p>
+<p><a href="http://www.kurohane.net/" target="_blank" rel="external">真空波動研Lite</a>
+で見てみても異常はなさそうなのですが、
+TMPGEnc 4.0 XPress でも取り込みエラーになったので、
+やっぱりなにか違うのかもしれません。
+<a href="http://sourceforge.jp/projects/ecodecotool/" target="_blank" rel="external">えこでこツール</a>
+でもエラーになったし。</p>
+<p>ためしに Bandicam と同じ開発元の
+<a href="http://www.gomplayer.jp/encoder/" target="_blank" rel="external">GOM ENCODER</a>
+体験版で mp4 ファイルに変換してみたところ、問題なく After Effects に取り込めました。
+しかしながら、再エンコードされてしまうのがとっても残念・・・・。</p>
+<p>ふと、avi コンテナの問題かもしれないと思って、
+再エンコード無しにコンテナだけ mp4 に変換できないか調べてみると、
+<a href="http://phperera.wordpress.com/" target="_blank" rel="external">Video Container Changer</a>
+というフリーソフトを発見！</p>
+<p>さっそく試すと、とくに設定とか無しにあっさり mp4 に変換できました。
+動画データを再エンコードしないからあっという間に変換完了。
+できた mp4 ファイルを After Effects に食べさせてみるとあっさり OK。
+「TMPGEnc 4.0 XPress」でも「えこでこツール」でも OK でした。</p>
+<p>というわけで、</p>
+<pre><code>Bandicam ⇒ Video Container Changer ⇒ After Effects
+</code></pre><p>というパスを確立することができました！</p>
+<p>ちなみに、もしかすると、Bandicam でコーデックを「H264 (CUDA)」に
+しているのが原因かもしれません。こんど Xvid でも試してみます。<br><small># 試そうとしたら FF14 緊急メンテでログインできず・・・・</small></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;動画編集やりたい、ということで、まったくのシロウトにもかかわらず、
+&lt;a href=&quot;http://www.adobe.com/jp/products/aftereffects.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Adobe After
+    
+    </summary>
+    
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+      <category term="Video" scheme="https://quercus2011.github.io/tags/Video/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bandicam 導入</title>
+    <link href="https://quercus2011.github.io/2014/06/05/video-introduce-bandicam/"/>
+    <id>https://quercus2011.github.io/2014/06/05/video-introduce-bandicam/</id>
+    <published>2014-06-05T12:49:37.000Z</published>
+    <updated>2017-02-03T04:12:10.206Z</updated>
+    
+    <content type="html"><![CDATA[<p>FF14 動画作成にチャレンジすることにしました！<br><small># ということでブログ再開します</small></p>
+<p>FF14 のプレイ動画の録画・録音には <a href="http://www.gomplayer.jp/bandicam/" target="_blank" rel="external">Bandicam</a> を使うことにしました。
+とりあえず無料体験版で試してスムースに録画できたので採用。</p>
+<p>CUDA 対応のおかげか、録画 ON にしても重くならないのがすばらしい！
+あと、ゲーム音とマイク入力を重ねて録音できるのも great です。</p>
+<p>フル画面だとあっという間にディスクがあふれそうなので
+（まりすは 2400x1200 ウインドウ表示でプレイしています）
+ハーフサイズ（縦横 50%）の 30fps で録画することにしました。
+かろうじでチャット文字も読める品質です。</p>
+<img src="/2014/06/05/video-introduce-bandicam/Bandicam_settings_20140605a.png" alt="Bandicam の設定" title="Bandicam の設定">
+<p>ロゴが入るのがイヤで、酔っ払った勢いで購入しちゃいましたが、
+さて、録画するに値するプレイができるかが最大の問題だったりします。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;FF14 動画作成にチャレンジすることにしました！&lt;br&gt;&lt;small&gt;# ということでブログ再開します&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;FF14 のプレイ動画の録画・録音には &lt;a href=&quot;http://www.gomplayer.jp/bandicam/&quot; targe
+    
+    </summary>
+    
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+      <category term="Video" scheme="https://quercus2011.github.io/tags/Video/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>オカネを稼ぎたい</title>
+    <link href="https://quercus2011.github.io/2013/11/08/ff14-arr-raise-money/"/>
+    <id>https://quercus2011.github.io/2013/11/08/ff14-arr-raise-money/</id>
+    <published>2013-11-07T15:04:29.000Z</published>
+    <updated>2017-02-03T03:37:53.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>あまりにオカネがなくてアクセサリも買えず、
+ID にも行ける気がしない今日この頃。</p>
+<p>採掘師でシャード／クリスタルを掘る毎日になりつつあります。</p>
+<p>カンストしてると採集地点のモンスターが襲ってこないので、
+とっても気楽に掘れます。ステルス不要。</p>
+<p>で、掘ったシャードとか、レベリング時の残骸（鉱石のHQ品）とか、
+マーケットで売ってみたところ、資産が10万ギルを初めて超えました。</p>
+<p>こんな大金、生まれて初めて！</p>
+<img src="/2013/11/08/ff14-arr-raise-money/SS__20131107aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>シャードさまさま。</p>
+<p>あとはシャード／クリスタルの相場が暴落しないことを祈るのみです。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;あまりにオカネがなくてアクセサリも買えず、
+ID にも行ける気がしない今日この頃。&lt;/p&gt;
+&lt;p&gt;採掘師でシャード／クリスタルを掘る毎日になりつつあります。&lt;/p&gt;
+&lt;p&gt;カンストしてると採集地点のモンスターが襲ってこないので、
+とっても気楽に掘れます。ステルス不要。&lt;/p
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>採掘師 Lv50</title>
+    <link href="https://quercus2011.github.io/2013/11/04/ff14-arr-miner-lv50/"/>
+    <id>https://quercus2011.github.io/2013/11/04/ff14-arr-miner-lv50/</id>
+    <published>2013-11-04T02:48:25.000Z</published>
+    <updated>2017-02-03T03:33:22.828Z</updated>
+    
+    <content type="html"><![CDATA[<p>ここしばらく、ID に行かなきゃと思いつつもやる気が出ずに、
+のんびり採掘してたりします。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">　　Lv20⇒25　　桜貝(Lv19)</div><div class="line">　　　　西ラノシア「サスタシャ」入口付近のLv20採掘場</div><div class="line"></div><div class="line">　　Lv25⇒27　　ソーダ水(Lv24)</div><div class="line">　　　　南部森林「酒房バスカロンドラザース」北西のLv25採掘場</div><div class="line"></div><div class="line">　　Lv27⇒28　　銀鉱(Lv25)</div><div class="line">　　　　南部森林「酒房バスカロンドラザース」北西のLv25採掘場</div><div class="line"></div><div class="line">　　Lv28⇒29　　アースクリスタル(Lv26)　　※4カ所中2カ所でしか獲れない</div><div class="line">　　　　低地ラノシア「ブラインドアイアン坑道」南西のLv30岩場</div><div class="line"></div><div class="line">　　Lv29⇒31　　銀鉱(Lv25)</div><div class="line">　　　　南部森林「酒房バスカロンドラザース」北西のLv25採掘場</div><div class="line"></div><div class="line">　　Lv31⇒34　　コールマターG2(Lv30)</div><div class="line">　　　　南ザナラーン「リトルアラミゴ」北(19,11)のLv30岩場</div><div class="line"></div><div class="line">　　Lv34⇒37　　霊銀砂(Lv33)</div><div class="line">　　　　南ザナラーン「焼かれし者の里」西(18,19)のLv35岩場</div><div class="line"></div><div class="line">　　Lv37⇒40　　霊銀鉱(Lv34)</div><div class="line">　　　　南ザナラーン「ビエルゴズ・ストライク」南東X24Y40のLv35採掘場</div><div class="line"></div><div class="line">　　Lv40⇒46　　ブラックアルメン(Lv40)</div><div class="line">　　　　南部森林「ゴブリン族の野営地」南のトンネルの中のLv40採掘場</div><div class="line"></div><div class="line">　　Lv46⇒50　　青金鉱(Lv43)</div><div class="line">　　　　高地ラノシア「キャンプ・ブロンズレイク」南のLv45採掘場</div></pre></td></tr></table></figure>
+<p>オカネにならないものばかりですが、経験値効率重視で掘り掘り。</p>
+<p>で、とうとう採掘師 Lv50 カンストしました。</p>
+<img src="/2013/11/04/ff14-arr-miner-lv50/SS__20131104aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>園芸師、弓術士に続いて３職目のカンストです。</p>
+<img src="/2013/11/04/ff14-arr-miner-lv50/SS__20131104ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>とりあえず、これ以上は経験値いらなくなったので、
+シャード／クリスタルでも掘ってオカネ稼ぎしようと思います。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ここしばらく、ID に行かなきゃと思いつつもやる気が出ずに、
+のんびり採掘してたりします。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>さよなら夏の日</title>
+    <link href="https://quercus2011.github.io/2013/10/23/ff14-arr-goodbye-summer-days/"/>
+    <id>https://quercus2011.github.io/2013/10/23/ff14-arr-goodbye-summer-days/</id>
+    <published>2013-10-23T08:29:55.000Z</published>
+    <updated>2017-02-03T03:25:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>月曜の夜は FC 「OMISO KINGDOM」 の定例会です。</p>
+<p>今回は「さよなら夏の日」ということで、ビーチで FATE と花火！</p>
+<p>耐熱装備とかぼちゃ頭と花火を持って、コスタに集合です。</p>
+<p><a href="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023aa0.jpg">
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<span class="caption">↑クリックで拡大↑</span>
+</a></p>
+<p>いきなりアーリマンに乗った集団が発生しちゃいました。</p>
+<p>この勢いで FATE に突撃してました。超あやしいｗ</p>
+<p>その後、なぜか突発的に温泉に移動。</p>
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>花火をしながらみんなで集合写真を撮ったのですが、
+ライティングがキレイで思わず連写しちゃいました。</p>
+<p>１枚目はふつーの集合写真（ふつーなのはこれだけ）</p>
+<p><a href="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ac0.jpg">
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ac.jpg" alt="スクリーンショット" title="スクリーンショット">
+<span class="caption">↑クリックで拡大↑</span>
+</a></p>
+<p>２枚目。</p>
+<p><a href="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ad0.jpg">
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ad.jpg" alt="スクリーンショット" title="スクリーンショット">
+<span class="caption">↑クリックで拡大↑</span>
+</a></p>
+<p>３枚目。中央のメイン猫さんがぜんぶ持っていってますねｗ</p>
+<p><a href="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ae0.jpg">
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ae.jpg" alt="スクリーンショット" title="スクリーンショット">
+<span class="caption">↑クリックで拡大↑</span>
+</a></p>
+<p>４枚目。グリーンがかったライティングがキレイ！</p>
+<p><a href="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023af0.jpg">
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023af.jpg" alt="スクリーンショット" title="スクリーンショット">
+<span class="caption">↑クリックで拡大↑</span>
+</a></p>
+<p>というわけで、楽しい納涼 FC イベントとなりました。</p>
+<p>やっぱりみんなで集まってわいわいやるのは楽しい！</p>
+<p>ちなみに、終了後に温泉には幽霊が出現してました。</p>
+<img src="/2013/10/23/ff14-arr-goodbye-summer-days/SS__20131023ag.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>ちょっと離席してた国王が幽霊に取り囲まれてます！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;月曜の夜は FC 「OMISO KINGDOM」 の定例会です。&lt;/p&gt;
+&lt;p&gt;今回は「さよなら夏の日」ということで、ビーチで FATE と花火！&lt;/p&gt;
+&lt;p&gt;耐熱装備とかぼちゃ頭と花火を持って、コスタに集合です。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/2013/10/23/
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+      <category term="OMISO" scheme="https://quercus2011.github.io/tags/OMISO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ハロウィーン</title>
+    <link href="https://quercus2011.github.io/2013/10/19/ff14-arr-halloween-2013/"/>
+    <id>https://quercus2011.github.io/2013/10/19/ff14-arr-halloween-2013/</id>
+    <published>2013-10-19T01:00:04.000Z</published>
+    <updated>2017-02-03T02:51:32.930Z</updated>
+    
+    <content type="html"><![CDATA[<p>ハロウィーン祭りがやってきました！　（FF 的には「守護天節」）</p>
+<p>もらえる装備は「かぼちゃ頭」（4種類）と「おばけ服」です。</p>
+<p>さっそくクエストして装備もらって＆買ってきました。</p>
+<img src="/2013/10/19/ff14-arr-halloween-2013/SS__20131019aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>特別出演はしゅしゅさんです。ララおばけは反則！</p>
+<p>お化けの格好をすると、ログイン時のキャラ選択画面も変わります。</p>
+<img src="/2013/10/19/ff14-arr-halloween-2013/SS__20131019ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>こういう MMORPG ならではの楽しいイベントは大歓迎です。
+次はクリスマスかな？</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ハロウィーン祭りがやってきました！　（FF 的には「守護天節」）&lt;/p&gt;
+&lt;p&gt;もらえる装備は「かぼちゃ頭」（4種類）と「おばけ服」です。&lt;/p&gt;
+&lt;p&gt;さっそくクエストして装備もらって＆買ってきました。&lt;/p&gt;
+&lt;img src=&quot;/2013/10/19/ff14-arr
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>吟遊詩人 AF</title>
+    <link href="https://quercus2011.github.io/2013/10/01/ff14-arr-bard-af-equipment/"/>
+    <id>https://quercus2011.github.io/2013/10/01/ff14-arr-bard-af-equipment/</id>
+    <published>2013-10-01T12:44:26.000Z</published>
+    <updated>2017-02-03T02:48:29.790Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨夜は FC 定例イベントということで、FC のみなさんと PT を組んで
+メインシナリオのガルーダ討伐に行ってきました！</p>
+<p>超へろへろで即死してしまって全然戦力にならなかったのが申し訳ない＞＜</p>
+<p>４～５回目でよーやくクリアできました！（やっぱり地面あったかいなり・・・</p>
+<p>これでメインシナリオを進められるようになったのですが、
+その前にせっかく弓 Lv50 になったので、吟遊詩人 AF をゲット。</p>
+<p>途中の戦闘は２～５回失敗しましたが、なんとかクリア。</p>
+<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ac.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ad.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ae.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>とりあえず満足したので、メインシナリオ進めようと思いまふ。</p>
+<p>p.s. 金策どうしよう・・・・（売れてない</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;昨夜は FC 定例イベントということで、FC のみなさんと PT を組んで
+メインシナリオのガルーダ討伐に行ってきました！&lt;/p&gt;
+&lt;p&gt;超へろへろで即死してしまって全然戦力にならなかったのが申し訳ない＞＜&lt;/p&gt;
+&lt;p&gt;４～５回目でよーやくクリアできました！（やっぱり地面
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>弓術士 Lv50</title>
+    <link href="https://quercus2011.github.io/2013/09/30/ff14-arr-archer-lv50/"/>
+    <id>https://quercus2011.github.io/2013/09/30/ff14-arr-archer-lv50/</id>
+    <published>2013-09-30T11:53:59.000Z</published>
+    <updated>2017-02-03T02:43:26.758Z</updated>
+    
+    <content type="html"><![CDATA[<p>北ザナラーンの FATE パーティに参加すること数日。</p>
+<p>よーやく弓が Lv50 になりました！</p>
+<img src="/2013/09/30/ff14-arr-archer-lv50/SS__20130930aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>いやー、長かったです＞＜</p>
+<p>ホーソン山塞、クォーリーミル、クルザス、北ザナラーンと経て、
+ほぼ FATE のみで Lv50 に到達できました。</p>
+<p>これでカンストは木こりに続いて２個目！</p>
+<img src="/2013/09/30/ff14-arr-archer-lv50/SS__20130930ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>とりあえずオカネが無くてやばいので、金策をなにか考えようと思います。
+資金源にしていたモノがマーケットで暴落しているので・・・・（－－メ</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;北ザナラーンの FATE パーティに参加すること数日。&lt;/p&gt;
+&lt;p&gt;よーやく弓が Lv50 になりました！&lt;/p&gt;
+&lt;img src=&quot;/2013/09/30/ff14-arr-archer-lv50/SS__20130930aa.jpg&quot; alt=&quot;スクリーンショット&quot;
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>きっこりーな装備</title>
+    <link href="https://quercus2011.github.io/2013/09/21/ff14-arr-equipment-for-kikkoriina/"/>
+    <id>https://quercus2011.github.io/2013/09/21/ff14-arr-equipment-for-kikkoriina/</id>
+    <published>2013-09-20T22:15:22.000Z</published>
+    <updated>2017-02-03T04:57:05.671Z</updated>
+    
+    <content type="html"><![CDATA[<p>「まりす」改め「クエルクス・”きっこりーな”・マリス」です。
+おはようございます。</p>
+<p>昨日、せっかく園芸師 Lv50 になったのにクラス専用装備が無いのは悲しい。
+でもオカネがない‥‥。</p>
+<p>というわけで悩んだのですが、朝起きたらあまりにいい天気だったので、
+つい勢いで買ってしまいました＞＜</p>
+<p>「きっこりーな」まりすです。</p>
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921ac.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921ad.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921ae.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>この装備だとパラメータは</p>
+<pre><code>獲得力 284
+識質力 266
+</code></pre><p>でした。</p>
+<p>識質力が 320 以上あると未知の○○で HQ 品が安定してゲットできる
+らしいので、オカネがたまったらマテリアにも手を出そうかと思いますっ！</p>
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921af.jpg" alt="今のステータス" title="今のステータス">
+<p>おまけ：<br>　　OMISO のクレスト付けてみました。<br>　　炭鉱ガールみたくポシェットとかにほしかったなぁー    </p>
+<img src="/2013/09/21/ff14-arr-equipment-for-kikkoriina/SS__20130921ah.jpg" alt="スクリーンショット" title="スクリーンショット">
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;「まりす」改め「クエルクス・”きっこりーな”・マリス」です。
+おはようございます。&lt;/p&gt;
+&lt;p&gt;昨日、せっかく園芸師 Lv50 になったのにクラス専用装備が無いのは悲しい。
+でもオカネがない‥‥。&lt;/p&gt;
+&lt;p&gt;というわけで悩んだのですが、朝起きたらあまりにいい天気だった
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>きっこりーな</title>
+    <link href="https://quercus2011.github.io/2013/09/20/ff14-arr-kikkoriina/"/>
+    <id>https://quercus2011.github.io/2013/09/20/ff14-arr-kikkoriina/</id>
+    <published>2013-09-20T07:18:01.000Z</published>
+    <updated>2017-02-02T06:51:18.882Z</updated>
+    
+    <content type="html"><![CDATA[<p>ここ最近、ちょっと気合いを入れてあげていた園芸が、ついにカンストしました！</p>
+<img src="/2013/09/20/ff14-arr-kikkoriina/SS__20130920aa.jpg" alt="園芸師 Lv50" title="園芸師 Lv50">
+<p>FC のみんながいろいろカンストしていくのに微妙に焦りつつ、
+自分はどんなところでみんなのお役に立てるだろうかと考えたとき、
+単純作業の採集があまり苦にならないところかなぁ、と思ったわけです。
+戦闘は苦手だし、お金稼ぎも得意じゃないので・・・・</p>
+<p>んで、採掘は FC 内で早々にカンストされたひとがいたので
+（「炭鉱ガール」がかわいくって超うらやましかった）
+園芸を先に上げることにしてみたわけです。</p>
+<p>基本的には野良でひたすら刈る刈る刈る刈る、という愚直なアプローチ。
+裁縫の素材になる草綿や亜麻が刈れたときには モチベーション up でしたが、
+そうそう役に立つモノが刈れるわけでは無く（適正レベルじゃないと経験値が）
+近くにアクティブなモンスターがいて邪魔なところは避けたりして、
+かなり遠回りしちゃったんじゃないかと思ってます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Lv21⇒24    東部森林「ホウゾーン家の山塞」のすぐ西（Lv20良木）</div><div class="line">Lv24⇒27    西ラノシア「エールポート」のすぐ北（Lv20良木）</div><div class="line">Lv27⇒31    忘れた（草綿とか刈っていた気がする）</div><div class="line">Lv31⇒32    南部森林｢クォーリーミル」すぐ北（Lv30良木）</div><div class="line">Lv32⇒41    ずっと亜麻を刈ってた</div><div class="line">Lv41⇒43    東ラノシア｢船着場：レインキャッチャー｣すぐ西（Lv40良木）</div><div class="line">Lv43⇒49    クルザス中央高地「キャンプ・ドラゴンヘッド」すぐ西（Lv45良木）</div><div class="line">Lv49⇒50    レベル35リーヴ（クルザスのアドネール占星台）</div></pre></td></tr></table></figure>
+<p>最後はもう面倒になってリーヴ消費しちゃいました。
+メイン戦闘職がまだ Lv39 なので、だいぶ低めの Lv35 リーヴを使いましたが、
+２時間くらいでサクっと Lv50 に上がりました。リーヴすごい。</p>
+<p>これからクラス専用装備を集めようと思いますっ！</p>
+<img src="/2013/09/20/ff14-arr-kikkoriina/SS__20130920ab.jpg" alt="いまのレベル一覧" title="いまのレベル一覧">
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ここ最近、ちょっと気合いを入れてあげていた園芸が、ついにカンストしました！&lt;/p&gt;
+&lt;img src=&quot;/2013/09/20/ff14-arr-kikkoriina/SS__20130920aa.jpg&quot; alt=&quot;園芸師 Lv50&quot; title=&quot;園芸師 Lv50&quot;&gt;
 
     
     </summary>
     
     
-      <category term="BeforeMeteor" scheme="https://quercus2011.github.io/tags/BeforeMeteor/"/>
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
     
       <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>クォーリーミル FATE 卒業</title>
+    <link href="https://quercus2011.github.io/2013/09/12/ff14-arr-graduate-from-quarrymill/"/>
+    <id>https://quercus2011.github.io/2013/09/12/ff14-arr-graduate-from-quarrymill/</id>
+    <published>2013-09-12T13:50:29.000Z</published>
+    <updated>2017-02-02T06:44:43.794Z</updated>
+    
+    <content type="html"><![CDATA[<p>FF14 のローンチとともにブログ更新が滞ってますが、プレイに夢中です。</p>
+<p>FC のみんなが続々と Lv50 カンストに到達しているので、
+ちょっと焦りながらも園芸師を上げてます。
+よーやく亜麻も刈れるようになりました。</p>
+<p>しかし、そのへんの草を刈っても正直なかなか成長しないので、
+ギルドリーヴを消費して加速することにしました・・・・が、
+メイン戦闘職の弓術士のレベルが低くてリーヴ解放できない罠。</p>
+<p>というわけで、南部森林のクォーリーミル周辺 FATE をやりました。
+パーティー募集とかもしながら、弓術士 Lv36 まで到達して卒業！
+FATE だとボロい装備でもなんとかなっちゃうのが楽ですね～
+プレイヤースキルも必要ないしｗ</p>
+<p>んで、弓術士クラスクエをサクっと終わらせて、
+Lv30 リーヴと Lv35 リーヴも解放してきました。</p>
+<img src="/2013/09/12/ff14-arr-graduate-from-quarrymill/SS__20130912aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/09/12/ff14-arr-graduate-from-quarrymill/SS__20130912ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>初めてクルザスへやってきましたが、</p>
+<p>一面雪の世界で、暗く重々しい雰囲気に圧倒されてしまいます。</p>
+<p>南国リゾートのコスタ・デル・ソルからテレポしてくると
+めちゃめちゃギャップがあっておもしろいです。</p>
+<p>とりあえず、アドネール占星台にこもって
+採集リーヴを消化しようと思いますっ</p>
+<img src="/2013/09/12/ff14-arr-graduate-from-quarrymill/SS__20130912ac.jpg" alt="スクリーンショット" title="スクリーンショット">
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;FF14 のローンチとともにブログ更新が滞ってますが、プレイに夢中です。&lt;/p&gt;
+&lt;p&gt;FC のみんなが続々と Lv50 カンストに到達しているので、
+ちょっと焦りながらも園芸師を上げてます。
+よーやく亜麻も刈れるようになりました。&lt;/p&gt;
+&lt;p&gt;しかし、そのへんの草を刈っ
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>幻術 Lv15</title>
+    <link href="https://quercus2011.github.io/2013/08/31/ff14-arr-conjurer-lv15/"/>
+    <id>https://quercus2011.github.io/2013/08/31/ff14-arr-conjurer-lv15/</id>
+    <published>2013-08-31T10:01:02.000Z</published>
+    <updated>2017-02-02T06:37:38.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>ほそぼそと上げていた幻術士が、ようやく Lv15 になりました。</p>
+<p>というわけで、以前ゲットしたカッコイイ装備が活かせるように！</p>
+<img src="/2013/08/31/ff14-arr-conjurer-lv15/SS__20130831aa.jpg" alt="スクリーンショット" title="スクリーンショット">
+<img src="/2013/08/31/ff14-arr-conjurer-lv15/SS__20130831ab.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>よくわかっていないのですが、アイコンがカラーの装備品。
+たぶん ID でゲットしたんだと思います。</p>
+<p>見た目もなかなか悪くないです。
+というか、かなり気に入りました♪</p>
+<img src="/2013/08/31/ff14-arr-conjurer-lv15/SS__20130831ac.jpg" alt="スクリーンショット" title="スクリーンショット">
+<p>この先のレベリングは、思い切って、サスタシャに挑戦しようかと思ってます。
+素人ヒーラーなので不安がいっぱいですが・・・・</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ほそぼそと上げていた幻術士が、ようやく Lv15 になりました。&lt;/p&gt;
+&lt;p&gt;というわけで、以前ゲットしたカッコイイ装備が活かせるように！&lt;/p&gt;
+&lt;img src=&quot;/2013/08/31/ff14-arr-conjurer-lv15/SS__20130831aa.jp
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FATE JOINED</title>
+    <link href="https://quercus2011.github.io/2013/08/31/ff14-arr-fate-joined/"/>
+    <id>https://quercus2011.github.io/2013/08/31/ff14-arr-fate-joined/</id>
+    <published>2013-08-30T15:39:09.000Z</published>
+    <updated>2017-02-03T03:28:16.156Z</updated>
+    
+    <content type="html"><![CDATA[<p>テレポしたら落とされてログインオンライン強制参加。</p>
+<p>初めての週末はひどいことになりそうな気配・・・・</p>
+<p>で、ヒマなので、先日の OMISO 遠足の集合写真を加工してみました。</p>
+<p><a href="/2013/08/31/ff14-arr-fate-joined/SS__20130830ba.jpg">
+<img src="/2013/08/31/ff14-arr-fate-joined/SS__20130830bb.jpg" alt="スクリーンショット" title="スクリーンショット">
+<span class="caption">↑クリックで拡大↑</span>
+</a></p>
+<p>ちなみに <a href="https://twitter.com/kmng_shtdm/status/372664615290691584" target="_blank" rel="external">“F.A.T.E. JOINED” のロゴは by かんなぎさん</a> です。感謝！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;テレポしたら落とされてログインオンライン強制参加。&lt;/p&gt;
+&lt;p&gt;初めての週末はひどいことになりそうな気配・・・・&lt;/p&gt;
+&lt;p&gt;で、ヒマなので、先日の OMISO 遠足の集合写真を加工してみました。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/2013/08/31/ff14-arr
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
+    
+      <category term="OMISO" scheme="https://quercus2011.github.io/tags/OMISO/"/>
     
   </entry>
   

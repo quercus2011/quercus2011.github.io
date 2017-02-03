@@ -722,6 +722,10 @@ body {
   position: relative;
   text-align: center;
 }
+.post .post-content p small {
+  font-size: 0.75em;
+  color: #999;
+}
 .post .post-content blockquote p,
 .post .post-content .stressed p {
   margin: 0;
