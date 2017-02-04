@@ -874,6 +874,10 @@ body {
   -webkit-box-shadow: 0 0 3px #d8e2eb inset;
   box-shadow: 0 0 3px #d8e2eb inset;
 }
+.archive-wrap .listing li:hover a,
+.archive-wrap .listing li:active a {
+  color: #40759b;
+}
 .archive-wrap .listing li:hover a:before,
 .archive-wrap .listing li:active a:before {
   border: 1px solid #5483b1;
