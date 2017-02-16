@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-02-16T04:08:55.000Z</updated>
+  <updated>2017-02-16T04:35:27.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://quercus2011.github.io/2017/02/16/ff14-macro-memo/"/>
     <id>https://quercus2011.github.io/2017/02/16/ff14-macro-memo/</id>
     <published>2017-02-16T02:11:18.000Z</published>
-    <updated>2017-02-16T04:08:55.000Z</updated>
+    <updated>2017-02-16T04:35:27.000Z</updated>
     
     <content type="html"><![CDATA[<p>FF14 のマクロに関するメモです。</p>
 <p>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></p>
@@ -63,11 +63,14 @@ XHB1-3 は常に非共有モードです。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       2 RAL</div><div class="line">/crosshotbar set 確信                 2 RAU</div><div class="line">/crosshotbar set 中級加工             2 RAD</div><div class="line">/crosshotbar set インナークワイエット 2 LAL</div><div class="line">/crosshotbar set 秘訣                 2 LAU</div><div class="line">/crosshotbar set 突貫作業             2 LAR</div><div class="line">/crosshotbar set コンファートゾーン   2 LAD</div><div class="line">/crosshotbar set 倹約                 2 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     2 RDU</div><div class="line">/crosshotbar set 模範作業II           2 RDR</div><div class="line">/crosshotbar set ステディハンドII     2 RDD</div><div class="line">/crosshotbar set マニピュレーション   2 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       2 LDU</div><div class="line">/crosshotbar set グレートストライド   2 LDR</div><div class="line">/crosshotbar set 工面算段II           2 LDD</div></pre></td></tr></table></figure>
 <p>ちなみに XHB3 はマイスター用に予約してあります（現時点では使っていません）。</p>
 <h2 id="ひとつのジョブで複数の-HB-XHB-設定を使いたい"><a href="#ひとつのジョブで複数の-HB-XHB-設定を使いたい" class="headerlink" title="ひとつのジョブで複数の HB/XHB 設定を使いたい"></a>ひとつのジョブで複数の HB/XHB 設定を使いたい</h2><p>たとえば白魔道士で、PvE と PvP とで HB/XHB 設定を変えたい場合があります。</p>
-<p>そんなときは、「自分が今後絶対に使わないであろうと思われる」ジョブを決めて、そのジョブの非共有 HB/XHB を待避先に使います。</p>
+<p>そんなときは、「自分が今後絶対に使わないであろうと思われる」ジョブを決めて、そのジョブの非共有 HB/XHB を待避先に使います。未習得のジョブでも OK です。</p>
 <p>たとえば、まりすの場合、機工士と召喚士をやることはたぶん無いので、以下のふたつのマクロを使えば XHB1-7 を丸ごと切り替えられます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 機工士  1</div><div class="line">/crosshotbar copy current  2 機工士  2</div><div class="line">/crosshotbar copy current  3 機工士  3</div><div class="line">/crosshotbar copy current  4 機工士  4</div><div class="line">/crosshotbar copy current  5 機工士  5</div><div class="line">/crosshotbar copy current  6 機工士  6</div><div class="line">/crosshotbar copy current  7 機工士  7</div><div class="line">/crosshotbar copy 召喚士  1 current  1</div><div class="line">/crosshotbar copy 召喚士  2 current  2</div><div class="line">/crosshotbar copy 召喚士  3 current  3</div><div class="line">/crosshotbar copy 召喚士  4 current  4</div><div class="line">/crosshotbar copy 召喚士  5 current  5</div><div class="line">/crosshotbar copy 召喚士  6 current  6</div><div class="line">/crosshotbar copy 召喚士  7 current  7</div><div class="line">/hotbar      copy 召喚士  9 current  9</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 召喚士  1</div><div class="line">/crosshotbar copy current  2 召喚士  2</div><div class="line">/crosshotbar copy current  3 召喚士  3</div><div class="line">/crosshotbar copy current  4 召喚士  4</div><div class="line">/crosshotbar copy current  5 召喚士  5</div><div class="line">/crosshotbar copy current  6 召喚士  6</div><div class="line">/crosshotbar copy current  7 召喚士  7</div><div class="line">/crosshotbar copy 機工士  1 current  1</div><div class="line">/crosshotbar copy 機工士  2 current  2</div><div class="line">/crosshotbar copy 機工士  3 current  3</div><div class="line">/crosshotbar copy 機工士  4 current  4</div><div class="line">/crosshotbar copy 機工士  5 current  5</div><div class="line">/crosshotbar copy 機工士  6 current  6</div><div class="line">/crosshotbar copy 機工士  7 current  7</div><div class="line">/hotbar      copy 機工士  9 current  9</div></pre></td></tr></table></figure>
 <p>ひと工夫して、ホットーバー9のスロット12あたりに上記マクロをセットして、同じボタンでトグルできるようにすると、便利＆確実です。上記マクロは同じものを２回実行すると他方が上書きされてしまう危険があるので・・・。あるいは、保存用マクロと切り替えマクロは分けたほうが安全かもしれません（ホットバーも同時に切り替えようとするとそもそも15行に収まらないし）。</p>
+<h2 id="ピーアンマクロ"><a href="#ピーアンマクロ" class="headerlink" title="ピーアンマクロ"></a>ピーアンマクロ</h2><p>FF14 固定PT用ピーアンマクロ - Eorzean<br><a href="http://www.eorzean.info/archives/2785161.html" target="_blank" rel="external">http://www.eorzean.info/archives/2785161.html</a></p>
+<h2 id="ギルドリーヴ納品用移動マクロ"><a href="#ギルドリーヴ納品用移動マクロ" class="headerlink" title="ギルドリーヴ納品用移動マクロ"></a>ギルドリーヴ納品用移動マクロ</h2><p>同じマップに受注 NPC と納品先 NPC がいる場合、自動で起動できるみたいです。</p>
+<p>FF14 ギルドリーヴ納品用移動マクロ<br><a href="http://www.eorzean.info/archives/3135969.html" target="_blank" rel="external">http://www.eorzean.info/archives/3135969.html</a></p>
 ]]></content>
     
     <summary type="html">
