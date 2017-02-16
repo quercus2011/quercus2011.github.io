@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-02-13T07:51:34.000Z</updated>
+  <updated>2017-02-16T04:08:55.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>マクロめも</title>
+    <link href="https://quercus2011.github.io/2017/02/16/ff14-macro-memo/"/>
+    <id>https://quercus2011.github.io/2017/02/16/ff14-macro-memo/</id>
+    <published>2017-02-16T02:11:18.000Z</published>
+    <updated>2017-02-16T04:08:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>FF14 のマクロに関するメモです。</p>
+<p>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></p>
+<p>マクロ - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD</a></p>
+<p>テキストコマンド - FINAL FANTASY XIV n Wiki<br><a href="http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9" target="_blank" rel="external">http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9</a></p>
+<h2 id="グラウンドターゲットスキル発動マクロ"><a href="#グラウンドターゲットスキル発動マクロ" class="headerlink" title="グラウンドターゲットスキル発動マクロ"></a>グラウンドターゲットスキル発動マクロ</h2><p>まりすはパッチノートを読んでも気がつかなかったのですが、
+Patch 3.2 からグラウンドターゲットスキルの設置場所として代名詞によるターゲット指定ができるようになっていました。</p>
+<p><a href="http://jp.finalfantasyxiv.com/lodestone/topics/detail/7abc9fa4bbf7e73d1c94eaaeea46fcff603aa97a" target="_blank" rel="external">Patch 3.2 パッチノート</a></p>
+<p>FF14 グラウンドターゲットスキルのマクロ関連いろいろ - Eorzean<br><a href="http://www.eorzean.info/archives/3638082.html" target="_blank" rel="external">http://www.eorzean.info/archives/3638082.html</a></p>
+<p>たとえば、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac アサイラム &lt;me&gt;</div></pre></td></tr></table></figure>
+<p>というマクロを発動させると、自分の足元にアサイラムが設置されます。</p>
+<p>また、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac フレイミングアロー &lt;t&gt;</div></pre></td></tr></table></figure>
+<p>とすれば、ターゲットしている敵の足元にフレイミングアローが設置されます。</p>
+<p>まりすはグラウンドターゲットの指定動作が苦手でずっとまともに使えていなかったのですが、このマクロのおかげで使えるようになってきました。</p>
+<p>Eorzean さまに感謝！</p>
+<h2 id="マウスオーバーでケアル"><a href="#マウスオーバーでケアル" class="headerlink" title="マウスオーバーでケアル"></a>マウスオーバーでケアル</h2><p>親指ボタンの付いた多機能マウスを使っている白魔道士向けのマクロです。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/micon ケアル</div><div class="line">/ac ケアル &lt;mo&gt;</div></pre></td></tr></table></figure>
+<p>まりすは Logicool G602 マウスを愛用していて、６個の親指ボタンに <code>Ctrl+3</code> ～ <code>Ctrl+8</code> を割り当てています。</p>
+<p>Windows 版の FF14 クライアントでは、デフォルトでホットバー１に
+<code>Ctrl+1</code> ～ <code>Ctrl+=</code> が割り当てられているので、たとえば上記マクロをホットバー１のスロット３とかにセットすると、パーティーリスト上で親指ボタンを押すだけでケアルが発動します。</p>
+<p>まりすは白魔道士のとき「左手ゲームパッド（移動）、右手マウス（アクション）」というプレイスタイルなのですが、基本的にマウスカーソルはパーティーリスト上にあります。パーティーメンバーがどこにいても（ケアルが届く範囲にいれば）即座に発動できるので、とても楽です。</p>
+<p>ちなみに親指ボタンに割り当てているアクションは「エスナ」「ケアル」「テトラグラマトン」「リジェネ」「ケアルラ」「ベネディクション」の６個です。範囲魔法はパーティーリストのすぐ横に置いた縦ホットバーにセットしてあります。</p>
+<h3 id="HB-XHB-の共有・非共有の一括切り替え"><a href="#HB-XHB-の共有・非共有の一括切り替え" class="headerlink" title="HB/XHB の共有・非共有の一括切り替え"></a>HB/XHB の共有・非共有の一括切り替え</h3><p>まりすの HUD 設定では、バトル職のときは HB/XHB 非共有モード、クラフター＆ギャザラーのときは HB/XHB 共有モード、としています。ちなみに HB4 と XHB8 は常に共有モード（マウント呼び出しとか用）、
+XHB1-3 は常に非共有モードです。</p>
+<p>この切り替えを簡単に行うため、簡単なマクロを作りました。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 off</div><div class="line">/hotbar share 2 off</div><div class="line">/hotbar share 3 off</div><div class="line">/hotbar share 5 off</div><div class="line">/hotbar share 6 off</div><div class="line">/hotbar share 7 off</div><div class="line">/hotbar share 8 off</div><div class="line">/hotbar share 9 off</div><div class="line">/hotbar share 10 off</div><div class="line">/crosshotbar share 4 off</div><div class="line">/crosshotbar share 5 off</div><div class="line">/crosshotbar share 6 off</div><div class="line">/crosshotbar share 7 off</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 on</div><div class="line">/hotbar share 2 on</div><div class="line">/hotbar share 3 on</div><div class="line">/hotbar share 5 on</div><div class="line">/hotbar share 6 on</div><div class="line">/hotbar share 7 on</div><div class="line">/hotbar share 8 on</div><div class="line">/hotbar share 9 on</div><div class="line">/hotbar share 10 on</div><div class="line">/crosshotbar share 4 on</div><div class="line">/crosshotbar share 5 on</div><div class="line">/crosshotbar share 6 on</div><div class="line">/crosshotbar share 7 on</div></pre></td></tr></table></figure>
+<p>で、ポイントは、これらのマクロをお互いのホットバーの同じ位置（たとえばホットバー10のスロット12）にセットすること、です。</p>
+<p>そうすると、同じ場所を押すたびにモードがトグルします。わかりやすくてオススメです。</p>
+<p>ちなみに「着替えマクロ」はバトル職（白魔道士と吟遊詩人）だけ作りました。クラフター８職＋ギャザラー３職で11枠もマクロを作りたくなかったのです。共有モードのホットバーにギアセットをセットして着替えています。たとえば白魔道士から園芸師に着替える場合、上記マクロを押してホットバーを共有モードに切り替えると園芸師ギアセットアイコンが出現して、それを押せば園芸師になれます。一発で着替えられないのは不便に思うかもしれませんが、逆に言うと誤爆が避けられるので安全だったりします。</p>
+<h2 id="クラフターのアディショナル一括設定"><a href="#クラフターのアディショナル一括設定" class="headerlink" title="クラフターのアディショナル一括設定"></a>クラフターのアディショナル一括設定</h2><p>まりすの場合、クラフターのアディショナルとして使うアクションは決まっていて、どのクラスでも同じクラフター製作マクロが使えるようにしています。（たぶんマイスターになるとスキル回しも変わってくると思いますが）</p>
+<p>クラスごとに「自クラス以外のものぜんぶ」を設定することになるわけですが、面倒なので全部列挙してしまうことにしました。自クラスのものは自動的にスキップしてくれるので、1個のマクロで全クラス使えます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/additionalaction clear</div><div class="line">/additionalaction 模範作業II on</div><div class="line">/additionalaction ヘイスティタッチ on</div><div class="line">/additionalaction 倹約 on</div><div class="line">/additionalaction ステディハンドII on</div><div class="line">/additionalaction ビエルゴの祝福 on</div><div class="line">/additionalaction コンファートゾーン on</div><div class="line">/additionalaction マニピュレーション on</div><div class="line">/additionalaction 工面算段II on</div><div class="line">/additionalaction 堅実の心得 on</div><div class="line">/additionalaction 堅実作業 on</div><div class="line">/additionalaction イノベーション on</div><div class="line">/additionalaction 確信 on</div><div class="line">/additionalaction 秘訣 on</div><div class="line">/additionalaction 突貫作業 on</div></pre></td></tr></table></figure>
+<h2 id="クラフターの-XHB-一括設定"><a href="#クラフターの-XHB-一括設定" class="headerlink" title="クラフターの XHB 一括設定"></a>クラフターの XHB 一括設定</h2><p>クラフターの XHB って、共有モードにしておけば良いじゃないか、と思われるかもしれませんが、実は「作業」とか「中級加工」とかのアクションは同じ名前でもクラスごとに別アクションになっています。（理由は謎・・・・ “4.0” で改善されそうな気も）</p>
+<p>そこで、一括設定マクロを使うわけです。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set 蒐集品製作           1 RAR</div><div class="line">/crosshotbar set 蒐集品製作           2 RAR</div><div class="line">/crosshotbar set 蒐集品製作           3 RAR</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       1 RAL</div><div class="line">/crosshotbar set 確信                 1 RAU</div><div class="line">/crosshotbar set 中級加工             1 RAD</div><div class="line">/crosshotbar set インナークワイエット 1 LAL</div><div class="line">/crosshotbar set 堅実の心得           1 LAU</div><div class="line">/crosshotbar set 堅実作業             1 LAR</div><div class="line">/crosshotbar set コンファートゾーン   1 LAD</div><div class="line">/crosshotbar set 倹約                 1 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     1 RDU</div><div class="line">/crosshotbar set 模範作業II           1 RDR</div><div class="line">/crosshotbar set ステディハンドII     1 RDD</div><div class="line">/crosshotbar set マニピュレーション   1 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       1 LDU</div><div class="line">/crosshotbar set グレートストライド   1 LDR</div><div class="line">/crosshotbar set 工面算段II           1 LDD</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       2 RAL</div><div class="line">/crosshotbar set 確信                 2 RAU</div><div class="line">/crosshotbar set 中級加工             2 RAD</div><div class="line">/crosshotbar set インナークワイエット 2 LAL</div><div class="line">/crosshotbar set 秘訣                 2 LAU</div><div class="line">/crosshotbar set 突貫作業             2 LAR</div><div class="line">/crosshotbar set コンファートゾーン   2 LAD</div><div class="line">/crosshotbar set 倹約                 2 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     2 RDU</div><div class="line">/crosshotbar set 模範作業II           2 RDR</div><div class="line">/crosshotbar set ステディハンドII     2 RDD</div><div class="line">/crosshotbar set マニピュレーション   2 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       2 LDU</div><div class="line">/crosshotbar set グレートストライド   2 LDR</div><div class="line">/crosshotbar set 工面算段II           2 LDD</div></pre></td></tr></table></figure>
+<p>ちなみに XHB3 はマイスター用に予約してあります（現時点では使っていません）。</p>
+<h2 id="ひとつのジョブで複数の-HB-XHB-設定を使いたい"><a href="#ひとつのジョブで複数の-HB-XHB-設定を使いたい" class="headerlink" title="ひとつのジョブで複数の HB/XHB 設定を使いたい"></a>ひとつのジョブで複数の HB/XHB 設定を使いたい</h2><p>たとえば白魔道士で、PvE と PvP とで HB/XHB 設定を変えたい場合があります。</p>
+<p>そんなときは、「自分が今後絶対に使わないであろうと思われる」ジョブを決めて、そのジョブの非共有 HB/XHB を待避先に使います。</p>
+<p>たとえば、まりすの場合、機工士と召喚士をやることはたぶん無いので、以下のふたつのマクロを使えば XHB1-7 を丸ごと切り替えられます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 機工士  1</div><div class="line">/crosshotbar copy current  2 機工士  2</div><div class="line">/crosshotbar copy current  3 機工士  3</div><div class="line">/crosshotbar copy current  4 機工士  4</div><div class="line">/crosshotbar copy current  5 機工士  5</div><div class="line">/crosshotbar copy current  6 機工士  6</div><div class="line">/crosshotbar copy current  7 機工士  7</div><div class="line">/crosshotbar copy 召喚士  1 current  1</div><div class="line">/crosshotbar copy 召喚士  2 current  2</div><div class="line">/crosshotbar copy 召喚士  3 current  3</div><div class="line">/crosshotbar copy 召喚士  4 current  4</div><div class="line">/crosshotbar copy 召喚士  5 current  5</div><div class="line">/crosshotbar copy 召喚士  6 current  6</div><div class="line">/crosshotbar copy 召喚士  7 current  7</div><div class="line">/hotbar      copy 召喚士  9 current  9</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 召喚士  1</div><div class="line">/crosshotbar copy current  2 召喚士  2</div><div class="line">/crosshotbar copy current  3 召喚士  3</div><div class="line">/crosshotbar copy current  4 召喚士  4</div><div class="line">/crosshotbar copy current  5 召喚士  5</div><div class="line">/crosshotbar copy current  6 召喚士  6</div><div class="line">/crosshotbar copy current  7 召喚士  7</div><div class="line">/crosshotbar copy 機工士  1 current  1</div><div class="line">/crosshotbar copy 機工士  2 current  2</div><div class="line">/crosshotbar copy 機工士  3 current  3</div><div class="line">/crosshotbar copy 機工士  4 current  4</div><div class="line">/crosshotbar copy 機工士  5 current  5</div><div class="line">/crosshotbar copy 機工士  6 current  6</div><div class="line">/crosshotbar copy 機工士  7 current  7</div><div class="line">/hotbar      copy 機工士  9 current  9</div></pre></td></tr></table></figure>
+<p>ひと工夫して、ホットーバー9のスロット12あたりに上記マクロをセットして、同じボタンでトグルできるようにすると、便利＆確実です。上記マクロは同じものを２回実行すると他方が上書きされてしまう危険があるので・・・。あるいは、保存用マクロと切り替えマクロは分けたほうが安全かもしれません（ホットバーも同時に切り替えようとするとそもそも15行に収まらないし）。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;FF14 のマクロに関するメモです。&lt;/p&gt;
+&lt;p&gt;テキストコマンドの一覧（公式）&lt;br&gt;&lt;a href=&quot;http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/&quot; target=&quot;_blank
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="Memo" scheme="https://quercus2011.github.io/tags/Memo/"/>
+    
+  </entry>
   
   <entry>
     <title>グラカン中尉昇級</title>
@@ -724,38 +793,6 @@ ID にも行ける気がしない今日この頃。&lt;/p&gt;
     
       &lt;p&gt;昨夜は FC 定例イベントということで、FC のみなさんと PT を組んで
 メインシナリオのガルーダ討伐に行ってきました！
-    
-    </summary>
-    
-    
-      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
-    
-      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>弓術士 Lv50</title>
-    <link href="https://quercus2011.github.io/2013/09/30/ff14-arr-archer-lv50/"/>
-    <id>https://quercus2011.github.io/2013/09/30/ff14-arr-archer-lv50/</id>
-    <published>2013-09-30T11:53:59.000Z</published>
-    <updated>2017-02-04T05:54:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>北ザナラーンの FATE パーティに参加すること数日。</p>
-<p>よーやく弓が Lv50 になりました！
-<a id="more"></a></p>
-<img src="/2013/09/30/ff14-arr-archer-lv50/SS__20130930aa.jpg" alt="スクリーンショット" title="スクリーンショット">
-<p>いやー、長かったです＞＜</p>
-<p>ホーソン山塞、クォーリーミル、クルザス、北ザナラーンと経て、ほぼ FATE のみで Lv50 に到達できました。</p>
-<p>これでカンストは木こりに続いて２個目！</p>
-<img src="/2013/09/30/ff14-arr-archer-lv50/SS__20130930ab.jpg" alt="スクリーンショット" title="スクリーンショット">
-<p>とりあえずオカネが無くてやばいので、金策をなにか考えようと思います。資金源にしていたモノがマーケットで暴落しているので・・・・（－－メ</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;北ザナラーンの FATE パーティに参加すること数日。&lt;/p&gt;
-&lt;p&gt;よーやく弓が Lv50 になりました！
     
     </summary>
     
