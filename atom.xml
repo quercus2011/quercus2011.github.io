@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-02-16T04:35:27.000Z</updated>
+  <updated>2017-02-19T04:15:26.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://quercus2011.github.io/2017/02/16/ff14-macro-memo/"/>
     <id>https://quercus2011.github.io/2017/02/16/ff14-macro-memo/</id>
     <published>2017-02-16T02:11:18.000Z</published>
-    <updated>2017-02-16T04:35:27.000Z</updated>
+    <updated>2017-02-19T04:15:26.000Z</updated>
     
     <content type="html"><![CDATA[<p>FF14 のマクロに関するメモです。</p>
 <p>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></p>
@@ -52,6 +52,7 @@ XHB1-3 は常に非共有モードです。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 on</div><div class="line">/hotbar share 2 on</div><div class="line">/hotbar share 3 on</div><div class="line">/hotbar share 5 on</div><div class="line">/hotbar share 6 on</div><div class="line">/hotbar share 7 on</div><div class="line">/hotbar share 8 on</div><div class="line">/hotbar share 9 on</div><div class="line">/hotbar share 10 on</div><div class="line">/crosshotbar share 4 on</div><div class="line">/crosshotbar share 5 on</div><div class="line">/crosshotbar share 6 on</div><div class="line">/crosshotbar share 7 on</div></pre></td></tr></table></figure>
 <p>で、ポイントは、これらのマクロをお互いのホットバーの同じ位置（たとえばホットバー10のスロット12）にセットすること、です。</p>
 <p>そうすると、同じ場所を押すたびにモードがトグルします。わかりやすくてオススメです。</p>
+<img src="/2017/02/16/ff14-macro-memo/hotbar_sample_20170219a.png" alt="ホットバーの例" title="ホットバーの例">
 <p>ちなみに「着替えマクロ」はバトル職（白魔道士と吟遊詩人）だけ作りました。クラフター８職＋ギャザラー３職で11枠もマクロを作りたくなかったのです。共有モードのホットバーにギアセットをセットして着替えています。たとえば白魔道士から園芸師に着替える場合、上記マクロを押してホットバーを共有モードに切り替えると園芸師ギアセットアイコンが出現して、それを押せば園芸師になれます。一発で着替えられないのは不便に思うかもしれませんが、逆に言うと誤爆が避けられるので安全だったりします。</p>
 <h2 id="クラフターのアディショナル一括設定"><a href="#クラフターのアディショナル一括設定" class="headerlink" title="クラフターのアディショナル一括設定"></a>クラフターのアディショナル一括設定</h2><p>まりすの場合、クラフターのアディショナルとして使うアクションは決まっていて、どのクラスでも同じクラフター製作マクロが使えるようにしています。（たぶんマイスターになるとスキル回しも変わってくると思いますが）</p>
 <p>クラスごとに「自クラス以外のものぜんぶ」を設定することになるわけですが、面倒なので全部列挙してしまうことにしました。自クラスのものは自動的にスキップしてくれるので、1個のマクロで全クラス使えます。</p>
