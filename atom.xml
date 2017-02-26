@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-02-19T04:15:26.000Z</updated>
+  <updated>2017-02-26T10:20:22.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -20,16 +20,36 @@
     <link href="https://quercus2011.github.io/2017/02/16/ff14-macro-memo/"/>
     <id>https://quercus2011.github.io/2017/02/16/ff14-macro-memo/</id>
     <published>2017-02-16T02:11:18.000Z</published>
-    <updated>2017-02-19T04:15:26.000Z</updated>
+    <updated>2017-02-26T10:20:22.000Z</updated>
     
     <content type="html"><![CDATA[<p>FF14 のマクロに関するメモです。</p>
-<p>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></p>
-<p>マクロ - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD</a></p>
-<p>テキストコマンド - FINAL FANTASY XIV n Wiki<br><a href="http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9" target="_blank" rel="external">http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9</a></p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#グラウンドターゲットスキル発動マクロ">グラウンドターゲットスキル発動マクロ</a></li>
+<li><a href="#マウスオーバーでケアル">マウスオーバーでケアル</a></li>
+<li><a href="#hbxhb-の共有非共有の一括切り替え">HB/XHB の共有・非共有の一括切り替え</a></li>
+<li><a href="#クラフターのアディショナル一括設定">クラフターのアディショナル一括設定</a></li>
+<li><a href="#クラフターの-xhb-一括設定">クラフターの XHB 一括設定</a></li>
+<li><a href="#ひとつのジョブで複数の-hbxhb-設定を使いたい">ひとつのジョブで複数の HB/XHB 設定を使いたい</a></li>
+<li><a href="#ピーアンマクロ">ピーアンマクロ</a></li>
+<li><a href="#ギルドリーヴ納品用移動マクロ">ギルドリーヴ納品用移動マクロ</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<ul>
+<li>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></li>
+<li>マクロ - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD</a></li>
+<li>テキストコマンド - FINAL FANTASY XIV n Wiki<br><a href="http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9" target="_blank" rel="external">http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9</a></li>
+</ul>
 <h2 id="グラウンドターゲットスキル発動マクロ"><a href="#グラウンドターゲットスキル発動マクロ" class="headerlink" title="グラウンドターゲットスキル発動マクロ"></a>グラウンドターゲットスキル発動マクロ</h2><p>まりすはパッチノートを読んでも気がつかなかったのですが、
 Patch 3.2 からグラウンドターゲットスキルの設置場所として代名詞によるターゲット指定ができるようになっていました。</p>
-<p><a href="http://jp.finalfantasyxiv.com/lodestone/topics/detail/7abc9fa4bbf7e73d1c94eaaeea46fcff603aa97a" target="_blank" rel="external">Patch 3.2 パッチノート</a></p>
-<p>FF14 グラウンドターゲットスキルのマクロ関連いろいろ - Eorzean<br><a href="http://www.eorzean.info/archives/3638082.html" target="_blank" rel="external">http://www.eorzean.info/archives/3638082.html</a></p>
+<ul>
+<li><a href="http://jp.finalfantasyxiv.com/lodestone/topics/detail/7abc9fa4bbf7e73d1c94eaaeea46fcff603aa97a" target="_blank" rel="external">Patch 3.2 パッチノート</a></li>
+<li>FF14 グラウンドターゲットスキルのマクロ関連いろいろ - Eorzean<br><a href="http://www.eorzean.info/archives/3638082.html" target="_blank" rel="external">http://www.eorzean.info/archives/3638082.html</a></li>
+</ul>
 <p>たとえば、</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac アサイラム &lt;me&gt;</div></pre></td></tr></table></figure>
 <p>というマクロを発動させると、自分の足元にアサイラムが設置されます。</p>
@@ -45,7 +65,7 @@ Patch 3.2 からグラウンドターゲットスキルの設置場所として�
 <code>Ctrl+1</code> ～ <code>Ctrl+=</code> が割り当てられているので、たとえば上記マクロをホットバー１のスロット３とかにセットすると、パーティーリスト上で親指ボタンを押すだけでケアルが発動します。</p>
 <p>まりすは白魔道士のとき「左手ゲームパッド（移動）、右手マウス（アクション）」というプレイスタイルなのですが、基本的にマウスカーソルはパーティーリスト上にあります。パーティーメンバーがどこにいても（ケアルが届く範囲にいれば）即座に発動できるので、とても楽です。</p>
 <p>ちなみに親指ボタンに割り当てているアクションは「エスナ」「ケアル」「テトラグラマトン」「リジェネ」「ケアルラ」「ベネディクション」の６個です。範囲魔法はパーティーリストのすぐ横に置いた縦ホットバーにセットしてあります。</p>
-<h3 id="HB-XHB-の共有・非共有の一括切り替え"><a href="#HB-XHB-の共有・非共有の一括切り替え" class="headerlink" title="HB/XHB の共有・非共有の一括切り替え"></a>HB/XHB の共有・非共有の一括切り替え</h3><p>まりすの HUD 設定では、バトル職のときは HB/XHB 非共有モード、クラフター＆ギャザラーのときは HB/XHB 共有モード、としています。ちなみに HB4 と XHB8 は常に共有モード（マウント呼び出しとか用）、
+<h2 id="hbxhb-の共有非共有の一括切り替え"><a href="#HB-XHB-の共有・非共有の一括切り替え" class="headerlink" title="HB/XHB の共有・非共有の一括切り替え"></a>HB/XHB の共有・非共有の一括切り替え</h2><p>まりすの HUD 設定では、バトル職のときは HB/XHB 非共有モード、クラフター＆ギャザラーのときは HB/XHB 共有モード、としています。ちなみに HB4 と XHB8 は常に共有モード（マウント呼び出しとか用）、
 XHB1-3 は常に非共有モードです。</p>
 <p>この切り替えを簡単に行うため、簡単なマクロを作りました。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 off</div><div class="line">/hotbar share 2 off</div><div class="line">/hotbar share 3 off</div><div class="line">/hotbar share 5 off</div><div class="line">/hotbar share 6 off</div><div class="line">/hotbar share 7 off</div><div class="line">/hotbar share 8 off</div><div class="line">/hotbar share 9 off</div><div class="line">/hotbar share 10 off</div><div class="line">/crosshotbar share 4 off</div><div class="line">/crosshotbar share 5 off</div><div class="line">/crosshotbar share 6 off</div><div class="line">/crosshotbar share 7 off</div></pre></td></tr></table></figure>
@@ -57,27 +77,36 @@ XHB1-3 は常に非共有モードです。</p>
 <h2 id="クラフターのアディショナル一括設定"><a href="#クラフターのアディショナル一括設定" class="headerlink" title="クラフターのアディショナル一括設定"></a>クラフターのアディショナル一括設定</h2><p>まりすの場合、クラフターのアディショナルとして使うアクションは決まっていて、どのクラスでも同じクラフター製作マクロが使えるようにしています。（たぶんマイスターになるとスキル回しも変わってくると思いますが）</p>
 <p>クラスごとに「自クラス以外のものぜんぶ」を設定することになるわけですが、面倒なので全部列挙してしまうことにしました。自クラスのものは自動的にスキップしてくれるので、1個のマクロで全クラス使えます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/additionalaction clear</div><div class="line">/additionalaction 模範作業II on</div><div class="line">/additionalaction ヘイスティタッチ on</div><div class="line">/additionalaction 倹約 on</div><div class="line">/additionalaction ステディハンドII on</div><div class="line">/additionalaction ビエルゴの祝福 on</div><div class="line">/additionalaction コンファートゾーン on</div><div class="line">/additionalaction マニピュレーション on</div><div class="line">/additionalaction 工面算段II on</div><div class="line">/additionalaction 堅実の心得 on</div><div class="line">/additionalaction 堅実作業 on</div><div class="line">/additionalaction イノベーション on</div><div class="line">/additionalaction 確信 on</div><div class="line">/additionalaction 秘訣 on</div><div class="line">/additionalaction 突貫作業 on</div></pre></td></tr></table></figure>
-<h2 id="クラフターの-XHB-一括設定"><a href="#クラフターの-XHB-一括設定" class="headerlink" title="クラフターの XHB 一括設定"></a>クラフターの XHB 一括設定</h2><p>クラフターの XHB って、共有モードにしておけば良いじゃないか、と思われるかもしれませんが、実は「作業」とか「中級加工」とかのアクションは同じ名前でもクラスごとに別アクションになっています。（理由は謎・・・・ “4.0” で改善されそうな気も）</p>
+<h2 id="クラフターの-xhb-一括設定"><a href="#クラフターの-XHB-一括設定" class="headerlink" title="クラフターの XHB 一括設定"></a>クラフターの XHB 一括設定</h2><p>クラフターの XHB って、共有モードにしておけば良いじゃないか、と思われるかもしれませんが、実は「作業」とか「中級加工」とかのアクションは同じ名前でもクラスごとに別アクションになっています。（理由は謎・・・・ “4.0” で改善されそうな気も）</p>
 <p>そこで、一括設定マクロを使うわけです。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set 蒐集品製作           1 RAR</div><div class="line">/crosshotbar set 蒐集品製作           2 RAR</div><div class="line">/crosshotbar set 蒐集品製作           3 RAR</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       1 RAL</div><div class="line">/crosshotbar set 確信                 1 RAU</div><div class="line">/crosshotbar set 中級加工             1 RAD</div><div class="line">/crosshotbar set インナークワイエット 1 LAL</div><div class="line">/crosshotbar set 堅実の心得           1 LAU</div><div class="line">/crosshotbar set 堅実作業             1 LAR</div><div class="line">/crosshotbar set コンファートゾーン   1 LAD</div><div class="line">/crosshotbar set 倹約                 1 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     1 RDU</div><div class="line">/crosshotbar set 模範作業II           1 RDR</div><div class="line">/crosshotbar set ステディハンドII     1 RDD</div><div class="line">/crosshotbar set マニピュレーション   1 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       1 LDU</div><div class="line">/crosshotbar set グレートストライド   1 LDR</div><div class="line">/crosshotbar set 工面算段II           1 LDD</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       2 RAL</div><div class="line">/crosshotbar set 確信                 2 RAU</div><div class="line">/crosshotbar set 中級加工             2 RAD</div><div class="line">/crosshotbar set インナークワイエット 2 LAL</div><div class="line">/crosshotbar set 秘訣                 2 LAU</div><div class="line">/crosshotbar set 突貫作業             2 LAR</div><div class="line">/crosshotbar set コンファートゾーン   2 LAD</div><div class="line">/crosshotbar set 倹約                 2 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     2 RDU</div><div class="line">/crosshotbar set 模範作業II           2 RDR</div><div class="line">/crosshotbar set ステディハンドII     2 RDD</div><div class="line">/crosshotbar set マニピュレーション   2 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       2 LDU</div><div class="line">/crosshotbar set グレートストライド   2 LDR</div><div class="line">/crosshotbar set 工面算段II           2 LDD</div></pre></td></tr></table></figure>
 <p>ちなみに XHB3 はマイスター用に予約してあります（現時点では使っていません）。</p>
-<h2 id="ひとつのジョブで複数の-HB-XHB-設定を使いたい"><a href="#ひとつのジョブで複数の-HB-XHB-設定を使いたい" class="headerlink" title="ひとつのジョブで複数の HB/XHB 設定を使いたい"></a>ひとつのジョブで複数の HB/XHB 設定を使いたい</h2><p>たとえば白魔道士で、PvE と PvP とで HB/XHB 設定を変えたい場合があります。</p>
+<h2 id="ひとつのジョブで複数の-hbxhb-設定を使いたい"><a href="#ひとつのジョブで複数の-HB-XHB-設定を使いたい" class="headerlink" title="ひとつのジョブで複数の HB/XHB 設定を使いたい"></a>ひとつのジョブで複数の HB/XHB 設定を使いたい</h2><p>たとえば白魔道士で、PvE と PvP とで HB/XHB 設定を変えたい場合があります。</p>
 <p>そんなときは、「自分が今後絶対に使わないであろうと思われる」ジョブを決めて、そのジョブの非共有 HB/XHB を待避先に使います。未習得のジョブでも OK です。</p>
 <p>たとえば、まりすの場合、機工士と召喚士をやることはたぶん無いので、以下のふたつのマクロを使えば XHB1-7 を丸ごと切り替えられます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 機工士  1</div><div class="line">/crosshotbar copy current  2 機工士  2</div><div class="line">/crosshotbar copy current  3 機工士  3</div><div class="line">/crosshotbar copy current  4 機工士  4</div><div class="line">/crosshotbar copy current  5 機工士  5</div><div class="line">/crosshotbar copy current  6 機工士  6</div><div class="line">/crosshotbar copy current  7 機工士  7</div><div class="line">/crosshotbar copy 召喚士  1 current  1</div><div class="line">/crosshotbar copy 召喚士  2 current  2</div><div class="line">/crosshotbar copy 召喚士  3 current  3</div><div class="line">/crosshotbar copy 召喚士  4 current  4</div><div class="line">/crosshotbar copy 召喚士  5 current  5</div><div class="line">/crosshotbar copy 召喚士  6 current  6</div><div class="line">/crosshotbar copy 召喚士  7 current  7</div><div class="line">/hotbar      copy 召喚士  9 current  9</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 召喚士  1</div><div class="line">/crosshotbar copy current  2 召喚士  2</div><div class="line">/crosshotbar copy current  3 召喚士  3</div><div class="line">/crosshotbar copy current  4 召喚士  4</div><div class="line">/crosshotbar copy current  5 召喚士  5</div><div class="line">/crosshotbar copy current  6 召喚士  6</div><div class="line">/crosshotbar copy current  7 召喚士  7</div><div class="line">/crosshotbar copy 機工士  1 current  1</div><div class="line">/crosshotbar copy 機工士  2 current  2</div><div class="line">/crosshotbar copy 機工士  3 current  3</div><div class="line">/crosshotbar copy 機工士  4 current  4</div><div class="line">/crosshotbar copy 機工士  5 current  5</div><div class="line">/crosshotbar copy 機工士  6 current  6</div><div class="line">/crosshotbar copy 機工士  7 current  7</div><div class="line">/hotbar      copy 機工士  9 current  9</div></pre></td></tr></table></figure>
 <p>ひと工夫して、ホットーバー9のスロット12あたりに上記マクロをセットして、同じボタンでトグルできるようにすると、便利＆確実です。上記マクロは同じものを２回実行すると他方が上書きされてしまう危険があるので・・・。あるいは、保存用マクロと切り替えマクロは分けたほうが安全かもしれません（ホットバーも同時に切り替えようとするとそもそも15行に収まらないし）。</p>
-<h2 id="ピーアンマクロ"><a href="#ピーアンマクロ" class="headerlink" title="ピーアンマクロ"></a>ピーアンマクロ</h2><p>FF14 固定PT用ピーアンマクロ - Eorzean<br><a href="http://www.eorzean.info/archives/2785161.html" target="_blank" rel="external">http://www.eorzean.info/archives/2785161.html</a></p>
+<h2 id="ピーアンマクロ"><a href="#ピーアンマクロ" class="headerlink" title="ピーアンマクロ"></a>ピーアンマクロ</h2><ul>
+<li>FF14 固定PT用ピーアンマクロ - Eorzean<br><a href="http://www.eorzean.info/archives/2785161.html" target="_blank" rel="external">http://www.eorzean.info/archives/2785161.html</a></li>
+</ul>
 <h2 id="ギルドリーヴ納品用移動マクロ"><a href="#ギルドリーヴ納品用移動マクロ" class="headerlink" title="ギルドリーヴ納品用移動マクロ"></a>ギルドリーヴ納品用移動マクロ</h2><p>同じマップに受注 NPC と納品先 NPC がいる場合、自動で起動できるみたいです。</p>
-<p>FF14 ギルドリーヴ納品用移動マクロ<br><a href="http://www.eorzean.info/archives/3135969.html" target="_blank" rel="external">http://www.eorzean.info/archives/3135969.html</a></p>
+<ul>
+<li>FF14 ギルドリーヴ納品用移動マクロ<br><a href="http://www.eorzean.info/archives/3135969.html" target="_blank" rel="external">http://www.eorzean.info/archives/3135969.html</a></li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
       &lt;p&gt;FF14 のマクロに関するメモです。&lt;/p&gt;
-&lt;p&gt;テキストコマンドの一覧（公式）&lt;br&gt;&lt;a href=&quot;http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/&quot; target=&quot;_blank
+&lt;div class=&quot;toc&quot;&gt;
+
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#グラウンドターゲットスキル発動マクロ&quot;&gt;グラウンドターゲットスキル発動マクロ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#マ
     
     </summary>
     
@@ -125,7 +154,7 @@ XHB1-3 は常に非共有モードです。</p>
     <updated>2017-02-04T05:30:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>まりすのサブジョブである吟遊詩人のメモです。</p>
-<h2 id="「旅神のメヌエット」は必須"><a href="#「旅神のメヌエット」は必須" class="headerlink" title="「旅神のメヌエット」は必須"></a>「旅神のメヌエット」は必須</h2><p>FF14 3.2詩人 メヌエット有無でのDPS差 - Eorzean<br><a href="http://www.eorzean.info/archives/2868702.html" target="_blank" rel="external">http://www.eorzean.info/archives/2868702.html</a></p>
+<h2 id="旅神のメヌエットは必須"><a href="#「旅神のメヌエット」は必須" class="headerlink" title="「旅神のメヌエット」は必須"></a>「旅神のメヌエット」は必須</h2><p>FF14 3.2詩人 メヌエット有無でのDPS差 - Eorzean<br><a href="http://www.eorzean.info/archives/2868702.html" target="_blank" rel="external">http://www.eorzean.info/archives/2868702.html</a></p>
 <blockquote>
 <p>メヌエット無しだと大幅に火力が落ちることがわかります。クリが1000以上になるとレッターの回転率が目に見えて上がってくるので、メヌエット有りではレッターが1回分無駄になったり、GCDへの食い込みが気になりますが切ってしまうとデメリットの方が圧倒的に大きいようです。</p>
 </blockquote>
@@ -146,7 +175,7 @@ XHB1-3 は常に非共有モードです。</p>
     <summary type="html">
     
       &lt;p&gt;まりすのサブジョブである吟遊詩人のメモです。&lt;/p&gt;
-&lt;h2 id=&quot;「旅神のメヌエット」は必須&quot;&gt;&lt;a href=&quot;#「旅神のメヌエット」は必須&quot; class=&quot;headerlink&quot; title=&quot;「旅神のメヌエット」は必須&quot;&gt;&lt;/a&gt;「旅神のメヌエット」は必須&lt;/h2
+&lt;h2 id=&quot;旅神のメヌエットは必須&quot;&gt;&lt;a href=&quot;#「旅神のメヌエット」は必須&quot; class=&quot;headerlink&quot; title=&quot;「旅神のメヌエット」は必須&quot;&gt;&lt;/a&gt;「旅神のメヌエット」は必須&lt;/h2&gt;&lt;
     
     </summary>
     
@@ -225,7 +254,7 @@ XHB1-3 は常に非共有モードです。</p>
 FF 用語の英語表記を調べるのが手間でした。</p>
 <p>ジョブ名とかアイテム名とか地名とかです。</p>
 <p>そこで役に立ったのが、以下のページです。</p>
-<h3 id="その１：-エオルゼアデータベース"><a href="#その１：-エオルゼアデータベース" class="headerlink" title="その１： エオルゼアデータベース"></a>その１： エオルゼアデータベース</h3><p>公式のやつです。<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/advanced_search/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/advanced_search/</a></p>
+<h3 id="その1-エオルゼアデータベース"><a href="#その１：-エオルゼアデータベース" class="headerlink" title="その１： エオルゼアデータベース"></a>その１： エオルゼアデータベース</h3><p>公式のやつです。<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/advanced_search/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/advanced_search/</a></p>
 <p>例として、地名「クォーリーミル」の英語表記を調べてみます。</p>
 <p>エオルゼアデータベースの「詳細検索」で FF14 用語を入力すると、その用語を含むアイテムとかアチーブメントとかがヒットします。</p>
 <img src="/2017/02/04/ff14-english-name/SS_20170204a.png" alt="検索フォーム画面" title="検索フォーム画面">
@@ -238,13 +267,13 @@ FF 用語の英語表記を調べるのが手間でした。</p>
 <img src="/2017/02/04/ff14-english-name/SS_20170204e.png" alt="英語表記に変わった" title="英語表記に変わった">
 <p>これで「クォーリーミル」の英語表記が「Quarrymill」だとわかります。</p>
 <p>公式なので当然ながら情報の正確性は一番です。ただし、アクション名とかは調べられないので残念。</p>
-<h2 id="その２：-eLeMeN-FF14"><a href="#その２：-eLeMeN-FF14" class="headerlink" title="その２： eLeMeN - FF14"></a>その２： eLeMeN - FF14</h2><p>eLeMeN - FF14<br><a href="http://www5.plala.or.jp/SQR/ff14/" target="_blank" rel="external">http://www5.plala.or.jp/SQR/ff14/</a></p>
+<h2 id="その2-elemen-ff14"><a href="#その２：-eLeMeN-FF14" class="headerlink" title="その２： eLeMeN - FF14"></a>その２： eLeMeN - FF14</h2><p>eLeMeN - FF14<br><a href="http://www5.plala.or.jp/SQR/ff14/" target="_blank" rel="external">http://www5.plala.or.jp/SQR/ff14/</a></p>
 <p>FF14 の情報を整理して掲載してくださっているユーザーサイトです。現在は更新されていない模様ですが・・・</p>
 <p>こちらのサイトにある「定型文辞書」のページに定型文の日英対照表があります。<br><a href="http://www5.plala.or.jp/SQR/ff14/etc/dictionary/" target="_blank" rel="external">http://www5.plala.or.jp/SQR/ff14/etc/dictionary/</a></p>
 <p>たとえば、アクション「捨身」の英語表記を知りたい場合、「カテゴリー 4ページ目」の「【アクション】 - 271種類」のリンクを開きます。<br><a href="http://www5.plala.or.jp/SQR/ff14/etc/dictionary/DiscipleofWar_MagicActions.html" target="_blank" rel="external">http://www5.plala.or.jp/SQR/ff14/etc/dictionary/DiscipleofWar_MagicActions.html</a></p>
 <p>あとはブラウザのページ内検索機能 (CTRL-F) で「捨身」を検索すれば、「Blood for Blood」だとわかります。</p>
 <p>感謝！</p>
-<h2 id="その３：-Eorzean"><a href="#その３：-Eorzean" class="headerlink" title="その３： Eorzean"></a>その３： Eorzean</h2><p>Eorzean - ファイナルファンタジー14：エオルゼア民のための便利情報<br><a href="http://www.eorzean.info" target="_blank" rel="external">http://www.eorzean.info</a></p>
+<h2 id="その3-eorzean"><a href="#その３：-Eorzean" class="headerlink" title="その３： Eorzean"></a>その３： Eorzean</h2><p>Eorzean - ファイナルファンタジー14：エオルゼア民のための便利情報<br><a href="http://www.eorzean.info" target="_blank" rel="external">http://www.eorzean.info</a></p>
 <p>こちらも FF14 の情報を整理して掲載してくださっているユーザーサイトです。更新もされています。</p>
 <p>定型文一覧の記事があります。</p>
 <p>FF14 日英定型文辞書 3.35対応 - Eorzean<br><a href="http://www.eorzean.info/archives/4674980.html" target="_blank" rel="external">http://www.eorzean.info/archives/4674980.html</a></p>
@@ -284,7 +313,7 @@ FF 用語の英語表記を調べるのが手間でした。&lt;/p&gt;
 上で運用しています。</p>
 <p>この新ブログを構築するためのファイル（投稿記事の原稿を含む）は、すべて GitHub 上で公開されています。<br><a href="https://github.com/quercus2011/site" target="_blank" rel="external">https://github.com/quercus2011/site</a></p>
 <p>ご質問などあれば、お気軽にどうぞ。</p>
-<h2 id="Hexo-とは"><a href="#Hexo-とは" class="headerlink" title="Hexo とは"></a>Hexo とは</h2><p><a href="https://hexo.io" target="_blank" rel="external">Hexo</a> というのは、ブログみたいなサイトを自動生成してくれるソフトウェアです。</p>
+<h2 id="hexo-とは"><a href="#Hexo-とは" class="headerlink" title="Hexo とは"></a>Hexo とは</h2><p><a href="https://hexo.io" target="_blank" rel="external">Hexo</a> というのは、ブログみたいなサイトを自動生成してくれるソフトウェアです。</p>
 <p>一般的にブログ構築システムというと Wordpress とか MovableType とかが有名ですが、それらはコンテンツを動的に（ユーザーがサーバーにアクセスしたときに）生成するのに対し、
 Hexo はすべてのコンテンツのファイルを事前に一括生成してしまうのが大きな違いです。静的サイトジェネレータ (Static Site Generator, SSG) と呼ばれています。
 Hexo 以外にも Jekyll とかが知られています。</p>
@@ -295,7 +324,7 @@ Web ブラウザ向けの JavaScript が書ける人なら、ある程度ソー�
 <p>Hexo では「テーマ」を選ぶことでサイトのデザイン（見た目）を簡単に変えられます。また、HTML/CSS/JavaScript の知識があれば、テーマを自由にカスタマイズすることができます。この新ブログは、<a href="https://github.com/chaooo" target="_blank" rel="external">Charles Zheng さん</a> が作られた
 <a href="https://github.com/chaooo/hexo-theme-BlueLake" target="_blank" rel="external">BlueLake というテーマ</a>をベースに、
 <a href="https://github.com/quercus2011/hexo-theme-BlueLake" target="_blank" rel="external">独自にカスタマイズしたテーマ</a>を使用しています。</p>
-<h2 id="GitHub-Pages-とは"><a href="#GitHub-Pages-とは" class="headerlink" title="GitHub Pages とは"></a>GitHub Pages とは</h2><p>What is GitHub Pages? - GitHub<br><a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="external">https://help.github.com/articles/what-is-github-pages/</a></p>
+<h2 id="github-pages-とは"><a href="#GitHub-Pages-とは" class="headerlink" title="GitHub Pages とは"></a>GitHub Pages とは</h2><p>What is GitHub Pages? - GitHub<br><a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="external">https://help.github.com/articles/what-is-github-pages/</a></p>
 <p>静的な Web サイトを無料で運用できるサービスです。
 CGI とか PHP とか Ruby とか Perl とかは動かせません。<br><small># なので、このブログにはコメント機能がまだありません（実装する方法はあります）</small></p>
 <p>デフォルトで HTTPS 化されているのが素晴らしいです。正直、FF14 の公式サイトとかフォーラムとかが HTTPS 化されていないのが残念。</p>
