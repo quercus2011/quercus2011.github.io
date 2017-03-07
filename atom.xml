@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-02-26T10:20:22.000Z</updated>
+  <updated>2017-03-07T08:01:45.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Twitter が PNG 画像を JPEG に強制変換</title>
+    <link href="https://quercus2011.github.io/2017/03/07/twitter-convert-png-to-jpeg/"/>
+    <id>https://quercus2011.github.io/2017/03/07/twitter-convert-png-to-jpeg/</id>
+    <published>2017-03-07T05:29:34.000Z</published>
+    <updated>2017-03-07T08:01:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p>
+<p>JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるようにしなければならないようです。</p>
+<p>たとえば、
+FF14 の Windows クライアントで「高品質」設定のスクリーンショットを撮ると、アルファチャネルを含まない PNG 画像として保存されるため、そのまま Twitter に up すると JPEG に変換されてしまいます。</p>
+<p>せっかくキレイな SS が撮れるのに、もったいない！</p>
+<p>SS 加工とかされている方は要注意です。</p>
+<p>この問題への対策として、
+JPEG への強制変換を避けるために PNG 画像を加工してくれるツールが公開されています。というか、このツールの紹介記事（窓の杜）でこの問題を知ったのでした。</p>
+<ul>
+<li>Twitterにアップする画像の劣化を防ぐ「Twitter向け画像最適化ツール」 - 窓の杜<br><a href="http://forest.watch.impress.co.jp/docs/serial/netserv/1047319.html" target="_blank" rel="external">http://forest.watch.impress.co.jp/docs/serial/netserv/1047319.html</a></li>
+<li>Twitter向け画像最適化ツール - SDN Project<br><a href="https://sdn-project.net/labo/twitter_image.html" target="_blank" rel="external">https://sdn-project.net/labo/twitter_image.html</a></li>
+</ul>
+<p>このツールは、「左上1ピクセルを透明度99%にする事で実現しています」とのことです。すばらしいアイディアです。</p>
+<p>作者の<a href="https://sdn-project.net" target="_blank" rel="external">栃尾トメさん</a>に感謝！</p>
+<hr>
+<h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>実際に Twitter に PNG 画像を投稿してみて、挙動を確認してみました。
+(2017/Mar/07)</p>
+<p>実験その１。まず、アルファチャネルの無い PNG 画像をツイートしてみます。</p>
+<img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b.png" alt="アルファチャネルの無い PNG 画像" title="アルファチャネルの無い PNG 画像">
+<p><a href="https://twitter.com/quercus_maris/status/838803302661808128" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838803302661808128</a></p>
+<p>上記ツイートに Twitter Web でアクセスして画像をダウンロードしようとすると、
+JPEG 画像になっていることがわかります。</p>
+<p>実験その２。
+<a href="https://www.gimp.org" target="_blank" rel="external">画像編集ソフト GIMP</a>
+で単にアルファチャネルを追加しただけの PNG 画像を作って、ツイートしてみます。</p>
+<img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b-add-alpha-channel.png" alt="単にアルファチャネルを追加しただけの PNG 画像" title="単にアルファチャネルを追加しただけの PNG 画像">
+<p><a href="https://twitter.com/quercus_maris/status/838804383513006080" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838804383513006080</a></p>
+<p>上記ツイートにアクセスしてみると、これも JPEG 画像になってしまっています。</p>
+<p>実験その３。左上隅の１ピクセルだけ切り取って透明にした PNG 画像を作って、ツイートしてみます。</p>
+<img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b-transparent.png" alt="左上隅の１ピクセルだけ切り取って透明にした PNG 画像" title="左上隅の１ピクセルだけ切り取って透明にした PNG 画像">
+<p><a href="https://twitter.com/quercus_maris/status/838806270173827072" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838806270173827072</a></p>
+<p>上記ツイートにアクセスしてみると、今度は PNG 画像としてダウンロードできました！</p>
+<p>以上の実験から、単にアルファチャネルを追加するだけではダメで、少なくとも１ピクセルは（半）透明でなければならないようです。</p>
+<p>「Twitter向け画像最適化ツール」の手法はおそらく最善の手かと思われます。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。&lt;/p&gt;
+&lt;p&gt;JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるように
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>マクロめも</title>
@@ -815,42 +868,6 @@ ID にも行ける気がしない今日この頃。&lt;/p&gt;
 &lt;p&gt;もらえる装備は「かぼちゃ頭」（4種類）と「おばけ服」です。&lt;/p&gt;
 &lt;p&gt;さっそくクエストして装備もらって＆買ってきました。&lt;/p&gt;
 &lt;img src=&quot;/2013/10/19/ff14-arr
-    
-    </summary>
-    
-    
-      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
-    
-      <category term="ImportedFromFC2" scheme="https://quercus2011.github.io/tags/ImportedFromFC2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>吟遊詩人 AF</title>
-    <link href="https://quercus2011.github.io/2013/10/01/ff14-arr-bard-af-equipment/"/>
-    <id>https://quercus2011.github.io/2013/10/01/ff14-arr-bard-af-equipment/</id>
-    <published>2013-10-01T12:44:26.000Z</published>
-    <updated>2017-02-04T05:54:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>昨夜は FC 定例イベントということで、FC のみなさんと PT を組んでメインシナリオのガルーダ討伐に行ってきました！
-<a id="more"></a></p>
-<p>超へろへろで即死してしまって全然戦力にならなかったのが申し訳ない＞＜</p>
-<p>４～５回目でよーやくクリアできました！（やっぱり地面あったかいなり・・・</p>
-<p>これでメインシナリオを進められるようになったのですが、その前にせっかく弓 Lv50 になったので、吟遊詩人 AF をゲット。</p>
-<p>途中の戦闘は２～５回失敗しましたが、なんとかクリア。</p>
-<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001aa.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ab.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ac.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ad.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2013/10/01/ff14-arr-bard-af-equipment/SS__20131001ae.jpg" alt="スクリーンショット" title="スクリーンショット">
-<p>とりあえず満足したので、メインシナリオ進めようと思いまふ。</p>
-<p>p.s. 金策どうしよう・・・・（売れてない</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;昨夜は FC 定例イベントということで、FC のみなさんと PT を組んで
-メインシナリオのガルーダ討伐に行ってきました！
     
     </summary>
     
