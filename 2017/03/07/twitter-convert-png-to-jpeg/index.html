@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 }, false);
-</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1><a href="/">さまよえるクエルクス</a></h1><p class="description">Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV プレイ日記</p></div><div id="nav-menu"></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Twitter が PNG 画像を JPEG に強制変換</h1><div class="post-meta">2017-03-07 <a href="https:/github.com/quercus2011/site/commits/master/source/_posts/twitter-convert-png-to-jpeg.md" class="lastmodified">(updated: 2017-03-08)</a></div><div class="post-content"><p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p>
+</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1><a href="/">さまよえるクエルクス</a></h1><p class="description">Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV プレイ日記</p></div><div id="nav-menu"></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Twitter が PNG 画像を JPEG に強制変換</h1><div class="post-meta">2017-03-07 <a href="https://github.com/quercus2011/site/commits/master/source/_posts/twitter-convert-png-to-jpeg.md" class="lastmodified">(updated: 2017-03-08)</a></div><div class="post-content"><p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p>
 <p>JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるようにしなければならないようです。</p>
 <p>たとえば、
 FF14 の Windows クライアントで「高品質」設定のスクリーンショットを撮ると、アルファチャネルを含まない PNG 画像として保存されるため、そのまま Twitter に up すると JPEG に変換されてしまいます。</p>
