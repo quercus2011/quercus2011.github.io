@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 }, false);
-</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1><a href="/">さまよえるクエルクス</a></h1><p class="description">Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV プレイ日記</p></div><div id="nav-menu"></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Twitter が PNG 画像を JPEG に強制変換</h1><div class="post-meta">2017-03-07 <a href="https://github.com/quercus2011/site/commits/master/source/_posts/twitter-convert-png-to-jpeg.md" class="lastmodified">(updated: 2017-03-08)</a></div><div class="post-content"><p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p>
+</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1><a href="/">さまよえるクエルクス</a></h1><p class="description">Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV プレイ日記</p></div><div id="nav-menu"></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Twitter が PNG 画像を JPEG に強制変換</h1><div class="post-meta">2017-03-07 <a href="https://github.com/quercus2011/site/commits/master/source/_posts/twitter-convert-png-to-jpeg.md" class="lastmodified">(updated: 2017-03-24)</a></div><div class="post-content"><p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p>
 <p>JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるようにしなければならないようです。</p>
 <p>たとえば、
 FF14 の Windows クライアントで「高品質」設定のスクリーンショットを撮ると、アルファチャネルを含まない PNG 画像として保存されるため、そのまま Twitter に up すると JPEG に変換されてしまいます。</p>
@@ -63,6 +63,12 @@ JPEG への強制変換を避けるために PNG 画像を加工してくれる�
 </ul>
 <p>このツールは、「左上1ピクセルを透明度99%にする事で実現しています」とのことです。すばらしいアイディアです。</p>
 <p>作者の<a href="https://sdn-project.net" target="_blank" rel="external">栃尾トメさん</a>に感謝！</p>
+<blockquote><p>★2017/Mar/24 追記★</p>
+<p>Windows デスクトップクライアントの OpenTween が最新版 1.3.7 でこの問題に対応してくれました！　感謝！！</p>
+<p><a href="https://ja.osdn.net/projects/opentween/" target="_blank" rel="external">https://ja.osdn.net/projects/opentween/</a></p>
+<p>バージョンアップしてもデフォルトでは機能が OFF になっているので、「ファイル」メニューの「設定」ダイアログを開いて、「動作」の「投稿」のページで、「PNG画像の投稿時にJPEGへの変換を回避する（pic.twitter.com のみ）」にチェックを入れてください。</p>
+<p>ちなみに対処方法は「Twitter向け画像最適化ツール」と同じです。</p>
+</blockquote>
 <h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>実際に Twitter に PNG 画像を投稿してみて、挙動を確認してみました。
 (2017/Mar/07)</p>
 <p>実験その１。まず、アルファチャネルの無い PNG 画像をツイートしてみます。</p>
