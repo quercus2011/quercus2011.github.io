@@ -663,7 +663,7 @@ XHB1-3 は常に非共有モードです。</p>
     <link href="https://quercus2011.github.io/2017/02/04/ff14-gatherer-memo/"/>
     <id>https://quercus2011.github.io/2017/02/04/ff14-gatherer-memo/</id>
     <published>2017-02-04T04:15:37.000Z</published>
-    <updated>2017-06-02T01:36:42.000Z</updated>
+    <updated>2017-06-02T02:00:24.000Z</updated>
     
     <content type="html"><![CDATA[<p>ギャザラーに関するメモです。</p>
 <div class="toc">
@@ -707,7 +707,7 @@ XHB1-3 は常に非共有モードです。</p>
 <li>園芸師「草木受領証：第1種」は蒐集価値380以上の「カベイジの野菜」（クルザス西部高地の未知）×1個で交換。</li>
 <li>漁師「水産受領証：第1種」は蒐集価値579以上の「サンダーボルト」×1個で交換。</li>
 </ul>
-<p>採掘と園芸については、必要な蒐集価値が（青貨や赤貨の納品に比べて）低いので、次のようなスキル回しで1回に4～6個採集できます。</p>
+<p>採掘と園芸については、必要な蒐集価値が（青貨や赤貨の納品に比べて）低いので、次のようなスキル回しで1回に3～5個採集できます。運がよければ「採集回数+2」の Location Effect がついて最大7個採集できます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
 ]]></content>
     
