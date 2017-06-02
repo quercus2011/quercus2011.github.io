@@ -663,37 +663,52 @@ XHB1-3 は常に非共有モードです。</p>
     <link href="https://quercus2011.github.io/2017/02/04/ff14-gatherer-memo/"/>
     <id>https://quercus2011.github.io/2017/02/04/ff14-gatherer-memo/</id>
     <published>2017-02-04T04:15:37.000Z</published>
-    <updated>2017-06-01T23:40:56.000Z</updated>
+    <updated>2017-06-02T01:36:42.000Z</updated>
     
     <content type="html"><![CDATA[<p>ギャザラーに関するメモです。</p>
 <div class="toc">
 
 <!-- toc -->
 <ul>
-<li><a href="#未知の採掘場での赤貨集め">未知の採掘場での赤貨集め</a></li>
+<li><a href="#未知の採集での赤貨集め">未知の採集での赤貨集め</a></li>
 <li><a href="#未知じゃない赤貨集め">未知じゃない赤貨集め</a></li>
 <li><a href="#青貨の集め方">青貨の集め方</a></li>
+<li><a href="#ギャザラー青貨装備キープ装備-il180">ギャザラー青貨装備（キープ装備、IL180）</a></li>
 </ul>
 <!-- tocstop -->
 </div>
 
 
-<h2 id="未知の採掘場での赤貨集め"><a href="#未知の採掘場での赤貨集め" class="headerlink" title="未知の採掘場での赤貨集め"></a>未知の採掘場での赤貨集め</h2><ul>
+<h2 id="未知の採集での赤貨集め"><a href="#未知の採集での赤貨集め" class="headerlink" title="未知の採集での赤貨集め"></a>未知の採集での赤貨集め</h2><ul>
 <li>ギャザラー用蒐集品スキル回し | 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-249.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-249.html</a></li>
 </ul>
-<p>蒐集価値 470 以上の蒐集品を2～4個採集できるスキル回し。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">審美眼</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div></pre></td></tr></table></figure>
+<p>採掘師での「アダマン鉱」や園芸師での「カベイジの野菜」の蒐集品（蒐集価値 470 以上）は、イディルシャイアのロウェナ商会でギャザラー赤貨と交換してもらえます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 09:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div><div class="line">ET 21:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 11:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div><div class="line">ET 23:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div></pre></td></tr></table></figure>
+<p>蒐集価値 470 以上の蒐集品を2～4個採集できるスキル回しは以下のとおり：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">審美眼</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
 <h2 id="未知じゃない赤貨集め"><a href="#未知じゃない赤貨集め" class="headerlink" title="未知じゃない赤貨集め"></a>未知じゃない赤貨集め</h2><ul>
 <li>FF14 ペリウィンクル／イブニングジェードでのギャザラー赤貨集め（1時間未満）<br><a href="http://www.eorzean.info/archives/4152778.html" target="_blank" rel="external">http://www.eorzean.info/archives/4152778.html</a></li>
 </ul>
 <p>コーディアルをリキャストごとに使えば１時間未満で赤貨 450 集まるらしいです。</p>
+<p>スキル回しは青貨と同じもので大丈夫です。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
 <h2 id="青貨の集め方"><a href="#青貨の集め方" class="headerlink" title="青貨の集め方"></a>青貨の集め方</h2><ul>
 <li>ギャザラースクリップの稼ぎ方 - 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-346.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-346.html</a></li>
 </ul>
 <p>低地ドラヴァニア（イディルシャイア）で30分おきに園芸＆採掘するだけ。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ET 00:00 園芸 ７段目 モリーユ</div><div class="line">ET 02:00 採掘 ２段目 赤銅鉱</div><div class="line">ET 12:00 園芸 ７段目 モリーユ</div><div class="line">ET 14:00 採掘 ２段目 赤銅鉱</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div></pre></td></tr></table></figure>
-<p>このスキル回しは GP600 必要ですが、園芸と採掘の間が ET で２時間（地球時間で６分弱）あいているので、園芸をすぐやればコーディアルを使わなくても採掘の時間内に GP が回復します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ET 00:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 02:00 採掘 未知 ２段目 赤銅鉱</div><div class="line">ET 12:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 14:00 採掘 未知 ２段目 赤銅鉱</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
+<p>このスキル回しは GP650 必要ですが、園芸と採掘の間が ET で２時間（地球時間で６分弱）あいているので、園芸をすぐやればコーディアルを使わなくても採掘の時間内に GP が回復します。</p>
+<h2 id="ギャザラー青貨装備キープ装備-il180"><a href="#ギャザラー青貨装備（キープ装備、IL180）" class="headerlink" title="ギャザラー青貨装備（キープ装備、IL180）"></a>ギャザラー青貨装備（キープ装備、IL180）</h2><p>ギャザラー青貨装備（キープ装備、IL180）はイディルシャイアのロウェナ商会で交換してもらえます。</p>
+<p>装備品1個ごとに、何枚かのギャザラー青貨手形と、クラスごとに異なる「○○受領証：第1種」が1個必要です。「○○受領証：第1種」は、イディルシャイアのロウェナ商会で蒐集品と交換してもらえます。</p>
+<ul>
+<li>採掘師「石材受領証：第1種」は蒐集価値380以上の「アダマン鉱」（アジス・ラーの未知）×1個で交換。</li>
+<li>園芸師「草木受領証：第1種」は蒐集価値380以上の「カベイジの野菜」（クルザス西部高地の未知）×1個で交換。</li>
+<li>漁師「水産受領証：第1種」は蒐集価値579以上の「サンダーボルト」×1個で交換。</li>
+</ul>
+<p>採掘と園芸については、必要な蒐集価値が（青貨や赤貨の納品に比べて）低いので、次のようなスキル回しで1回に4～6個採集できます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -703,8 +718,8 @@ XHB1-3 は常に非共有モードです。</p>
 
 &lt;!-- toc --&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#未知の採掘場での赤貨集め&quot;&gt;未知の採掘場での赤貨集め&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#未知じゃない赤貨集め&quot;&gt;未知じゃな
+&lt;li&gt;&lt;a href=&quot;#未知の採集での赤貨集め&quot;&gt;未知の採集での赤貨集め&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#未知じゃない赤貨集め&quot;&gt;未知じゃない赤
     
     </summary>
     
