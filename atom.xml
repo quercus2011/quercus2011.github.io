@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>さまよえるクエルクス</title>
+  
   <subtitle>Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV プレイ日記</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2017-07-01T11:56:17.000Z</updated>
+  <updated>2018-02-27T23:58:00.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -16,24 +17,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Windows PC で ping 値を測る方法</title>
+    <link href="https://quercus2011.github.io/2018/02/28/how-to-measure-ping-value/"/>
+    <id>https://quercus2011.github.io/2018/02/28/how-to-measure-ping-value/</id>
+    <published>2018-02-27T23:58:00.000Z</published>
+    <updated>2018-02-27T23:58:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>オンラインゲームでよく話題に上がる「ping 値」を、Windows PC で簡単に測定する方法を解説します。特別なツールは要りません。Windows に最初からインストールされているプログラムだけで測定できます。</p><div class="toc"><!-- toc --><ul><li><a href="#まえがき">まえがき</a></li><li><a href="#ping-値の測定方法">ping 値の測定方法</a></li><li><a href="#オススメその壱測定回数を増やす">オススメその壱（測定回数を増やす）</a></li><li><a href="#オススメその弐時間帯を変えて測定">オススメその弐（時間帯を変えて測定）</a></li><li><a href="#オススメその参宛先を変えて測定">オススメその参（宛先を変えて測定）</a></li><li><a href="#オススメその四ipv6-で測定">オススメその四（IPv6 で測定）</a></li><li><a href="#オススメその伍グラフ化ソフト">オススメその伍（グラフ化ソフト）</a></li></ul><!-- tocstop --></div><h2><span id="まえがき">まえがき</span></h2><p>FF14 に限らずオンラインゲームの分野で広く使われる「ping 値」という言葉があります。「ping 値」は、ゲームクライアントとサーバとの通信状態を表す指標のひとつです。「ラウンドトリップタイム」 (Round-Trip Time, RTT) や「レイテンシ」 (Latency) も、だいたい同じような意味で使われます（もちろん技術用語としてはそれぞれ異なる意味があるのですが）。</p><p>「ping 値」は、ゲームクライアントとサーバの間でひとつのデータが往復するのにかかる時間です。正確に言えば、「クライアント⇒サーバ」方向 (upstream) と「サーバ⇒クライアント」方向 (downstream) とでは要する時間が異なるのですが、オンラインゲーム界隈ではまとめて「往復に要する時間」として「ping 値」と呼んでいます。単位は通常「ミリ秒」 (ms) です。</p><p>ちなみに、「ping 値」の他に通信状態を表す指標として「バンド幅」 (Bandwidth) があります。こちらは、「1秒間にどれだけたくさんのデータを送れるか」というものです。単位は「メガビーピーエス」 (Mbps) や「メガバイトパーセック」 (MB/s) などです。「8Mbps = 1MB/s」 (8bit で 1byte) なので注意。</p><p>動画視聴などでは画質に直結するのでバンド幅が重要になりますが、オンラインゲームでは 数 Mbps 程度のバンド幅があれば十分なことが多く、体感的には「ping 値」のほうが重要だと言われています。もちろん、動画を観ながらプレイする場合や、パッチのダウンロードなど、バンド幅が必要になるケースもあります。</p><p>なお、オンラインゲームにつきものの「ラグ」に関しては、「ping 値」だけでなく「パケットロス」や「サーバ側の負荷状況」なども関係してくるので、非常に複雑な話になります（なのでこの記事では触れません）。</p><h2><span id="ping-値の測定方法">ping 値の測定方法</span></h2><p>「ping 値」は、サーバの「ホスト名」か「IP アドレス」がわかれば、Windows 標準のツールで測定できます。</p><p>具体的には、「コマンドプロンプト」を起動して、<code>ping</code> コマンドを実行するだけです。</p><pre><code>文字列「ping」 + 半角スペース + 「ホスト名または IP アドレス」 + ENTER キー</code></pre><p>たとえば、Windows 7 上で<a href="https://jp.finalfantasyxiv.com" target="_blank" rel="external">「日本国内向け FF14 公式サイト」(https://jp.finalfantasyxiv.com)</a>の Web サーバを指定して <code>ping</code> コマンドを実行してみると、以下のような結果になります。</p><img src="/2018/02/28/how-to-measure-ping-value/SS_20180228b0.png" alt="ping コマンド実行例（ホスト名を指定）" title="ping コマンド実行例（ホスト名を指定）"><p>この実行例では、赤い下線の文字列を入力して実行した結果、測定が4回行われ、4回とも通信に成功し、往復に要した時間 (RTT) の最小値は 16ms、最大値は 17ms、平均値は 16ms であった、ということになります。つまり、「ping 値」は「おおよそ 16ms 程度」ということがわかります。</p><p>上記の例ではサーバの「ホスト名」を指定しましたが、「IP アドレス」でも同様に測定できます。Windows 標準の <code>nslookup</code> コマンドを使うと、上記 Web サーバの IP アドレスは <code>124.150.157.254</code> だということがわかります。この IP アドレスを指定して <code>ping</code> コマンドを実行すると、以下のようになります。</p><img src="/2018/02/28/how-to-measure-ping-value/SS_20180228c0.png" alt="ping コマンド実行例（IP アドレスを指定）" title="ping コマンド実行例（IP アドレスを指定）"><p>この実行例では「平均値 15ms」と先の例より良い値が表示されていますが、4回中3回が「16ms」なので、測定誤差（ブレ）の範囲でしょう。</p><h2><span id="オススメその壱測定回数を増やす">オススメその壱（測定回数を増やす）</span></h2><p>Windows 標準の <code>ping</code> コマンドは、デフォルトでは4回しか測定してくれないので、オプションを追加して3分間（180回）くらい測定するのがオススメです。</p><p>具体的には、オプション <code>-n 180</code> を追加して <code>ping</code> コマンドを実行します。</p><img src="/2018/02/28/how-to-measure-ping-value/SS_20180228d0.png" alt="ping コマンド実行例（180回を指定して実行）" title="ping コマンド実行例（180回を指定して実行）"><img src="/2018/02/28/how-to-measure-ping-value/SS_20180228e0.png" alt="ping コマンド実行例（180回を指定した結果）" title="ping コマンド実行例（180回を指定した結果）"><p>この実行例では、「ping 値」が 15 ～ 121ms の範囲でバラついています。つまり、回線速度が安定していないことがわかります・・・・（残念）。ただし、「パケットロス」（損失）は無いのが不幸中の幸いです。</p><p>オンラインゲームのプレイ中に一時的に「ping 値」が大きくなったり「パケットロス」が発生したりすると、「たまにラグる」という現象となり得ます。RTT が 100ms を越えているということは、リフレッシュレート 30Hz でも 3 フレーム分くらいの通信遅延があるわけで、体感できるくらいのラグが発生してもおかしくありません。</p><h2><span id="オススメその弐時間帯を変えて測定">オススメその弐（時間帯を変えて測定）</span></h2><p>一般的に、「ping 値」は変動するものです。</p><p>変動する原因の例：</p><ul><li>同じ LAN に接続している他のデバイスの通信に邪魔される</li><li>プロバイダのサーバの混雑により待ち時間が発生する</li><li>通信相手のサーバが高負荷状態で応答を返すのが遅い</li></ul><p>曜日や時間帯を変えて測定してみると、傾向が見えたりするので、オススメです。</p><p>平日の昼休みやゴールデンタイム（21時頃）などは悪化することが多いみたいです。</p><h2><span id="オススメその参宛先を変えて測定">オススメその参（宛先を変えて測定）</span></h2><p>ネットワーク上のサーバと通信する場合、そのサーバの「ネットワーク的な位置」によって通信経路が異なります。当然ながら「ping 値」も異なります。</p><p>FF14 をプレイするなら、接続している FF14 サーバとの「ping 値」が最も重要なわけですが、他の宛先との「ping 値」を測定してみることで、経路上のどこがボトルネックになっているのか、手がかりがつかめたりします。</p><p>たとえば、以下のような相手との「ping 値」同士を比較するのがオススメです：</p><ul><li>自宅のルーター（LAN の通信状態の確認）</li><li>自宅のモデムに設定されているデフォルトゲートウェイ（自宅と基地局の間の通信状態の確認）</li><li>自宅のルーターに設定されている DNS サーバ（基地局とプロバイダのサーバとの間の通信状態の確認）</li><li><code>www.google.co.jp</code> （プロバイダのサーバとインターネットとの間の通信状態の確認）</li><li>FF14 サーバ（本命）</li></ul><p>下に行くほどネットワーク的に「遠い」はずなので、それぞれの「ping 値」の差を計算すれば、経路上のボトルネックを特定できます。</p><h2><span id="オススメその四ipv6-で測定">オススメその四（IPv6 で測定）</span></h2><p>FF14 サーバとの通信は「IPv4」（あるいは単に「IP」）という通信方式で行われていますが、最近では「IPv6」という新しい通信方式での通信も増えてきています。</p><p>もし、回線業者とプロバイダが IPv6 通信に対応しているなら、IPv6 での「ping 値」を測定してみると参考になるかもしれません。</p><p><code>ping</code> コマンドに <code>-6</code> オプションを追加すると、IPv6 通信での「ping 値」を測定できます。</p><p>コマンドの例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping -6 -n 180 www.google.co.jp</div></pre></td></tr></table></figure><p>もし、IPv6 だと問題ないのに IPv4 だと遅い、という場合は、プロバイダのサーバがボトルネックになっている可能性があります。興味のある方は、「IPoE」というキーワードで検索すると情報が出てくるので、もしかしたら改善できるかも？？？</p><p>ご参考：</p><ul><li>てくろぐ: IIJmioひかりの混雑の理由とバイパス手段(IPoE・DS-Lite対応)<br><a href="http://techlog.iij.ad.jp/archives/1879" target="_blank" rel="external">http://techlog.iij.ad.jp/archives/1879</a></li><li>てくろぐ: DS-LiteでIPv4してみませんか？<br><a href="http://techlog.iij.ad.jp/archives/1254" target="_blank" rel="external">http://techlog.iij.ad.jp/archives/1254</a></li></ul><h2><span id="オススメその伍グラフ化ソフト">オススメその伍（グラフ化ソフト）</span></h2><p><code>ping</code> コマンドに <code>-t</code> オプションを付けると、<code>Ctrl-C</code> を押して中断するまでずっと1秒ごとに測定し続けてくれます。しかし、出力されるのは素っ気ないテキストだけなので、経時変化を見るには専用のソフトを使ったほうが良いです。（もちろんログとして蓄積して後日集計する場合には <code>ping -t</code> コマンドは有用です）</p><p>まりすは「Colasoft Ping Tool」という無償で利用できるソフトを使わせていただいています。（感謝！</p><ul><li>Colasoft Ping Tool - Colasoft<br><a href="https://www.colasoft.com/jp/ping_tool/" target="_blank" rel="external">https://www.colasoft.com/jp/ping_tool/</a></li></ul><p>「ping 値」の時間的な変化を折れ線グラフで見られるので、とても便利です。</p><p>複数のホスト名／IP アドレスを指定できて、ひとつのグラフにまとめて表示してくれるため、どのサーバとの通信が遅いのか、ひと目で確認できます。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;オンラインゲームでよく話題に上がる「ping 値」を、Windows PC で簡単に測定する方法を解説します。特別なツールは要りません。Windows に最初からインストールされているプログラムだけで測定できます。&lt;/p&gt;
+&lt;div class=&quot;toc&quot;&gt;
+
+&lt;!-- t
+      
+    
+    </summary>
+    
+    
+      <category term="Technical" scheme="https://quercus2011.github.io/tags/Technical/"/>
+    
+  </entry>
+  
+  <entry>
     <title>3.x メインストーリーをコンプリート</title>
     <link href="https://quercus2011.github.io/2017/07/01/ff14-heavensward-complete/"/>
     <id>https://quercus2011.github.io/2017/07/01/ff14-heavensward-complete/</id>
     <published>2017-07-01T11:56:17.000Z</published>
     <updated>2017-07-01T11:56:17.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2017/07/01/ff14-heavensward-complete/SS_20170701b.jpg" alt="3.x メインストーリーをコンプリート" title="3.x メインストーリーをコンプリート">
-<p>3.x シリーズ（パッチ 3.56）のメインストーリーをコンプリートしました！</p>
-<p>アーリーアクセス開始から遅れること２週間。</p>
-<p>よーやく 4.0 “STORMBLOOD” スタートです！</p>
-<img src="/2017/07/01/ff14-heavensward-complete/SS_20170701c.png" alt="4.0 開始" title="4.0 開始">
-<p>まぁ、急がずに、景色とか楽しみながら、のんびりと進めたいと思います。</p>
-]]></content>
+    <content type="html"><![CDATA[<img src="/2017/07/01/ff14-heavensward-complete/SS_20170701b.jpg" alt="3.x メインストーリーをコンプリート" title="3.x メインストーリーをコンプリート"><p>3.x シリーズ（パッチ 3.56）のメインストーリーをコンプリートしました！</p><p>アーリーアクセス開始から遅れること２週間。</p><p>よーやく 4.0 “STORMBLOOD” スタートです！</p><img src="/2017/07/01/ff14-heavensward-complete/SS_20170701c.png" alt="4.0 開始" title="4.0 開始"><p>まぁ、急がずに、景色とか楽しみながら、のんびりと進めたいと思います。</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2017/07/01/ff14-heavensward-complete/SS_20170701b.jpg&quot; alt=&quot;3.x メインストーリーをコンプリート&quot; title=&quot;3.x メインストーリーをコンプリート&quot;&gt;
+      
+      
+        &lt;img src=&quot;/2017/07/01/ff14-heavensward-complete/SS_20170701b.jpg&quot; alt=&quot;3.x メインストーリーをコンプリート&quot; title=&quot;3.x メインストーリーをコンプリート&quot;&gt;
 &lt;p&gt;3.x シリーズ（パッチ 3.5
+      
     
     </summary>
     
@@ -49,20 +73,15 @@
     <published>2017-06-29T10:47:55.000Z</published>
     <updated>2017-06-29T10:47:55.000Z</updated>
     
-    <content type="html"><![CDATA[<p>ちょっとずつ 3.x メインストーリーを進めています。</p>
-<p>バトルコンテンツ自体、もう何ヶ月もやっていなかったので、ヒーラーではなく詩人でやっています。4.0 で変わったバトルシステムの練習も必要ですし。4.0 メインストーリーも白じゃなくて詩人でやるつもりです（DPS はレベリングが大変みたいなので先に）。</p>
-<p>で、「ニーズヘッグ征竜戦」（極じゃないほう）はコンテンツファインダーで行ったのですが、絵に描いたような「出荷」でした・・・。</p>
-<img src="/2017/06/29/ff14-dragonsong-complete/SS_20170629a.jpg" alt="ニーズヘッグ征竜戦" title="ニーズヘッグ征竜戦">
-<p>わたしは後半に範囲攻撃を踏んでしまって床ペロ。</p>
-<p>最後は暗黒さんと占星さんだけで 2% を削りきってくれました。感謝！！</p>
-<p>そして、ようやく「竜詩戦争」に終止符がうたれました。</p>
-<img src="/2017/06/29/ff14-dragonsong-complete/SS_20170629b.jpg" alt="つづく" title="つづく">
-]]></content>
+    <content type="html"><![CDATA[<p>ちょっとずつ 3.x メインストーリーを進めています。</p><p>バトルコンテンツ自体、もう何ヶ月もやっていなかったので、ヒーラーではなく詩人でやっています。4.0 で変わったバトルシステムの練習も必要ですし。4.0 メインストーリーも白じゃなくて詩人でやるつもりです（DPS はレベリングが大変みたいなので先に）。</p><p>で、「ニーズヘッグ征竜戦」（極じゃないほう）はコンテンツファインダーで行ったのですが、絵に描いたような「出荷」でした・・・。</p><img src="/2017/06/29/ff14-dragonsong-complete/SS_20170629a.jpg" alt="ニーズヘッグ征竜戦" title="ニーズヘッグ征竜戦"><p>わたしは後半に範囲攻撃を踏んでしまって床ペロ。</p><p>最後は暗黒さんと占星さんだけで 2% を削りきってくれました。感謝！！</p><p>そして、ようやく「竜詩戦争」に終止符がうたれました。</p><img src="/2017/06/29/ff14-dragonsong-complete/SS_20170629b.jpg" alt="つづく" title="つづく">]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;ちょっとずつ 3.x メインストーリーを進めています。&lt;/p&gt;
+      
+      
+        &lt;p&gt;ちょっとずつ 3.x メインストーリーを進めています。&lt;/p&gt;
 &lt;p&gt;バトルコンテンツ自体、もう何ヶ月もやっていなかったので、ヒーラーではなく詩人でやっています。4.0 で変わったバトルシステムの練習も必要ですし。4.0 メインストーリーも白じゃなくて詩人でやるつもりです（
+      
     
     </summary>
     
@@ -78,17 +97,15 @@
     <published>2017-06-28T14:59:50.000Z</published>
     <updated>2017-06-28T14:59:50.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2017/06/28/ff14-beast-tribe-sidequest-moogle/SS_20170628a.png" alt="モーグリ族のデイリークエをコンプリート" title="モーグリ族のデイリークエをコンプリート">
-<p>「紅蓮のリベレーター」アーリーアクセス開始からもう2週間弱が過ぎましたが、まだに 4.0 コンテンツはさわれてません。何をやっているのかというと、3.x メインストーリーを進めたり、グランドカンパニー納品をしたり、モーグリ族の蛮族デイリークエストをやったり。</p>
-<p>で、ようやく、「白亜の宮殿」の修復準備が完了しました！</p>
-<p>毎日毎日、冒険者を使い走りさせるモーグリたちですが、最近は開き直っている様子もあり、どこか憎めない、かわいいキャラクターです。</p>
-<p>イクサル族のデイリークエストもそうでしたが、クラフターが役に立つコンテンツというのもいいですね！</p>
-]]></content>
+    <content type="html"><![CDATA[<img src="/2017/06/28/ff14-beast-tribe-sidequest-moogle/SS_20170628a.png" alt="モーグリ族のデイリークエをコンプリート" title="モーグリ族のデイリークエをコンプリート"><p>「紅蓮のリベレーター」アーリーアクセス開始からもう2週間弱が過ぎましたが、まだに 4.0 コンテンツはさわれてません。何をやっているのかというと、3.x メインストーリーを進めたり、グランドカンパニー納品をしたり、モーグリ族の蛮族デイリークエストをやったり。</p><p>で、ようやく、「白亜の宮殿」の修復準備が完了しました！</p><p>毎日毎日、冒険者を使い走りさせるモーグリたちですが、最近は開き直っている様子もあり、どこか憎めない、かわいいキャラクターです。</p><p>イクサル族のデイリークエストもそうでしたが、クラフターが役に立つコンテンツというのもいいですね！</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2017/06/28/ff14-beast-tribe-sidequest-moogle/SS_20170628a.png&quot; alt=&quot;モーグリ族のデイリークエをコンプリート&quot; title=&quot;モーグリ族のデイリークエをコンプリート&quot;&gt;
+      
+      
+        &lt;img src=&quot;/2017/06/28/ff14-beast-tribe-sidequest-moogle/SS_20170628a.png&quot; alt=&quot;モーグリ族のデイリークエをコンプリート&quot; title=&quot;モーグリ族のデイリークエをコンプリート&quot;&gt;
 &lt;p&gt;「紅蓮のリベレー
+      
     
     </summary>
     
@@ -104,29 +121,16 @@
     <published>2017-06-20T02:17:42.000Z</published>
     <updated>2017-06-20T02:17:42.000Z</updated>
     
-    <content type="html"><![CDATA[<p>アーリーアクセス中ですが、ふと思い立って、ひさしぶりにマイチョコボの羽の色を変えてみることにしました。</p>
-<ul>
-<li>チョコボ育成 - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%81%E3%83%A7%E3%82%B3%E3%83%9C%E8%82%B2%E6%88%90#i0188352" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%81%E3%83%A7%E3%82%B3%E3%83%9C%E8%82%B2%E6%88%90#i0188352</a></li>
-<li>FFXIV チョコボカラー計算機
-<a href="https://ffxivchocobo.com/jp" target="_blank" rel="external">https://ffxivchocobo.com/jp</a></li>
-</ul>
-<p>チョコボ染色が可能になって以来ずっと「ラプトルブルー」だったのですが、4.x が始まってミラプリも変えると思うので、色を合わせやすい「スノウホワイト」に変えました。</p>
-<p><a href="https://ffxivchocobo.com/jp" target="_blank" rel="external">「FFXIV チョコボカラー計算機」</a>を使わせていただいて、おやつはマーケットで購入。３回のトライで無事に「スノウホワイト」になりました！</p>
-<ul>
-<li>オリジナル（ラプトルブルー）   <img src="/2017/06/20/ff14-chocobo-color-snowwhite/original.png" alt="オリジナル（ラプトルブルー）" title="オリジナル（ラプトルブルー）"></li>
-<li>１回目（ボーンホワイト）<img src="/2017/06/20/ff14-chocobo-color-snowwhite/1st.png" alt="１回目（ボーンホワイト）" title="１回目（ボーンホワイト）"></li>
-<li>２回目（ロータスピンク）<img src="/2017/06/20/ff14-chocobo-color-snowwhite/2nd.png" alt="２回目（ロータスピンク）" title="２回目（ロータスピンク）"></li>
-<li>３回目（スノウホワイト）<img src="/2017/06/20/ff14-chocobo-color-snowwhite/3rd.png" alt="３回目（スノウホワイト）" title="３回目（スノウホワイト）">
-</li>
-</ul>
-<p>アーリーアクセス中でみなさんスタートダッシュしてますが、まりすはまだ 3.x メインストーリーが終わっていないので、のんびり進めようと思いますー</p>
-]]></content>
+    <content type="html"><![CDATA[<p>アーリーアクセス中ですが、ふと思い立って、ひさしぶりにマイチョコボの羽の色を変えてみることにしました。</p><ul><li>チョコボ育成 - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%81%E3%83%A7%E3%82%B3%E3%83%9C%E8%82%B2%E6%88%90#i0188352" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%81%E3%83%A7%E3%82%B3%E3%83%9C%E8%82%B2%E6%88%90#i0188352</a></li><li>FFXIV チョコボカラー計算機<a href="https://ffxivchocobo.com/jp" target="_blank" rel="external">https://ffxivchocobo.com/jp</a></li></ul><p>チョコボ染色が可能になって以来ずっと「ラプトルブルー」だったのですが、4.x が始まってミラプリも変えると思うので、色を合わせやすい「スノウホワイト」に変えました。</p><p><a href="https://ffxivchocobo.com/jp" target="_blank" rel="external">「FFXIV チョコボカラー計算機」</a>を使わせていただいて、おやつはマーケットで購入。３回のトライで無事に「スノウホワイト」になりました！</p><ul><li>オリジナル（ラプトルブルー）   <img src="/2017/06/20/ff14-chocobo-color-snowwhite/original.png" alt="オリジナル（ラプトルブルー）" title="オリジナル（ラプトルブルー）"></li><li>１回目（ボーンホワイト）<img src="/2017/06/20/ff14-chocobo-color-snowwhite/1st.png" alt="１回目（ボーンホワイト）" title="１回目（ボーンホワイト）"></li><li>２回目（ロータスピンク）<img src="/2017/06/20/ff14-chocobo-color-snowwhite/2nd.png" alt="２回目（ロータスピンク）" title="２回目（ロータスピンク）"></li><li>３回目（スノウホワイト）<img src="/2017/06/20/ff14-chocobo-color-snowwhite/3rd.png" alt="３回目（スノウホワイト）" title="３回目（スノウホワイト）"></li></ul><p>アーリーアクセス中でみなさんスタートダッシュしてますが、まりすはまだ 3.x メインストーリーが終わっていないので、のんびり進めようと思いますー</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;アーリーアクセス中ですが、ふと思い立って、ひさしぶりにマイチョコボの羽の色を変えてみることにしました。&lt;/p&gt;
+      
+      
+        &lt;p&gt;アーリーアクセス中ですが、ふと思い立って、ひさしぶりにマイチョコボの羽の色を変えてみることにしました。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;チョコボ育成 - FF14 Online Wiki&lt;br&gt;&lt;a href=&quot;http://ff14wiki.info/?%E3%83%81%E3
+      
     
     </summary>
     
@@ -142,19 +146,15 @@
     <published>2017-03-22T14:59:59.000Z</published>
     <updated>2017-03-22T14:59:59.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2017/03/22/ff14-fisher-lv60/CaptureSTAFF_20170322_152222_921a.jpg" alt="漁師 Lv60 に到達" title="漁師 Lv60 に到達">
-<p>ふと思い立って漁師のレベリングをしたら、あっさりカンストしました。</p>
-<p>Lv51 スタートだったのですが、イシュガルドのリーヴ（大規模じゃない方）を使ったら、あっという間に Lv60 になりました。</p>
-<p>納品物はマーケット調達じゃなくて自力調達したので、費用はほとんどかからず。装備は、Lv52 と Lv60 の主道具と、Lv53 防具だけ、自作しました。</p>
-<p>これで、ギャザクラ all カンストです。</p>
-<img src="/2017/03/22/ff14-fisher-lv60/CaptureSTAFF_20170322_224013_663a.jpg" alt="ギャザクラ all カンスト" title="ギャザクラ all カンスト">
-<p>釣り手帳と魚類図鑑のコンプリートはできる気がしないのですが、まぁ、そのうち気が向いたらちょっとずつ埋めていきたいと思います。</p>
-]]></content>
+    <content type="html"><![CDATA[<img src="/2017/03/22/ff14-fisher-lv60/CaptureSTAFF_20170322_152222_921a.jpg" alt="漁師 Lv60 に到達" title="漁師 Lv60 に到達"><p>ふと思い立って漁師のレベリングをしたら、あっさりカンストしました。</p><p>Lv51 スタートだったのですが、イシュガルドのリーヴ（大規模じゃない方）を使ったら、あっという間に Lv60 になりました。</p><p>納品物はマーケット調達じゃなくて自力調達したので、費用はほとんどかからず。装備は、Lv52 と Lv60 の主道具と、Lv53 防具だけ、自作しました。</p><p>これで、ギャザクラ all カンストです。</p><img src="/2017/03/22/ff14-fisher-lv60/CaptureSTAFF_20170322_224013_663a.jpg" alt="ギャザクラ all カンスト" title="ギャザクラ all カンスト"><p>釣り手帳と魚類図鑑のコンプリートはできる気がしないのですが、まぁ、そのうち気が向いたらちょっとずつ埋めていきたいと思います。</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2017/03/22/ff14-fisher-lv60/CaptureSTAFF_20170322_152222_921a.jpg&quot; alt=&quot;漁師 Lv60 に到達&quot; title=&quot;漁師 Lv60 に到達&quot;&gt;
+      
+      
+        &lt;img src=&quot;/2017/03/22/ff14-fisher-lv60/CaptureSTAFF_20170322_152222_921a.jpg&quot; alt=&quot;漁師 Lv60 に到達&quot; title=&quot;漁師 Lv60 に到達&quot;&gt;
 &lt;p&gt;ふと思い立って漁師のレベリングをしたら、
+      
     
     </summary>
     
@@ -168,58 +168,15 @@
     <published>2017-03-21T02:34:41.000Z</published>
     <updated>2017-03-21T02:34:41.000Z</updated>
     
-    <content type="html"><![CDATA[<p>３月も半ばを過ぎて暖かくなってきたので、春コーデにミラプリすることにしました。</p>
-<p><a href="http://mirapri.com" target="_blank" rel="external">ミラプリスナップ</a>を眺めていると、みんなすごいなぁ、と思うばかり。</p>
-<p>あっという間に時間が過ぎてしまいます。</p>
-<p>冬服はモコモコだったので軽めの見た目がいいなぁ、とか、ハイランダー♀＋メガネは外せないのであんまりフェミニンなのは似合わなそうだなぁ、とか、できればクラスを選ばない装備がいいなぁ、とか、いろいろ思いつつ眺めていたところ、かなり良さげなものを発見！</p>
-<ul>
-<li>シンプルだけどおしゃれなコーディネート by クルル<br><a href="http://mirapri.com/6389" target="_blank" rel="external">http://mirapri.com/6389</a></li>
-</ul>
-<p>革装備だけど重すぎないところがポイントです。</p>
-<p>さっそく調達。</p>
-<p>パンタレットをショップで買って、エクスペディション・サイブーツをマーケットで購入。パンチンググローブは自作。タンタラスベストはリテイナーが持っていました。</p>
-<img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_093819_519a.jpg" alt="とりあえず合わせてみた（前）" title="とりあえず合わせてみた（前）">
-<img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_093832_247a.jpg" alt="とりあえず合わせてみた（後）" title="とりあえず合わせてみた（後）">
-<p>なかなかいい感じですが、おしりがスースーするのがちょっと恥ずかしい・・・。</p>
-<p>ミラプリスナップでよく使われているショートパンツ「<a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/094a8bcd59f/" target="_blank" rel="external">魔戒導師の脚・陰</a>」とかあったら良さそうなのですが、残念ながら PvP 報酬なので、あきらめ。</p>
-<p>リテイナーのかばんをひっくりかえして探してみたところ、メイドブルマを発見しました。</p>
-<img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_101647_969a.jpg" alt="メイドブルマに変えてみた" title="メイドブルマに変えてみた">
-<p>ちょっと甘めになって、悪くない。</p>
-<p>黒く染色してみたら引き締まって、でもこっそり甘めで、いい感じに。</p>
-<img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_102355_917a.jpg" alt="こちらに決定（前）" title="こちらに決定（前）">
-<img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_101708_454a.jpg" alt="こちらに決定（後）" title="こちらに決定（後）">
-<p>これで決定です！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">頭  リムレスグラス                 （スノウホワイト）</div><div class="line">胴  タンタラスベスト               （スートブラック）</div><div class="line">手  パンチンググローブ             （デフォルト色）</div><div class="line">脚  メイドブルマ                   （スートブラック）</div><div class="line">足  エクスペディション・サイブーツ （スートブラック）</div></pre></td></tr></table></figure>
-<p>今回は、バトル職だけじゃなくて、ギャザクラもぜんぶ同じミラプリに揃えました。</p>
-<h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>せっかくなので、ミラプリスナップで気になった投稿をメモっておきます：</p>
-<ul>
-<li>シンプルだけどおしゃれなコーディネート by クルル<br><a href="http://mirapri.com/6389" target="_blank" rel="external">http://mirapri.com/6389</a></li>
-<li>Wings of Ice by mishcha_freesia<br><a href="http://mirapri.com/7150" target="_blank" rel="external">http://mirapri.com/7150</a></li>
-<li>機工士に似合うstyle(予定 by ゆと<br><a href="http://mirapri.com/7225" target="_blank" rel="external">http://mirapri.com/7225</a></li>
-<li>スコールアレンジ by せしるん<br><a href="http://mirapri.com/7582" target="_blank" rel="external">http://mirapri.com/7582</a></li>
-<li>ちょっと背伸びララフェル by びび<br><a href="http://mirapri.com/6909" target="_blank" rel="external">http://mirapri.com/6909</a></li>
-<li>爽やかに！ by 卯莉<br><a href="http://mirapri.com/7029" target="_blank" rel="external">http://mirapri.com/7029</a></li>
-<li>カジュアルなスタイル by びび<br><a href="http://mirapri.com/7073" target="_blank" rel="external">http://mirapri.com/7073</a></li>
-<li>街角スナップ by しふる<br><a href="http://mirapri.com/7144" target="_blank" rel="external">http://mirapri.com/7144</a></li>
-<li>ラフ by Mikane_cat<br><a href="http://mirapri.com/6759" target="_blank" rel="external">http://mirapri.com/6759</a></li>
-</ul>
-<p>今後、着てみたい装備：</p>
-<ul>
-<li>胴防具： ウールサスペンダーシャツ<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/934fce515eb/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/934fce515eb/</a></li>
-<li>胴防具： スタービロード・レンジャータバード<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d5d66ac3003/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d5d66ac3003/</a></li>
-<li>胴防具： タンタラスベスト<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/3492faa7427/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/3492faa7427/</a></li>
-<li>脚防具： パンタレット<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/cd96f782e02/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/cd96f782e02/</a></li>
-<li>脚防具： 魔戒導師の脚・陰<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/094a8bcd59f/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/094a8bcd59f/</a></li>
-<li>脚防具： タンタラスブリーチ<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d01e06a4243/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d01e06a4243/</a></li>
-<li>脚防具： ファルコナーボトム<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/4f62c78d569/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/4f62c78d569/</a></li>
-</ul>
-<p>おしゃれ装備が多いので、PvP 始めてみようかなぁ・・・。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>３月も半ばを過ぎて暖かくなってきたので、春コーデにミラプリすることにしました。</p><p><a href="http://mirapri.com" target="_blank" rel="external">ミラプリスナップ</a>を眺めていると、みんなすごいなぁ、と思うばかり。</p><p>あっという間に時間が過ぎてしまいます。</p><p>冬服はモコモコだったので軽めの見た目がいいなぁ、とか、ハイランダー♀＋メガネは外せないのであんまりフェミニンなのは似合わなそうだなぁ、とか、できればクラスを選ばない装備がいいなぁ、とか、いろいろ思いつつ眺めていたところ、かなり良さげなものを発見！</p><ul><li>シンプルだけどおしゃれなコーディネート by クルル<br><a href="http://mirapri.com/6389" target="_blank" rel="external">http://mirapri.com/6389</a></li></ul><p>革装備だけど重すぎないところがポイントです。</p><p>さっそく調達。</p><p>パンタレットをショップで買って、エクスペディション・サイブーツをマーケットで購入。パンチンググローブは自作。タンタラスベストはリテイナーが持っていました。</p><img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_093819_519a.jpg" alt="とりあえず合わせてみた（前）" title="とりあえず合わせてみた（前）"><img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_093832_247a.jpg" alt="とりあえず合わせてみた（後）" title="とりあえず合わせてみた（後）"><p>なかなかいい感じですが、おしりがスースーするのがちょっと恥ずかしい・・・。</p><p>ミラプリスナップでよく使われているショートパンツ「<a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/094a8bcd59f/" target="_blank" rel="external">魔戒導師の脚・陰</a>」とかあったら良さそうなのですが、残念ながら PvP 報酬なので、あきらめ。</p><p>リテイナーのかばんをひっくりかえして探してみたところ、メイドブルマを発見しました。</p><img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_101647_969a.jpg" alt="メイドブルマに変えてみた" title="メイドブルマに変えてみた"><p>ちょっと甘めになって、悪くない。</p><p>黒く染色してみたら引き締まって、でもこっそり甘めで、いい感じに。</p><img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_102355_917a.jpg" alt="こちらに決定（前）" title="こちらに決定（前）"><img src="/2017/03/21/ff14-mirapri-spring-2017/CaptureSTAFF_20170321_101708_454a.jpg" alt="こちらに決定（後）" title="こちらに決定（後）"><p>これで決定です！</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">頭  リムレスグラス                 （スノウホワイト）</div><div class="line">胴  タンタラスベスト               （スートブラック）</div><div class="line">手  パンチンググローブ             （デフォルト色）</div><div class="line">脚  メイドブルマ                   （スートブラック）</div><div class="line">足  エクスペディション・サイブーツ （スートブラック）</div></pre></td></tr></table></figure><p>今回は、バトル職だけじゃなくて、ギャザクラもぜんぶ同じミラプリに揃えました。</p><h2><span id="おまけ">おまけ</span></h2><p>せっかくなので、ミラプリスナップで気になった投稿をメモっておきます：</p><ul><li>シンプルだけどおしゃれなコーディネート by クルル<br><a href="http://mirapri.com/6389" target="_blank" rel="external">http://mirapri.com/6389</a></li><li>Wings of Ice by mishcha_freesia<br><a href="http://mirapri.com/7150" target="_blank" rel="external">http://mirapri.com/7150</a></li><li>機工士に似合うstyle(予定 by ゆと<br><a href="http://mirapri.com/7225" target="_blank" rel="external">http://mirapri.com/7225</a></li><li>スコールアレンジ by せしるん<br><a href="http://mirapri.com/7582" target="_blank" rel="external">http://mirapri.com/7582</a></li><li>ちょっと背伸びララフェル by びび<br><a href="http://mirapri.com/6909" target="_blank" rel="external">http://mirapri.com/6909</a></li><li>爽やかに！ by 卯莉<br><a href="http://mirapri.com/7029" target="_blank" rel="external">http://mirapri.com/7029</a></li><li>カジュアルなスタイル by びび<br><a href="http://mirapri.com/7073" target="_blank" rel="external">http://mirapri.com/7073</a></li><li>街角スナップ by しふる<br><a href="http://mirapri.com/7144" target="_blank" rel="external">http://mirapri.com/7144</a></li><li>ラフ by Mikane_cat<br><a href="http://mirapri.com/6759" target="_blank" rel="external">http://mirapri.com/6759</a></li></ul><p>今後、着てみたい装備：</p><ul><li>胴防具： ウールサスペンダーシャツ<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/934fce515eb/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/934fce515eb/</a></li><li>胴防具： スタービロード・レンジャータバード<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d5d66ac3003/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d5d66ac3003/</a></li><li>胴防具： タンタラスベスト<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/3492faa7427/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/3492faa7427/</a></li><li>脚防具： パンタレット<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/cd96f782e02/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/cd96f782e02/</a></li><li>脚防具： 魔戒導師の脚・陰<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/094a8bcd59f/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/094a8bcd59f/</a></li><li>脚防具： タンタラスブリーチ<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d01e06a4243/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/d01e06a4243/</a></li><li>脚防具： ファルコナーボトム<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/4f62c78d569/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/db/item/4f62c78d569/</a></li></ul><p>おしゃれ装備が多いので、PvP 始めてみようかなぁ・・・。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;３月も半ばを過ぎて暖かくなってきたので、春コーデにミラプリすることにしました。&lt;/p&gt;
+      
+      
+        &lt;p&gt;３月も半ばを過ぎて暖かくなってきたので、春コーデにミラプリすることにしました。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://mirapri.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ミラプリスナップ&lt;/a&gt;を眺めていると、みんなすごいなぁ、と
+      
     
     </summary>
     
@@ -233,30 +190,17 @@
     <published>2017-03-19T15:25:25.000Z</published>
     <updated>2017-03-19T15:25:25.000Z</updated>
     
-    <content type="html"><![CDATA[<p>採集手帳（園芸／採掘）をコンプリートしました！</p>
-<p>ギャザラースクリップ青貨をコツコツ集めて伝承録がすべて揃ったので、
-3.x エリアの未知＆伝説を一気にやっつけてきました。</p>
-<img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_112550_820a.jpg" alt="園芸アチーブ達成" title="園芸アチーブ達成">
-<img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_113025_960a.jpg" alt="手帳好きの園芸師：ランク5" title="手帳好きの園芸師：ランク5">
-<img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_115455_687a.jpg" alt="採掘アチーブ達成" title="採掘アチーブ達成">
-<img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_115757_444a.jpg" alt="手帳好きの採掘師：ランク5" title="手帳好きの採掘師：ランク5">
-<p>最近のパッチで新しい採集品が追加されたようなので、採集手帳をコンプリートする前にアチーブメントがもらえました。</p>
-<p>もちろん残りの２～３個も埋めて、採集手帳コンプリートです。</p>
-<p>さっそくグリダニア旧市街のジョナサスさんのところに行って、金色に輝く主道具をゲットしました！</p>
-<img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170321_000510_404a.jpg" alt="ブレスド・フィールドキープハチェット" title="ブレスド・フィールドキープハチェット">
-<img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170321_000400_680a.jpg" alt="ブレスド・マインキープピック" title="ブレスド・マインキープピック">
-<p>単に抜刀するだけでは光らないのですが、採集ポイントで構えると金色に輝きます。</p>
-<p>性能は赤貨強化のものと完全に同じなので、見た目だけの自己満足アイテムですが、採集がちょっとだけ楽しくなりましたｗ</p>
-<p>ちなみに、ギャザラースクリップ青貨を効率よく集める方法は、「<a href="http://yumemage.blog.fc2.com" target="_blank" rel="external">夢でもFF14</a>」様の「<a href="http://yumemage.blog.fc2.com/blog-entry-346.html" target="_blank" rel="external">ギャザラースクリップの稼ぎ方</a>」ページがオススメです。
-30分おきに低地ドラヴァニアの園芸未知ポイントと採掘未知ポイントを交互に回るだけで青貨がどんどん貯まります。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>採集手帳（園芸／採掘）をコンプリートしました！</p><p>ギャザラースクリップ青貨をコツコツ集めて伝承録がすべて揃ったので、3.x エリアの未知＆伝説を一気にやっつけてきました。</p><img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_112550_820a.jpg" alt="園芸アチーブ達成" title="園芸アチーブ達成"><img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_113025_960a.jpg" alt="手帳好きの園芸師：ランク5" title="手帳好きの園芸師：ランク5"><img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_115455_687a.jpg" alt="採掘アチーブ達成" title="採掘アチーブ達成"><img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170319_115757_444a.jpg" alt="手帳好きの採掘師：ランク5" title="手帳好きの採掘師：ランク5"><p>最近のパッチで新しい採集品が追加されたようなので、採集手帳をコンプリートする前にアチーブメントがもらえました。</p><p>もちろん残りの２～３個も埋めて、採集手帳コンプリートです。</p><p>さっそくグリダニア旧市街のジョナサスさんのところに行って、金色に輝く主道具をゲットしました！</p><img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170321_000510_404a.jpg" alt="ブレスド・フィールドキープハチェット" title="ブレスド・フィールドキープハチェット"><img src="/2017/03/20/ff14-complete-gathering-log/CaptureSTAFF_20170321_000400_680a.jpg" alt="ブレスド・マインキープピック" title="ブレスド・マインキープピック"><p>単に抜刀するだけでは光らないのですが、採集ポイントで構えると金色に輝きます。</p><p>性能は赤貨強化のものと完全に同じなので、見た目だけの自己満足アイテムですが、採集がちょっとだけ楽しくなりましたｗ</p><p>ちなみに、ギャザラースクリップ青貨を効率よく集める方法は、「<a href="http://yumemage.blog.fc2.com" target="_blank" rel="external">夢でもFF14</a>」様の「<a href="http://yumemage.blog.fc2.com/blog-entry-346.html" target="_blank" rel="external">ギャザラースクリップの稼ぎ方</a>」ページがオススメです。30分おきに低地ドラヴァニアの園芸未知ポイントと採掘未知ポイントを交互に回るだけで青貨がどんどん貯まります。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;採集手帳（園芸／採掘）をコンプリートしました！&lt;/p&gt;
+      
+      
+        &lt;p&gt;採集手帳（園芸／採掘）をコンプリートしました！&lt;/p&gt;
 &lt;p&gt;ギャザラースクリップ青貨をコツコツ集めて伝承録がすべて揃ったので、
 3.x エリアの未知＆伝説を一気にやっつけてきました。&lt;/p&gt;
 &lt;img src=&quot;/2017/03/20/ff14-complete-gath
+      
     
     </summary>
     
@@ -270,36 +214,16 @@
     <published>2017-03-18T03:30:16.000Z</published>
     <updated>2017-03-18T03:30:16.000Z</updated>
     
-    <content type="html"><![CDATA[<p>クラフターの 3.x シリーズのクラスクエストをやっていなかったので、一気にやってきました。</p>
-<p>木工師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170311_115453_686a.jpg" alt="木工師のクラスクエ" title="木工師のクラスクエ">
-<p>鍛冶師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170312_182100_389a.jpg" alt="鍛冶師のクラスクエ" title="鍛冶師のクラスクエ">
-<p>甲冑師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170313_140630_071a.jpg" alt="甲冑師のクラスクエ" title="甲冑師のクラスクエ">
-<p>彫金師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170313_151250_626a.jpg" alt="彫金師のクラスクエ" title="彫金師のクラスクエ">
-<p>革細工師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_094252_093a.jpg" alt="革細工師のクラスクエ" title="革細工師のクラスクエ">
-<p>錬金術師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_103954_460a.jpg" alt="錬金術師のクラスクエ" title="錬金術師のクラスクエ">
-<p>裁縫師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_114121_611a.jpg" alt="裁縫師のクラスクエ" title="裁縫師のクラスクエ">
-<p>調理師：</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_130726_351a.jpg" alt="調理師のクラスクエ" title="調理師のクラスクエ">
-<p>これらの中で印象に残ったのが、木工師と彫金師のクエストでした。</p>
-<p>木工師クエは、アダマン鉱の槍がカッコよかったです。</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170311_121850_995a.jpg" alt="アダマン鉱の槍" title="アダマン鉱の槍">
-<p>彫金師クエでは、オルゴールの音の調和がすばらしかったです。</p>
-<img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170313_154059_322a.jpg" alt="ふたつのオルゴール" title="ふたつのオルゴール">
-<p>紅蓮のリベレーター (4.x) のクラスクエも楽しみですね！</p>
-]]></content>
+    <content type="html"><![CDATA[<p>クラフターの 3.x シリーズのクラスクエストをやっていなかったので、一気にやってきました。</p><p>木工師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170311_115453_686a.jpg" alt="木工師のクラスクエ" title="木工師のクラスクエ"><p>鍛冶師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170312_182100_389a.jpg" alt="鍛冶師のクラスクエ" title="鍛冶師のクラスクエ"><p>甲冑師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170313_140630_071a.jpg" alt="甲冑師のクラスクエ" title="甲冑師のクラスクエ"><p>彫金師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170313_151250_626a.jpg" alt="彫金師のクラスクエ" title="彫金師のクラスクエ"><p>革細工師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_094252_093a.jpg" alt="革細工師のクラスクエ" title="革細工師のクラスクエ"><p>錬金術師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_103954_460a.jpg" alt="錬金術師のクラスクエ" title="錬金術師のクラスクエ"><p>裁縫師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_114121_611a.jpg" alt="裁縫師のクラスクエ" title="裁縫師のクラスクエ"><p>調理師：</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170317_130726_351a.jpg" alt="調理師のクラスクエ" title="調理師のクラスクエ"><p>これらの中で印象に残ったのが、木工師と彫金師のクエストでした。</p><p>木工師クエは、アダマン鉱の槍がカッコよかったです。</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170311_121850_995a.jpg" alt="アダマン鉱の槍" title="アダマン鉱の槍"><p>彫金師クエでは、オルゴールの音の調和がすばらしかったです。</p><img src="/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20170313_154059_322a.jpg" alt="ふたつのオルゴール" title="ふたつのオルゴール"><p>紅蓮のリベレーター (4.x) のクラスクエも楽しみですね！</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;クラフターの 3.x シリーズのクラスクエストをやっていなかったので、一気にやってきました。&lt;/p&gt;
+      
+      
+        &lt;p&gt;クラフターの 3.x シリーズのクラスクエストをやっていなかったので、一気にやってきました。&lt;/p&gt;
 &lt;p&gt;木工師：&lt;/p&gt;
 &lt;img src=&quot;/2017/03/18/ff14-crafter-heavensward-class-quest/CaptureSTAFF_20
+      
     
     </summary>
     
@@ -313,18 +237,15 @@
     <published>2017-03-16T11:40:14.000Z</published>
     <updated>2017-03-16T11:40:14.000Z</updated>
     
-    <content type="html"><![CDATA[<p>いまさらながら、園芸師＆採掘師の赤貨装備が揃いました。</p>
-<img src="/2017/03/16/ff14-gatherer-il200/CaptureSTAFF_20170316_203304_622a.jpg" alt="園芸師の赤貨装備" title="園芸師の赤貨装備">
-<img src="/2017/03/16/ff14-gatherer-il200/CaptureSTAFF_20170316_203404_584a.jpg" alt="採掘師の赤貨装備" title="採掘師の赤貨装備">
-<p>これでやっと GP が 650 を超えたので、「GP 600 スキル回し」と同時に「獲得率 +5% アクション」が使えるようになりました。</p>
-<p>獲得率 98% とかでもけっこうハズれることが多いので（すごく悲しい）、精神的にかなり楽になりました。</p>
-<p>余った赤貨をどうするかはこれから考えます。リテイナー用にもう３セット作るかなぁ・・・・</p>
-]]></content>
+    <content type="html"><![CDATA[<p>いまさらながら、園芸師＆採掘師の赤貨装備が揃いました。</p><img src="/2017/03/16/ff14-gatherer-il200/CaptureSTAFF_20170316_203304_622a.jpg" alt="園芸師の赤貨装備" title="園芸師の赤貨装備"><img src="/2017/03/16/ff14-gatherer-il200/CaptureSTAFF_20170316_203404_584a.jpg" alt="採掘師の赤貨装備" title="採掘師の赤貨装備"><p>これでやっと GP が 650 を超えたので、「GP 600 スキル回し」と同時に「獲得率 +5% アクション」が使えるようになりました。</p><p>獲得率 98% とかでもけっこうハズれることが多いので（すごく悲しい）、精神的にかなり楽になりました。</p><p>余った赤貨をどうするかはこれから考えます。リテイナー用にもう３セット作るかなぁ・・・・</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;いまさらながら、園芸師＆採掘師の赤貨装備が揃いました。&lt;/p&gt;
+      
+      
+        &lt;p&gt;いまさらながら、園芸師＆採掘師の赤貨装備が揃いました。&lt;/p&gt;
 &lt;img src=&quot;/2017/03/16/ff14-gatherer-il200/CaptureSTAFF_20170316_203304_622a.jpg&quot; alt=&quot;園芸師の赤貨装備&quot; title=&quot;園芸
+      
     
     </summary>
     
@@ -338,20 +259,14 @@
     <published>2017-03-15T14:50:53.000Z</published>
     <updated>2017-03-15T14:50:53.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_233225_262a.jpg" alt="アチーブメント「黄金の手斧」" title="アチーブメント「黄金の手斧」">
-<p>園芸アチーブメント「黄金の手斧」を達成しました。</p>
-<p>ラノシア・黒衣森・ザナラーンのそれぞれで、各レベル帯の園芸ポイントで一定回数採集を行う、というとても単純なアチーブメントです。</p>
-<p>ラノシアと黒衣森の「伐採王」は達成済みで、残すところはザナラーンだけでした。</p>
-<p>で、「忘れられたオアシス」のすぐ近くで草刈りしていたところ、</p>
-<img src="/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_231907_409a.jpg" alt="「ザナラーンの伐採名人：グレード5」を達成" title="「ザナラーンの伐採名人：グレード5」を達成">
-<img src="/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_231924_293a.jpg" alt="「黄金の手斧」を達成" title="「黄金の手斧」を達成">
-<p>めでたく達成できました。</p>
-<p>次は、採集手帳を埋めるともらえるアチーブメントを目指します！</p>
-]]></content>
+    <content type="html"><![CDATA[<img src="/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_233225_262a.jpg" alt="アチーブメント「黄金の手斧」" title="アチーブメント「黄金の手斧」"><p>園芸アチーブメント「黄金の手斧」を達成しました。</p><p>ラノシア・黒衣森・ザナラーンのそれぞれで、各レベル帯の園芸ポイントで一定回数採集を行う、というとても単純なアチーブメントです。</p><p>ラノシアと黒衣森の「伐採王」は達成済みで、残すところはザナラーンだけでした。</p><p>で、「忘れられたオアシス」のすぐ近くで草刈りしていたところ、</p><img src="/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_231907_409a.jpg" alt="「ザナラーンの伐採名人：グレード5」を達成" title="「ザナラーンの伐採名人：グレード5」を達成"><img src="/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_231924_293a.jpg" alt="「黄金の手斧」を達成" title="「黄金の手斧」を達成"><p>めでたく達成できました。</p><p>次は、採集手帳を埋めるともらえるアチーブメントを目指します！</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_233225_262a.jpg&quot; alt=&quot;アチーブメント「黄金の手斧」&quot; title=&quot;アチーブメント「黄金の手斧」&quot;&gt;
+      
+      
+        &lt;img src=&quot;/2017/03/15/ff14-achievement-botanist-luminary/CaptureSTAFF_20170315_233225_262a.jpg&quot; alt=&quot;アチーブメント「黄金の手斧」&quot; title=&quot;アチーブメント「黄金の手斧」&quot;&gt;
+      
     
     </summary>
     
@@ -365,22 +280,15 @@
     <published>2017-03-13T23:45:47.000Z</published>
     <updated>2017-03-13T23:45:47.000Z</updated>
     
-    <content type="html"><![CDATA[<p>パッチ 3.55b で実装された新しい「雲海探索ディアデム諸島」に OMISO で行ってきました。</p>
-<img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_230523_245a.jpg" alt="突入！" title="突入！">
-<p>最初から空を飛べるのはいいですね。ナイスな改良です。</p>
-<p>最初に与えられる任務をクリアすると、光る柱「エーテルホール」が使えるようになって、紫色のバリア（？）に覆われた島にワープできるようになります。その島に行くと空を飛べないのですが、豊富な採集ポイント（未知を含む）があって、ギャザラーやるならぜひとも行きたいところ。しかし、ここの敵には「ステルス」が効きません（あっさりやられました）。白いクリスタルに触ると一定時間襲われなくなるみたいなので、有効活用しましょう。</p>
-<p>緊急任務が発生したので参加してきましたが、人が多すぎてめちゃめちゃでパーティーメンバーも見失い、よくわからないままクリアしてしまいました・・・・</p>
-<img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_223608_676a.jpg" alt="緊急任務はめちゃめちゃ" title="緊急任務はめちゃめちゃ">
-<p>とりあえず２回行って、IL265 装備をもらえました。</p>
-<img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170314_002112_508a.jpg" alt="白魔道士の IL265 アクセが出た" title="白魔道士の IL265 アクセが出た">
-<img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_220546_551a.jpg" alt="吟遊詩人の IL265 装備が出た" title="吟遊詩人の IL265 装備が出た">
-<p>パラメーターがハズレの IL265 装備でもリテイナーに着せるなら十分なので、ちょっと通ってみようと思います。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>パッチ 3.55b で実装された新しい「雲海探索ディアデム諸島」に OMISO で行ってきました。</p><img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_230523_245a.jpg" alt="突入！" title="突入！"><p>最初から空を飛べるのはいいですね。ナイスな改良です。</p><p>最初に与えられる任務をクリアすると、光る柱「エーテルホール」が使えるようになって、紫色のバリア（？）に覆われた島にワープできるようになります。その島に行くと空を飛べないのですが、豊富な採集ポイント（未知を含む）があって、ギャザラーやるならぜひとも行きたいところ。しかし、ここの敵には「ステルス」が効きません（あっさりやられました）。白いクリスタルに触ると一定時間襲われなくなるみたいなので、有効活用しましょう。</p><p>緊急任務が発生したので参加してきましたが、人が多すぎてめちゃめちゃでパーティーメンバーも見失い、よくわからないままクリアしてしまいました・・・・</p><img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_223608_676a.jpg" alt="緊急任務はめちゃめちゃ" title="緊急任務はめちゃめちゃ"><p>とりあえず２回行って、IL265 装備をもらえました。</p><img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170314_002112_508a.jpg" alt="白魔道士の IL265 アクセが出た" title="白魔道士の IL265 アクセが出た"><img src="/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_220546_551a.jpg" alt="吟遊詩人の IL265 装備が出た" title="吟遊詩人の IL265 装備が出た"><p>パラメーターがハズレの IL265 装備でもリテイナーに着せるなら十分なので、ちょっと通ってみようと思います。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;パッチ 3.55b で実装された新しい「雲海探索ディアデム諸島」に OMISO で行ってきました。&lt;/p&gt;
+      
+      
+        &lt;p&gt;パッチ 3.55b で実装された新しい「雲海探索ディアデム諸島」に OMISO で行ってきました。&lt;/p&gt;
 &lt;img src=&quot;/2017/03/14/ff14-new-diadem/CaptureSTAFF_20170313_230523_245a.jpg&quot; alt=&quot;突
+      
     
     </summary>
     
@@ -394,28 +302,15 @@
     <published>2017-03-13T08:44:06.000Z</published>
     <updated>2017-03-13T08:44:06.000Z</updated>
     
-    <content type="html"><![CDATA[<p>パッチ 3.55b で「雲海探索ディアデム諸島」が再実装されましたが、「狩猟」に行くには IL220 が必要とのこと。</p>
-<p>今夜の FC: OMISO の定例会でみんなと一緒に遊びに行きたいところですが、ぜんぜんバトルコンテンツに行っていないまりすは、実は IL210 しかなかったのでした。</p>
-<img src="/2017/03/13/ff14-buy-new-il255-equipments/CaptureSTAFF_20170313_155544_636a.jpg" alt="メインの白魔道士が IL210 しかない" title="メインの白魔道士が IL210 しかない">
-<p>で、パッチ 3.55b で新しい新式装備が実装されたこともあり、マーケットで IL255 防具と IL250 アクセを全部買ってしまいました！</p>
-<p>白魔道士：</p>
-<img src="/2017/03/13/ff14-buy-new-il255-equipments/CaptureSTAFF_20170313_155834_389a.jpg" alt="白魔道士 IL251" title="白魔道士 IL251">
-<p>合計 2,155,000 ギル</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">頭    IL255  400000ギル  スカイラット・ヒーラーマスク</div><div class="line">胴    IL255  240000ギル  スカイラット・ヒーラーハーネス</div><div class="line">手    IL255  400000ギル  スカイラット・ヒーラーフック</div><div class="line">脚    IL255  240000ギル  スカイラット・ヒーラーブリーチ</div><div class="line">足    IL255  150000ギル  スカイラット・ヒーラーフックブーツ</div><div class="line"> </div><div class="line">帯    IL250  100000ギル  スタービロード・ヒーラーサッシュ</div><div class="line">耳    IL250  185000ギル  シンチレーターヒーラーイヤリング</div><div class="line">首    IL250   90000ギル  チークヒーラーチョーカー</div><div class="line">腕    IL250   90000ギル  チークヒーラーブレスレット</div><div class="line">指    IL250  130000ギル  シンチレーターヒーラーリング</div><div class="line">指    IL250  130000ギル  シンチレーターヒーラーリング</div></pre></td></tr></table></figure>
-<p>吟遊詩人：</p>
-<img src="/2017/03/13/ff14-buy-new-il255-equipments/CaptureSTAFF_20170313_162245_531a.jpg" alt="吟遊詩人 IL251" title="吟遊詩人 IL251">
-<p>合計 2,054,000 ギル</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">頭    IL255  298000ギル  スカイラット・レンジャーマスク</div><div class="line">胴    IL255  240000ギル  スカイラット・レンジャーハーネス</div><div class="line">手    IL255  160000ギル  スカイラット・レンジャーフィンガレスグローブ</div><div class="line">脚    IL255  238000ギル  スカイラット・レンジャーブリーチ</div><div class="line">足    IL255  160000ギル  スカイラット・レンジャーアイアンクラッド</div><div class="line"> </div><div class="line">帯    IL250  170000ギル  ヘヴィアロイ・レンジャータセット</div><div class="line">耳    IL250  238000ギル  シンチレーターレンジャーイヤリング</div><div class="line">首    IL250   90000ギル  チークレンジャーチョーカー</div><div class="line">腕    IL250  200000ギル  チークレンジャーブレスレット</div><div class="line">指    IL250  130000ギル  シンチレーターレンジャーリング</div><div class="line">指    IL250  130000ギル  シンチレーターレンジャーリング</div></pre></td></tr></table></figure>
-<p>相場とかぜんぜんわからない（マーケットでまだ誰もその装備を買っていないのもあった）ので、正直なところ高かったのか安かったのかわかりません。</p>
-<p>ちなみに武器は先日衝動買いした IL250 武器です。たしかそれぞれ 50万ギルくらいだったハズ。</p>
-<p>ギャザクラでコツコツ貯めてきた貯金が、一気に減ってしまいました。</p>
-<p>まぁ、とりあえず IL だけは足りるようになったので、もうちょっとバトルコンテンツに参加して、プレイヤースキルもちょっとずつ育てていきたいなぁ、と思います。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>パッチ 3.55b で「雲海探索ディアデム諸島」が再実装されましたが、「狩猟」に行くには IL220 が必要とのこと。</p><p>今夜の FC: OMISO の定例会でみんなと一緒に遊びに行きたいところですが、ぜんぜんバトルコンテンツに行っていないまりすは、実は IL210 しかなかったのでした。</p><img src="/2017/03/13/ff14-buy-new-il255-equipments/CaptureSTAFF_20170313_155544_636a.jpg" alt="メインの白魔道士が IL210 しかない" title="メインの白魔道士が IL210 しかない"><p>で、パッチ 3.55b で新しい新式装備が実装されたこともあり、マーケットで IL255 防具と IL250 アクセを全部買ってしまいました！</p><p>白魔道士：</p><img src="/2017/03/13/ff14-buy-new-il255-equipments/CaptureSTAFF_20170313_155834_389a.jpg" alt="白魔道士 IL251" title="白魔道士 IL251"><p>合計 2,155,000 ギル</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">頭    IL255  400000ギル  スカイラット・ヒーラーマスク</div><div class="line">胴    IL255  240000ギル  スカイラット・ヒーラーハーネス</div><div class="line">手    IL255  400000ギル  スカイラット・ヒーラーフック</div><div class="line">脚    IL255  240000ギル  スカイラット・ヒーラーブリーチ</div><div class="line">足    IL255  150000ギル  スカイラット・ヒーラーフックブーツ</div><div class="line"> </div><div class="line">帯    IL250  100000ギル  スタービロード・ヒーラーサッシュ</div><div class="line">耳    IL250  185000ギル  シンチレーターヒーラーイヤリング</div><div class="line">首    IL250   90000ギル  チークヒーラーチョーカー</div><div class="line">腕    IL250   90000ギル  チークヒーラーブレスレット</div><div class="line">指    IL250  130000ギル  シンチレーターヒーラーリング</div><div class="line">指    IL250  130000ギル  シンチレーターヒーラーリング</div></pre></td></tr></table></figure><p>吟遊詩人：</p><img src="/2017/03/13/ff14-buy-new-il255-equipments/CaptureSTAFF_20170313_162245_531a.jpg" alt="吟遊詩人 IL251" title="吟遊詩人 IL251"><p>合計 2,054,000 ギル</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">頭    IL255  298000ギル  スカイラット・レンジャーマスク</div><div class="line">胴    IL255  240000ギル  スカイラット・レンジャーハーネス</div><div class="line">手    IL255  160000ギル  スカイラット・レンジャーフィンガレスグローブ</div><div class="line">脚    IL255  238000ギル  スカイラット・レンジャーブリーチ</div><div class="line">足    IL255  160000ギル  スカイラット・レンジャーアイアンクラッド</div><div class="line"> </div><div class="line">帯    IL250  170000ギル  ヘヴィアロイ・レンジャータセット</div><div class="line">耳    IL250  238000ギル  シンチレーターレンジャーイヤリング</div><div class="line">首    IL250   90000ギル  チークレンジャーチョーカー</div><div class="line">腕    IL250  200000ギル  チークレンジャーブレスレット</div><div class="line">指    IL250  130000ギル  シンチレーターレンジャーリング</div><div class="line">指    IL250  130000ギル  シンチレーターレンジャーリング</div></pre></td></tr></table></figure><p>相場とかぜんぜんわからない（マーケットでまだ誰もその装備を買っていないのもあった）ので、正直なところ高かったのか安かったのかわかりません。</p><p>ちなみに武器は先日衝動買いした IL250 武器です。たしかそれぞれ 50万ギルくらいだったハズ。</p><p>ギャザクラでコツコツ貯めてきた貯金が、一気に減ってしまいました。</p><p>まぁ、とりあえず IL だけは足りるようになったので、もうちょっとバトルコンテンツに参加して、プレイヤースキルもちょっとずつ育てていきたいなぁ、と思います。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;パッチ 3.55b で「雲海探索ディアデム諸島」が再実装されましたが、「狩猟」に行くには IL220 が必要とのこと。&lt;/p&gt;
+      
+      
+        &lt;p&gt;パッチ 3.55b で「雲海探索ディアデム諸島」が再実装されましたが、「狩猟」に行くには IL220 が必要とのこと。&lt;/p&gt;
 &lt;p&gt;今夜の FC: OMISO の定例会でみんなと一緒に遊びに行きたいところですが、ぜんぜんバトルコンテンツに行っていないまりすは、実は IL2
+      
     
     </summary>
     
@@ -429,27 +324,16 @@
     <published>2017-03-11T23:31:36.000Z</published>
     <updated>2017-03-11T23:31:36.000Z</updated>
     
-    <content type="html"><![CDATA[<p>いまさらながら、ギャザラーとクラフターの 3.x クラスクエストをやっていないことが判明。</p>
-<p>とりあえず、園芸師と採掘師のクラスクエをやってきました。</p>
-<h2 id="園芸師クラスクエ"><a href="#園芸師クラスクエ" class="headerlink" title="園芸師クラスクエ"></a>園芸師クラスクエ</h2><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_085354_467a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_085940_086a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_091500_959a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_095418_100a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_101231_848a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<h2 id="採掘師クラスクエ"><a href="#採掘師クラスクエ" class="headerlink" title="採掘師クラスクエ"></a>採掘師クラスクエ</h2><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_102025_670a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_102434_121a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_104547_274a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_110006_193a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_111610_679a.jpg" alt="スクリーンショット" title="スクリーンショット">
-<p>採掘師の最後のクエでアダマン鉱 HQ が必要なのですが、これは自力で掘ってこなくても OK でした。園芸師のほうは自分でカベイジの野菜 HQ を採ってこないといけなかったので、凡ミスかしら？</p>
-<p>あ、もちろん、過去に自分で掘ってきたアダマン鉱を納品しましたよ！</p>
-]]></content>
+    <content type="html"><![CDATA[<p>いまさらながら、ギャザラーとクラフターの 3.x クラスクエストをやっていないことが判明。</p><p>とりあえず、園芸師と採掘師のクラスクエをやってきました。</p><h2><span id="園芸師クラスクエ">園芸師クラスクエ</span></h2><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_085354_467a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_085940_086a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_091500_959a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_095418_100a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_101231_848a.jpg" alt="スクリーンショット" title="スクリーンショット"><h2><span id="採掘師クラスクエ">採掘師クラスクエ</span></h2><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_102025_670a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_102434_121a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_104547_274a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_110006_193a.jpg" alt="スクリーンショット" title="スクリーンショット"><img src="/2017/03/12/ff14-gatherer-heavensward-quest/CaptureSTAFF_20170311_111610_679a.jpg" alt="スクリーンショット" title="スクリーンショット"><p>採掘師の最後のクエでアダマン鉱 HQ が必要なのですが、これは自力で掘ってこなくても OK でした。園芸師のほうは自分でカベイジの野菜 HQ を採ってこないといけなかったので、凡ミスかしら？</p><p>あ、もちろん、過去に自分で掘ってきたアダマン鉱を納品しましたよ！</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;いまさらながら、ギャザラーとクラフターの 3.x クラスクエストをやっていないことが判明。&lt;/p&gt;
+      
+      
+        &lt;p&gt;いまさらながら、ギャザラーとクラフターの 3.x クラスクエストをやっていないことが判明。&lt;/p&gt;
 &lt;p&gt;とりあえず、園芸師と採掘師のクラスクエをやってきました。&lt;/p&gt;
-&lt;h2 id=&quot;園芸師クラスクエ&quot;&gt;&lt;a href=&quot;#園芸師クラスクエ&quot; class=&quot;header
+&lt;h2&gt;&lt;span id=&quot;園芸師クラスクエ&quot;&gt;園芸師クラスクエ&lt;/span&gt;&lt;/h2&gt;&lt;img sr
+      
     
     </summary>
     
@@ -463,23 +347,16 @@
     <published>2017-03-11T00:42:41.000Z</published>
     <updated>2017-03-11T00:42:41.000Z</updated>
     
-    <content type="html"><![CDATA[<p>リアル世界もちょっと春めいてきたところで、「プリンセスデー」イベントをやってきました。</p>
-<p>今年のプリンセスデーは、報酬のエモート「歌姫を真似る」とオシャレ装備の両方が人気の様子。</p>
-<p>イベント自体はとっても簡単で、すぐに終わります。三人のうち「誰をセンターにするか」を選べるので、まりすは元気系のマシャちゃんにしました。</p>
-<img src="/2017/03/11/ff14-princess-day-2017/CaptureSTAFF_20170311_083221_331a.png" alt="スクリーンショット" title="スクリーンショット">
-<p>エモ効果のおかげで、けっこうアイドルっぽい。</p>
-<img src="/2017/03/11/ff14-princess-day-2017/CaptureSTAFF_20170311_083601_035a.png" alt="スクリーンショット" title="スクリーンショット">
-<p>そして報酬でもらえる装備ですが・・・</p>
-<img src="/2017/03/11/ff14-princess-day-2017/CaptureSTAFF_20170311_084247_121a.png" alt="スクリーンショット" title="スクリーンショット">
-<p>照明が暗めだったせいか、いまいち似合っていないよーな気が。</p>
-<p>でも脚装備と足装備は汎用性が高そうなので、大事にとっておこうと思います。</p>
-]]></content>
+    <content type="html"><![CDATA[<p>リアル世界もちょっと春めいてきたところで、「プリンセスデー」イベントをやってきました。</p><p>今年のプリンセスデーは、報酬のエモート「歌姫を真似る」とオシャレ装備の両方が人気の様子。</p><p>イベント自体はとっても簡単で、すぐに終わります。三人のうち「誰をセンターにするか」を選べるので、まりすは元気系のマシャちゃんにしました。</p><img src="/2017/03/11/ff14-princess-day-2017/CaptureSTAFF_20170311_083221_331a.png" alt="スクリーンショット" title="スクリーンショット"><p>エモ効果のおかげで、けっこうアイドルっぽい。</p><img src="/2017/03/11/ff14-princess-day-2017/CaptureSTAFF_20170311_083601_035a.png" alt="スクリーンショット" title="スクリーンショット"><p>そして報酬でもらえる装備ですが・・・</p><img src="/2017/03/11/ff14-princess-day-2017/CaptureSTAFF_20170311_084247_121a.png" alt="スクリーンショット" title="スクリーンショット"><p>照明が暗めだったせいか、いまいち似合っていないよーな気が。</p><p>でも脚装備と足装備は汎用性が高そうなので、大事にとっておこうと思います。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;リアル世界もちょっと春めいてきたところで、「プリンセスデー」イベントをやってきました。&lt;/p&gt;
+      
+      
+        &lt;p&gt;リアル世界もちょっと春めいてきたところで、「プリンセスデー」イベントをやってきました。&lt;/p&gt;
 &lt;p&gt;今年のプリンセスデーは、報酬のエモート「歌姫を真似る」とオシャレ装備の両方が人気の様子。&lt;/p&gt;
 &lt;p&gt;イベント自体はとっても簡単で、すぐに終わります。三人のうち「誰をセン
+      
     
     </summary>
     
@@ -493,86 +370,15 @@
     <published>2017-03-07T05:29:34.000Z</published>
     <updated>2017-03-24T05:06:32.000Z</updated>
     
-    <content type="html"><![CDATA[<p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p>
-<p>JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるようにしなければならないようです。</p>
-<p>たとえば、
-FF14 の Windows クライアントで「高品質」設定のスクリーンショットを撮ると、アルファチャネルを含まない PNG 画像として保存されるため、そのまま Twitter に up すると JPEG に変換されてしまいます。</p>
-<p>せっかくキレイな SS が撮れるのに、もったいない！</p>
-<p>SS 加工とかされている方は要注意です。</p>
-<p>この問題への対策として、
-JPEG への強制変換を避けるために PNG 画像を加工してくれるツールが公開されています。というか、このツールの紹介記事（窓の杜）でこの問題を知ったのでした。</p>
-<ul>
-<li>Twitterにアップする画像の劣化を防ぐ「Twitter向け画像最適化ツール」 - 窓の杜<br><a href="http://forest.watch.impress.co.jp/docs/serial/netserv/1047319.html" target="_blank" rel="external">http://forest.watch.impress.co.jp/docs/serial/netserv/1047319.html</a></li>
-<li>Twitter向け画像最適化ツール - SDN Project<br><a href="https://sdn-project.net/labo/twitter_image.html" target="_blank" rel="external">https://sdn-project.net/labo/twitter_image.html</a></li>
-</ul>
-<p>このツールは、「左上1ピクセルを透明度99%にする事で実現しています」とのことです。すばらしいアイディアです。</p>
-<p>作者の<a href="https://sdn-project.net" target="_blank" rel="external">栃尾トメさん</a>に感謝！</p>
-<blockquote><p>★2017/Mar/24 追記★</p>
-<p>Windows デスクトップクライアントの OpenTween が最新版 1.3.7 でこの問題に対応してくれました！　感謝！！</p>
-<p><a href="https://ja.osdn.net/projects/opentween/" target="_blank" rel="external">https://ja.osdn.net/projects/opentween/</a></p>
-<p>バージョンアップしてもデフォルトでは機能が OFF になっているので、「ファイル」メニューの「設定」ダイアログを開いて、「動作」の「投稿」のページで、「PNG画像の投稿時にJPEGへの変換を回避する（pic.twitter.com のみ）」にチェックを入れてください。</p>
-<p>ちなみに対処方法は「Twitter向け画像最適化ツール」と同じです。</p>
-</blockquote>
-<h2 id="おまけ"><a href="#おまけ" class="headerlink" title="おまけ"></a>おまけ</h2><p>実際に Twitter に PNG 画像を投稿してみて、挙動を確認してみました。
-(2017/Mar/07)</p>
-<p>実験その１。まず、アルファチャネルの無い PNG 画像をツイートしてみます。</p>
-<img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b.png" alt="アルファチャネルの無い PNG 画像" title="アルファチャネルの無い PNG 画像">
-<p><a href="https://twitter.com/quercus_maris/status/838803302661808128" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838803302661808128</a></p>
-<p>上記ツイートに Twitter Web でアクセスして画像をダウンロードしようとすると、
-JPEG 画像になっていることがわかります。</p>
-<p>実験その２。
-<a href="https://www.gimp.org" target="_blank" rel="external">画像編集ソフト GIMP</a>
-で単にアルファチャネルを追加しただけの PNG 画像を作って、ツイートしてみます。</p>
-<img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b-add-alpha-channel.png" alt="単にアルファチャネルを追加しただけの PNG 画像" title="単にアルファチャネルを追加しただけの PNG 画像">
-<p><a href="https://twitter.com/quercus_maris/status/838804383513006080" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838804383513006080</a></p>
-<p>上記ツイートにアクセスしてみると、これも JPEG 画像になってしまっています。</p>
-<p>実験その３。左上隅の１ピクセルだけ切り取って透明にした PNG 画像を作って、ツイートしてみます。</p>
-<img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b-transparent.png" alt="左上隅の１ピクセルだけ切り取って透明にした PNG 画像" title="左上隅の１ピクセルだけ切り取って透明にした PNG 画像">
-<p><a href="https://twitter.com/quercus_maris/status/838806270173827072" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838806270173827072</a></p>
-<p>上記ツイートにアクセスしてみると、今度は PNG 画像としてダウンロードできました！</p>
-<p>以上の実験から、単にアルファチャネルを追加するだけではダメで、少なくとも１ピクセルは（半）透明でなければならないようです。</p>
-<p>「Twitter向け画像最適化ツール」の手法はおそらく最善の手かと思われます。</p>
-
-<!--
-## おまけ２
-
-念のため、画像処理ツール ImageMagick を使って PNG 画像の比較をしてみました。
-
- - ImageMagick 公式サイト    
-   https://www.imagemagick.org
- - ImageMagickで2枚の画像を比較 - Qiita    
-   http://qiita.com/kwst/items/c40817b3cdf841995257
-
-ちなみに、ImageMagick は Windows 上でも使えます（使っています）。
-
- - 画像１：オリジナル画像<br />
-   {% asset_link bg20170129b.png %}
- - 画像２：画像１の左上隅の１ピクセルだけ透明にした画像<br />
-   {% asset_link bg20170129b-transparent.png %}
- - 画像３：画像２をツイートして Twitter からダウンロードした画像<br />
-   {% asset_link bg20170129b-transparent.download.png %}
- - 画像４：画像１を「Twitter向け画像最適化ツール」で変換した画像<br />
-   {% asset_link bg20170129b_tw.png %}
-
-まず、ふつうに画像１と画像２を比較してみると、「一致」と言われてしまいます。
-
-undefined
-
-これは、左上隅の１ピクセルだけ透明にする際、色情報 (RGB) には手を加えず、アルファ値（透明度）だけ `0` にしているため、
-RGB のみで比較すると同一と判断されてしまったものです。
-
-アルファ値を含めて（RGBA で）比較すると、ちゃんと差が出ます。
-
-undefined
-
--->
-
-]]></content>
+    <content type="html"><![CDATA[<p>今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。</p><p>JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるようにしなければならないようです。</p><p>たとえば、FF14 の Windows クライアントで「高品質」設定のスクリーンショットを撮ると、アルファチャネルを含まない PNG 画像として保存されるため、そのまま Twitter に up すると JPEG に変換されてしまいます。</p><p>せっかくキレイな SS が撮れるのに、もったいない！</p><p>SS 加工とかされている方は要注意です。</p><p>この問題への対策として、JPEG への強制変換を避けるために PNG 画像を加工してくれるツールが公開されています。というか、このツールの紹介記事（窓の杜）でこの問題を知ったのでした。</p><ul><li>Twitterにアップする画像の劣化を防ぐ「Twitter向け画像最適化ツール」 - 窓の杜<br><a href="http://forest.watch.impress.co.jp/docs/serial/netserv/1047319.html" target="_blank" rel="external">http://forest.watch.impress.co.jp/docs/serial/netserv/1047319.html</a></li><li>Twitter向け画像最適化ツール - SDN Project<br><a href="https://sdn-project.net/labo/twitter_image.html" target="_blank" rel="external">https://sdn-project.net/labo/twitter_image.html</a></li></ul><p>このツールは、「左上1ピクセルを透明度99%にする事で実現しています」とのことです。すばらしいアイディアです。</p><p>作者の<a href="https://sdn-project.net" target="_blank" rel="external">栃尾トメさん</a>に感謝！</p><blockquote><p>★2017/Mar/24 追記★</p><p>Windows デスクトップクライアントの OpenTween が最新版 1.3.7 でこの問題に対応してくれました！　感謝！！</p><p><a href="https://ja.osdn.net/projects/opentween/" target="_blank" rel="external">https://ja.osdn.net/projects/opentween/</a></p><p>バージョンアップしてもデフォルトでは機能が OFF になっているので、「ファイル」メニューの「設定」ダイアログを開いて、「動作」の「投稿」のページで、「PNG画像の投稿時にJPEGへの変換を回避する（pic.twitter.com のみ）」にチェックを入れてください。</p><p>ちなみに対処方法は「Twitter向け画像最適化ツール」と同じです。</p></blockquote><h2><span id="おまけ">おまけ</span></h2><p>実際に Twitter に PNG 画像を投稿してみて、挙動を確認してみました。(2017/Mar/07)</p><p>実験その１。まず、アルファチャネルの無い PNG 画像をツイートしてみます。</p><img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b.png" alt="アルファチャネルの無い PNG 画像" title="アルファチャネルの無い PNG 画像"><p><a href="https://twitter.com/quercus_maris/status/838803302661808128" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838803302661808128</a></p><p>上記ツイートに Twitter Web でアクセスして画像をダウンロードしようとすると、JPEG 画像になっていることがわかります。</p><p>実験その２。<a href="https://www.gimp.org" target="_blank" rel="external">画像編集ソフト GIMP</a>で単にアルファチャネルを追加しただけの PNG 画像を作って、ツイートしてみます。</p><img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b-add-alpha-channel.png" alt="単にアルファチャネルを追加しただけの PNG 画像" title="単にアルファチャネルを追加しただけの PNG 画像"><p><a href="https://twitter.com/quercus_maris/status/838804383513006080" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838804383513006080</a></p><p>上記ツイートにアクセスしてみると、これも JPEG 画像になってしまっています。</p><p>実験その３。左上隅の１ピクセルだけ切り取って透明にした PNG 画像を作って、ツイートしてみます。</p><img src="/2017/03/07/twitter-convert-png-to-jpeg/bg20170129b-transparent.png" alt="左上隅の１ピクセルだけ切り取って透明にした PNG 画像" title="左上隅の１ピクセルだけ切り取って透明にした PNG 画像"><p><a href="https://twitter.com/quercus_maris/status/838806270173827072" target="_blank" rel="external">https://twitter.com/quercus_maris/status/838806270173827072</a></p><p>上記ツイートにアクセスしてみると、今度は PNG 画像としてダウンロードできました！</p><p>以上の実験から、単にアルファチャネルを追加するだけではダメで、少なくとも１ピクセルは（半）透明でなければならないようです。</p><p>「Twitter向け画像最適化ツール」の手法はおそらく最善の手かと思われます。</p><!--## おまけ２念のため、画像処理ツール ImageMagick を使って PNG 画像の比較をしてみました。 - ImageMagick 公式サイト       https://www.imagemagick.org - ImageMagickで2枚の画像を比較 - Qiita       http://qiita.com/kwst/items/c40817b3cdf841995257ちなみに、ImageMagick は Windows 上でも使えます（使っています）。 - 画像１：オリジナル画像<br />   {% asset_link bg20170129b.png %} - 画像２：画像１の左上隅の１ピクセルだけ透明にした画像<br />   {% asset_link bg20170129b-transparent.png %} - 画像３：画像２をツイートして Twitter からダウンロードした画像<br />   {% asset_link bg20170129b-transparent.download.png %} - 画像４：画像１を「Twitter向け画像最適化ツール」で変換した画像<br />   {% asset_link bg20170129b_tw.png %}まず、ふつうに画像１と画像２を比較してみると、「一致」と言われてしまいます。undefinedこれは、左上隅の１ピクセルだけ透明にする際、色情報 (RGB) には手を加えず、アルファ値（透明度）だけ `0` にしているため、RGB のみで比較すると同一と判断されてしまったものです。アルファ値を含めて（RGBA で）比較すると、ちゃんと差が出ます。undefined-->]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。&lt;/p&gt;
+      
+      
+        &lt;p&gt;今まで知らなかったのですが、Twitter でツイートに添付した PNG 画像は JPEG に強制的に変換されるようです。&lt;/p&gt;
 &lt;p&gt;JPEG への強制変換を回避するためには、PNG 画像にアルファチャネルを追加して、さらに、（半）透明なピクセルが１個以上含まれるように
+      
     
     </summary>
     
@@ -586,91 +392,20 @@ undefined
     <published>2017-02-16T02:11:18.000Z</published>
     <updated>2017-02-26T10:20:22.000Z</updated>
     
-    <content type="html"><![CDATA[<p>FF14 のマクロに関するメモです。</p>
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#グラウンドターゲットスキル発動マクロ">グラウンドターゲットスキル発動マクロ</a></li>
-<li><a href="#マウスオーバーでケアル">マウスオーバーでケアル</a></li>
-<li><a href="#hbxhb-の共有非共有の一括切り替え">HB/XHB の共有・非共有の一括切り替え</a></li>
-<li><a href="#クラフターのアディショナル一括設定">クラフターのアディショナル一括設定</a></li>
-<li><a href="#クラフターの-xhb-一括設定">クラフターの XHB 一括設定</a></li>
-<li><a href="#ひとつのジョブで複数の-hbxhb-設定を使いたい">ひとつのジョブで複数の HB/XHB 設定を使いたい</a></li>
-<li><a href="#ピーアンマクロ">ピーアンマクロ</a></li>
-<li><a href="#ギルドリーヴ納品用移動マクロ">ギルドリーヴ納品用移動マクロ</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-<ul>
-<li>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></li>
-<li>マクロ - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD</a></li>
-<li>テキストコマンド - FINAL FANTASY XIV n Wiki<br><a href="http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9" target="_blank" rel="external">http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9</a></li>
-</ul>
-<h2 id="グラウンドターゲットスキル発動マクロ"><a href="#グラウンドターゲットスキル発動マクロ" class="headerlink" title="グラウンドターゲットスキル発動マクロ"></a>グラウンドターゲットスキル発動マクロ</h2><p>まりすはパッチノートを読んでも気がつかなかったのですが、
-Patch 3.2 からグラウンドターゲットスキルの設置場所として代名詞によるターゲット指定ができるようになっていました。</p>
-<ul>
-<li><a href="http://jp.finalfantasyxiv.com/lodestone/topics/detail/7abc9fa4bbf7e73d1c94eaaeea46fcff603aa97a" target="_blank" rel="external">Patch 3.2 パッチノート</a></li>
-<li>FF14 グラウンドターゲットスキルのマクロ関連いろいろ - Eorzean<br><a href="http://www.eorzean.info/archives/3638082.html" target="_blank" rel="external">http://www.eorzean.info/archives/3638082.html</a></li>
-</ul>
-<p>たとえば、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac アサイラム &lt;me&gt;</div></pre></td></tr></table></figure>
-<p>というマクロを発動させると、自分の足元にアサイラムが設置されます。</p>
-<p>また、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac フレイミングアロー &lt;t&gt;</div></pre></td></tr></table></figure>
-<p>とすれば、ターゲットしている敵の足元にフレイミングアローが設置されます。</p>
-<p>まりすはグラウンドターゲットの指定動作が苦手でずっとまともに使えていなかったのですが、このマクロのおかげで使えるようになってきました。</p>
-<p>Eorzean さまに感謝！</p>
-<h2 id="マウスオーバーでケアル"><a href="#マウスオーバーでケアル" class="headerlink" title="マウスオーバーでケアル"></a>マウスオーバーでケアル</h2><p>親指ボタンの付いた多機能マウスを使っている白魔道士向けのマクロです。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/micon ケアル</div><div class="line">/ac ケアル &lt;mo&gt;</div></pre></td></tr></table></figure>
-<p>まりすは Logicool G602 マウスを愛用していて、６個の親指ボタンに <code>Ctrl+3</code> ～ <code>Ctrl+8</code> を割り当てています。</p>
-<p>Windows 版の FF14 クライアントでは、デフォルトでホットバー１に
-<code>Ctrl+1</code> ～ <code>Ctrl+=</code> が割り当てられているので、たとえば上記マクロをホットバー１のスロット３とかにセットすると、パーティーリスト上で親指ボタンを押すだけでケアルが発動します。</p>
-<p>まりすは白魔道士のとき「左手ゲームパッド（移動）、右手マウス（アクション）」というプレイスタイルなのですが、基本的にマウスカーソルはパーティーリスト上にあります。パーティーメンバーがどこにいても（ケアルが届く範囲にいれば）即座に発動できるので、とても楽です。</p>
-<p>ちなみに親指ボタンに割り当てているアクションは「エスナ」「ケアル」「テトラグラマトン」「リジェネ」「ケアルラ」「ベネディクション」の６個です。範囲魔法はパーティーリストのすぐ横に置いた縦ホットバーにセットしてあります。</p>
-<h2 id="hbxhb-の共有非共有の一括切り替え"><a href="#HB-XHB-の共有・非共有の一括切り替え" class="headerlink" title="HB/XHB の共有・非共有の一括切り替え"></a>HB/XHB の共有・非共有の一括切り替え</h2><p>まりすの HUD 設定では、バトル職のときは HB/XHB 非共有モード、クラフター＆ギャザラーのときは HB/XHB 共有モード、としています。ちなみに HB4 と XHB8 は常に共有モード（マウント呼び出しとか用）、
-XHB1-3 は常に非共有モードです。</p>
-<p>この切り替えを簡単に行うため、簡単なマクロを作りました。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 off</div><div class="line">/hotbar share 2 off</div><div class="line">/hotbar share 3 off</div><div class="line">/hotbar share 5 off</div><div class="line">/hotbar share 6 off</div><div class="line">/hotbar share 7 off</div><div class="line">/hotbar share 8 off</div><div class="line">/hotbar share 9 off</div><div class="line">/hotbar share 10 off</div><div class="line">/crosshotbar share 4 off</div><div class="line">/crosshotbar share 5 off</div><div class="line">/crosshotbar share 6 off</div><div class="line">/crosshotbar share 7 off</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 on</div><div class="line">/hotbar share 2 on</div><div class="line">/hotbar share 3 on</div><div class="line">/hotbar share 5 on</div><div class="line">/hotbar share 6 on</div><div class="line">/hotbar share 7 on</div><div class="line">/hotbar share 8 on</div><div class="line">/hotbar share 9 on</div><div class="line">/hotbar share 10 on</div><div class="line">/crosshotbar share 4 on</div><div class="line">/crosshotbar share 5 on</div><div class="line">/crosshotbar share 6 on</div><div class="line">/crosshotbar share 7 on</div></pre></td></tr></table></figure>
-<p>で、ポイントは、これらのマクロをお互いのホットバーの同じ位置（たとえばホットバー10のスロット12）にセットすること、です。</p>
-<p>そうすると、同じ場所を押すたびにモードがトグルします。わかりやすくてオススメです。</p>
-<img src="/2017/02/16/ff14-macro-memo/hotbar_sample_20170219a.png" alt="ホットバーの例" title="ホットバーの例">
-<p>ちなみに「着替えマクロ」はバトル職（白魔道士と吟遊詩人）だけ作りました。クラフター８職＋ギャザラー３職で11枠もマクロを作りたくなかったのです。共有モードのホットバーにギアセットをセットして着替えています。たとえば白魔道士から園芸師に着替える場合、上記マクロを押してホットバーを共有モードに切り替えると園芸師ギアセットアイコンが出現して、それを押せば園芸師になれます。一発で着替えられないのは不便に思うかもしれませんが、逆に言うと誤爆が避けられるので安全だったりします。</p>
-<h2 id="クラフターのアディショナル一括設定"><a href="#クラフターのアディショナル一括設定" class="headerlink" title="クラフターのアディショナル一括設定"></a>クラフターのアディショナル一括設定</h2><p>まりすの場合、クラフターのアディショナルとして使うアクションは決まっていて、どのクラスでも同じクラフター製作マクロが使えるようにしています。（たぶんマイスターになるとスキル回しも変わってくると思いますが）</p>
-<p>クラスごとに「自クラス以外のものぜんぶ」を設定することになるわけですが、面倒なので全部列挙してしまうことにしました。自クラスのものは自動的にスキップしてくれるので、1個のマクロで全クラス使えます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/additionalaction clear</div><div class="line">/additionalaction 模範作業II on</div><div class="line">/additionalaction ヘイスティタッチ on</div><div class="line">/additionalaction 倹約 on</div><div class="line">/additionalaction ステディハンドII on</div><div class="line">/additionalaction ビエルゴの祝福 on</div><div class="line">/additionalaction コンファートゾーン on</div><div class="line">/additionalaction マニピュレーション on</div><div class="line">/additionalaction 工面算段II on</div><div class="line">/additionalaction 堅実の心得 on</div><div class="line">/additionalaction 堅実作業 on</div><div class="line">/additionalaction イノベーション on</div><div class="line">/additionalaction 確信 on</div><div class="line">/additionalaction 秘訣 on</div><div class="line">/additionalaction 突貫作業 on</div></pre></td></tr></table></figure>
-<h2 id="クラフターの-xhb-一括設定"><a href="#クラフターの-XHB-一括設定" class="headerlink" title="クラフターの XHB 一括設定"></a>クラフターの XHB 一括設定</h2><p>クラフターの XHB って、共有モードにしておけば良いじゃないか、と思われるかもしれませんが、実は「作業」とか「中級加工」とかのアクションは同じ名前でもクラスごとに別アクションになっています。（理由は謎・・・・ “4.0” で改善されそうな気も）</p>
-<p>そこで、一括設定マクロを使うわけです。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set 蒐集品製作           1 RAR</div><div class="line">/crosshotbar set 蒐集品製作           2 RAR</div><div class="line">/crosshotbar set 蒐集品製作           3 RAR</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       1 RAL</div><div class="line">/crosshotbar set 確信                 1 RAU</div><div class="line">/crosshotbar set 中級加工             1 RAD</div><div class="line">/crosshotbar set インナークワイエット 1 LAL</div><div class="line">/crosshotbar set 堅実の心得           1 LAU</div><div class="line">/crosshotbar set 堅実作業             1 LAR</div><div class="line">/crosshotbar set コンファートゾーン   1 LAD</div><div class="line">/crosshotbar set 倹約                 1 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     1 RDU</div><div class="line">/crosshotbar set 模範作業II           1 RDR</div><div class="line">/crosshotbar set ステディハンドII     1 RDD</div><div class="line">/crosshotbar set マニピュレーション   1 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       1 LDU</div><div class="line">/crosshotbar set グレートストライド   1 LDR</div><div class="line">/crosshotbar set 工面算段II           1 LDD</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       2 RAL</div><div class="line">/crosshotbar set 確信                 2 RAU</div><div class="line">/crosshotbar set 中級加工             2 RAD</div><div class="line">/crosshotbar set インナークワイエット 2 LAL</div><div class="line">/crosshotbar set 秘訣                 2 LAU</div><div class="line">/crosshotbar set 突貫作業             2 LAR</div><div class="line">/crosshotbar set コンファートゾーン   2 LAD</div><div class="line">/crosshotbar set 倹約                 2 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     2 RDU</div><div class="line">/crosshotbar set 模範作業II           2 RDR</div><div class="line">/crosshotbar set ステディハンドII     2 RDD</div><div class="line">/crosshotbar set マニピュレーション   2 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       2 LDU</div><div class="line">/crosshotbar set グレートストライド   2 LDR</div><div class="line">/crosshotbar set 工面算段II           2 LDD</div></pre></td></tr></table></figure>
-<p>ちなみに XHB3 はマイスター用に予約してあります（現時点では使っていません）。</p>
-<h2 id="ひとつのジョブで複数の-hbxhb-設定を使いたい"><a href="#ひとつのジョブで複数の-HB-XHB-設定を使いたい" class="headerlink" title="ひとつのジョブで複数の HB/XHB 設定を使いたい"></a>ひとつのジョブで複数の HB/XHB 設定を使いたい</h2><p>たとえば白魔道士で、PvE と PvP とで HB/XHB 設定を変えたい場合があります。</p>
-<p>そんなときは、「自分が今後絶対に使わないであろうと思われる」ジョブを決めて、そのジョブの非共有 HB/XHB を待避先に使います。未習得のジョブでも OK です。</p>
-<p>たとえば、まりすの場合、機工士と召喚士をやることはたぶん無いので、以下のふたつのマクロを使えば XHB1-7 を丸ごと切り替えられます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 機工士  1</div><div class="line">/crosshotbar copy current  2 機工士  2</div><div class="line">/crosshotbar copy current  3 機工士  3</div><div class="line">/crosshotbar copy current  4 機工士  4</div><div class="line">/crosshotbar copy current  5 機工士  5</div><div class="line">/crosshotbar copy current  6 機工士  6</div><div class="line">/crosshotbar copy current  7 機工士  7</div><div class="line">/crosshotbar copy 召喚士  1 current  1</div><div class="line">/crosshotbar copy 召喚士  2 current  2</div><div class="line">/crosshotbar copy 召喚士  3 current  3</div><div class="line">/crosshotbar copy 召喚士  4 current  4</div><div class="line">/crosshotbar copy 召喚士  5 current  5</div><div class="line">/crosshotbar copy 召喚士  6 current  6</div><div class="line">/crosshotbar copy 召喚士  7 current  7</div><div class="line">/hotbar      copy 召喚士  9 current  9</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 召喚士  1</div><div class="line">/crosshotbar copy current  2 召喚士  2</div><div class="line">/crosshotbar copy current  3 召喚士  3</div><div class="line">/crosshotbar copy current  4 召喚士  4</div><div class="line">/crosshotbar copy current  5 召喚士  5</div><div class="line">/crosshotbar copy current  6 召喚士  6</div><div class="line">/crosshotbar copy current  7 召喚士  7</div><div class="line">/crosshotbar copy 機工士  1 current  1</div><div class="line">/crosshotbar copy 機工士  2 current  2</div><div class="line">/crosshotbar copy 機工士  3 current  3</div><div class="line">/crosshotbar copy 機工士  4 current  4</div><div class="line">/crosshotbar copy 機工士  5 current  5</div><div class="line">/crosshotbar copy 機工士  6 current  6</div><div class="line">/crosshotbar copy 機工士  7 current  7</div><div class="line">/hotbar      copy 機工士  9 current  9</div></pre></td></tr></table></figure>
-<p>ひと工夫して、ホットーバー9のスロット12あたりに上記マクロをセットして、同じボタンでトグルできるようにすると、便利＆確実です。上記マクロは同じものを２回実行すると他方が上書きされてしまう危険があるので・・・。あるいは、保存用マクロと切り替えマクロは分けたほうが安全かもしれません（ホットバーも同時に切り替えようとするとそもそも15行に収まらないし）。</p>
-<h2 id="ピーアンマクロ"><a href="#ピーアンマクロ" class="headerlink" title="ピーアンマクロ"></a>ピーアンマクロ</h2><ul>
-<li>FF14 固定PT用ピーアンマクロ - Eorzean<br><a href="http://www.eorzean.info/archives/2785161.html" target="_blank" rel="external">http://www.eorzean.info/archives/2785161.html</a></li>
-</ul>
-<h2 id="ギルドリーヴ納品用移動マクロ"><a href="#ギルドリーヴ納品用移動マクロ" class="headerlink" title="ギルドリーヴ納品用移動マクロ"></a>ギルドリーヴ納品用移動マクロ</h2><p>同じマップに受注 NPC と納品先 NPC がいる場合、自動で起動できるみたいです。</p>
-<ul>
-<li>FF14 ギルドリーヴ納品用移動マクロ<br><a href="http://www.eorzean.info/archives/3135969.html" target="_blank" rel="external">http://www.eorzean.info/archives/3135969.html</a></li>
-</ul>
-]]></content>
+    <content type="html"><![CDATA[<p>FF14 のマクロに関するメモです。</p><div class="toc"><!-- toc --><ul><li><a href="#グラウンドターゲットスキル発動マクロ">グラウンドターゲットスキル発動マクロ</a></li><li><a href="#マウスオーバーでケアル">マウスオーバーでケアル</a></li><li><a href="#hbxhb-の共有非共有の一括切り替え">HB/XHB の共有・非共有の一括切り替え</a></li><li><a href="#クラフターのアディショナル一括設定">クラフターのアディショナル一括設定</a></li><li><a href="#クラフターの-xhb-一括設定">クラフターの XHB 一括設定</a></li><li><a href="#ひとつのジョブで複数の-hbxhb-設定を使いたい">ひとつのジョブで複数の HB/XHB 設定を使いたい</a></li><li><a href="#ピーアンマクロ">ピーアンマクロ</a></li><li><a href="#ギルドリーヴ納品用移動マクロ">ギルドリーヴ納品用移動マクロ</a></li></ul><!-- tocstop --></div><ul><li>テキストコマンドの一覧（公式）<br><a href="http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/" target="_blank" rel="external">http://jp.finalfantasyxiv.com/lodestone/playguide/win/text_command/</a></li><li>マクロ - FF14 Online Wiki<br><a href="http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD" target="_blank" rel="external">http://ff14wiki.info/?%E3%83%9E%E3%82%AF%E3%83%AD</a></li><li>テキストコマンド - FINAL FANTASY XIV n Wiki<br><a href="http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9" target="_blank" rel="external">http://ff14n.wikiwiki.jp/?%A5%C6%A5%AD%A5%B9%A5%C8%A5%B3%A5%DE%A5%F3%A5%C9</a></li></ul><h2><span id="グラウンドターゲットスキル発動マクロ">グラウンドターゲットスキル発動マクロ</span></h2><p>まりすはパッチノートを読んでも気がつかなかったのですが、Patch 3.2 からグラウンドターゲットスキルの設置場所として代名詞によるターゲット指定ができるようになっていました。</p><ul><li><a href="http://jp.finalfantasyxiv.com/lodestone/topics/detail/7abc9fa4bbf7e73d1c94eaaeea46fcff603aa97a" target="_blank" rel="external">Patch 3.2 パッチノート</a></li><li>FF14 グラウンドターゲットスキルのマクロ関連いろいろ - Eorzean<br><a href="http://www.eorzean.info/archives/3638082.html" target="_blank" rel="external">http://www.eorzean.info/archives/3638082.html</a></li></ul><p>たとえば、</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac アサイラム &lt;me&gt;</div></pre></td></tr></table></figure><p>というマクロを発動させると、自分の足元にアサイラムが設置されます。</p><p>また、</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ac フレイミングアロー &lt;t&gt;</div></pre></td></tr></table></figure><p>とすれば、ターゲットしている敵の足元にフレイミングアローが設置されます。</p><p>まりすはグラウンドターゲットの指定動作が苦手でずっとまともに使えていなかったのですが、このマクロのおかげで使えるようになってきました。</p><p>Eorzean さまに感謝！</p><h2><span id="マウスオーバーでケアル">マウスオーバーでケアル</span></h2><p>親指ボタンの付いた多機能マウスを使っている白魔道士向けのマクロです。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/micon ケアル</div><div class="line">/ac ケアル &lt;mo&gt;</div></pre></td></tr></table></figure><p>まりすは Logicool G602 マウスを愛用していて、６個の親指ボタンに <code>Ctrl+3</code> ～ <code>Ctrl+8</code> を割り当てています。</p><p>Windows 版の FF14 クライアントでは、デフォルトでホットバー１に<code>Ctrl+1</code> ～ <code>Ctrl+=</code> が割り当てられているので、たとえば上記マクロをホットバー１のスロット３とかにセットすると、パーティーリスト上で親指ボタンを押すだけでケアルが発動します。</p><p>まりすは白魔道士のとき「左手ゲームパッド（移動）、右手マウス（アクション）」というプレイスタイルなのですが、基本的にマウスカーソルはパーティーリスト上にあります。パーティーメンバーがどこにいても（ケアルが届く範囲にいれば）即座に発動できるので、とても楽です。</p><p>ちなみに親指ボタンに割り当てているアクションは「エスナ」「ケアル」「テトラグラマトン」「リジェネ」「ケアルラ」「ベネディクション」の６個です。範囲魔法はパーティーリストのすぐ横に置いた縦ホットバーにセットしてあります。</p><h2><span id="hbxhb-の共有非共有の一括切り替え">HB/XHB の共有・非共有の一括切り替え</span></h2><p>まりすの HUD 設定では、バトル職のときは HB/XHB 非共有モード、クラフター＆ギャザラーのときは HB/XHB 共有モード、としています。ちなみに HB4 と XHB8 は常に共有モード（マウント呼び出しとか用）、XHB1-3 は常に非共有モードです。</p><p>この切り替えを簡単に行うため、簡単なマクロを作りました。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 off</div><div class="line">/hotbar share 2 off</div><div class="line">/hotbar share 3 off</div><div class="line">/hotbar share 5 off</div><div class="line">/hotbar share 6 off</div><div class="line">/hotbar share 7 off</div><div class="line">/hotbar share 8 off</div><div class="line">/hotbar share 9 off</div><div class="line">/hotbar share 10 off</div><div class="line">/crosshotbar share 4 off</div><div class="line">/crosshotbar share 5 off</div><div class="line">/crosshotbar share 6 off</div><div class="line">/crosshotbar share 7 off</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/hotbar share 1 on</div><div class="line">/hotbar share 2 on</div><div class="line">/hotbar share 3 on</div><div class="line">/hotbar share 5 on</div><div class="line">/hotbar share 6 on</div><div class="line">/hotbar share 7 on</div><div class="line">/hotbar share 8 on</div><div class="line">/hotbar share 9 on</div><div class="line">/hotbar share 10 on</div><div class="line">/crosshotbar share 4 on</div><div class="line">/crosshotbar share 5 on</div><div class="line">/crosshotbar share 6 on</div><div class="line">/crosshotbar share 7 on</div></pre></td></tr></table></figure><p>で、ポイントは、これらのマクロをお互いのホットバーの同じ位置（たとえばホットバー10のスロット12）にセットすること、です。</p><p>そうすると、同じ場所を押すたびにモードがトグルします。わかりやすくてオススメです。</p><img src="/2017/02/16/ff14-macro-memo/hotbar_sample_20170219a.png" alt="ホットバーの例" title="ホットバーの例"><p>ちなみに「着替えマクロ」はバトル職（白魔道士と吟遊詩人）だけ作りました。クラフター８職＋ギャザラー３職で11枠もマクロを作りたくなかったのです。共有モードのホットバーにギアセットをセットして着替えています。たとえば白魔道士から園芸師に着替える場合、上記マクロを押してホットバーを共有モードに切り替えると園芸師ギアセットアイコンが出現して、それを押せば園芸師になれます。一発で着替えられないのは不便に思うかもしれませんが、逆に言うと誤爆が避けられるので安全だったりします。</p><h2><span id="クラフターのアディショナル一括設定">クラフターのアディショナル一括設定</span></h2><p>まりすの場合、クラフターのアディショナルとして使うアクションは決まっていて、どのクラスでも同じクラフター製作マクロが使えるようにしています。（たぶんマイスターになるとスキル回しも変わってくると思いますが）</p><p>クラスごとに「自クラス以外のものぜんぶ」を設定することになるわけですが、面倒なので全部列挙してしまうことにしました。自クラスのものは自動的にスキップしてくれるので、1個のマクロで全クラス使えます。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/additionalaction clear</div><div class="line">/additionalaction 模範作業II on</div><div class="line">/additionalaction ヘイスティタッチ on</div><div class="line">/additionalaction 倹約 on</div><div class="line">/additionalaction ステディハンドII on</div><div class="line">/additionalaction ビエルゴの祝福 on</div><div class="line">/additionalaction コンファートゾーン on</div><div class="line">/additionalaction マニピュレーション on</div><div class="line">/additionalaction 工面算段II on</div><div class="line">/additionalaction 堅実の心得 on</div><div class="line">/additionalaction 堅実作業 on</div><div class="line">/additionalaction イノベーション on</div><div class="line">/additionalaction 確信 on</div><div class="line">/additionalaction 秘訣 on</div><div class="line">/additionalaction 突貫作業 on</div></pre></td></tr></table></figure><h2><span id="クラフターの-xhb-一括設定">クラフターの XHB 一括設定</span></h2><p>クラフターの XHB って、共有モードにしておけば良いじゃないか、と思われるかもしれませんが、実は「作業」とか「中級加工」とかのアクションは同じ名前でもクラスごとに別アクションになっています。（理由は謎・・・・ “4.0” で改善されそうな気も）</p><p>そこで、一括設定マクロを使うわけです。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set 蒐集品製作           1 RAR</div><div class="line">/crosshotbar set 蒐集品製作           2 RAR</div><div class="line">/crosshotbar set 蒐集品製作           3 RAR</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       1 RAL</div><div class="line">/crosshotbar set 確信                 1 RAU</div><div class="line">/crosshotbar set 中級加工             1 RAD</div><div class="line">/crosshotbar set インナークワイエット 1 LAL</div><div class="line">/crosshotbar set 堅実の心得           1 LAU</div><div class="line">/crosshotbar set 堅実作業             1 LAR</div><div class="line">/crosshotbar set コンファートゾーン   1 LAD</div><div class="line">/crosshotbar set 倹約                 1 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     1 RDU</div><div class="line">/crosshotbar set 模範作業II           1 RDR</div><div class="line">/crosshotbar set ステディハンドII     1 RDD</div><div class="line">/crosshotbar set マニピュレーション   1 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       1 LDU</div><div class="line">/crosshotbar set グレートストライド   1 LDR</div><div class="line">/crosshotbar set 工面算段II           1 LDD</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar set イノベーション       2 RAL</div><div class="line">/crosshotbar set 確信                 2 RAU</div><div class="line">/crosshotbar set 中級加工             2 RAD</div><div class="line">/crosshotbar set インナークワイエット 2 LAL</div><div class="line">/crosshotbar set 秘訣                 2 LAU</div><div class="line">/crosshotbar set 突貫作業             2 LAR</div><div class="line">/crosshotbar set コンファートゾーン   2 LAD</div><div class="line">/crosshotbar set 倹約                 2 RDL</div><div class="line">/crosshotbar set ヘイスティタッチ     2 RDU</div><div class="line">/crosshotbar set 模範作業II           2 RDR</div><div class="line">/crosshotbar set ステディハンドII     2 RDD</div><div class="line">/crosshotbar set マニピュレーション   2 LDL</div><div class="line">/crosshotbar set ビエルゴの祝福       2 LDU</div><div class="line">/crosshotbar set グレートストライド   2 LDR</div><div class="line">/crosshotbar set 工面算段II           2 LDD</div></pre></td></tr></table></figure><p>ちなみに XHB3 はマイスター用に予約してあります（現時点では使っていません）。</p><h2><span id="ひとつのジョブで複数の-hbxhb-設定を使いたい">ひとつのジョブで複数の HB/XHB 設定を使いたい</span></h2><p>たとえば白魔道士で、PvE と PvP とで HB/XHB 設定を変えたい場合があります。</p><p>そんなときは、「自分が今後絶対に使わないであろうと思われる」ジョブを決めて、そのジョブの非共有 HB/XHB を待避先に使います。未習得のジョブでも OK です。</p><p>たとえば、まりすの場合、機工士と召喚士をやることはたぶん無いので、以下のふたつのマクロを使えば XHB1-7 を丸ごと切り替えられます。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 機工士  1</div><div class="line">/crosshotbar copy current  2 機工士  2</div><div class="line">/crosshotbar copy current  3 機工士  3</div><div class="line">/crosshotbar copy current  4 機工士  4</div><div class="line">/crosshotbar copy current  5 機工士  5</div><div class="line">/crosshotbar copy current  6 機工士  6</div><div class="line">/crosshotbar copy current  7 機工士  7</div><div class="line">/crosshotbar copy 召喚士  1 current  1</div><div class="line">/crosshotbar copy 召喚士  2 current  2</div><div class="line">/crosshotbar copy 召喚士  3 current  3</div><div class="line">/crosshotbar copy 召喚士  4 current  4</div><div class="line">/crosshotbar copy 召喚士  5 current  5</div><div class="line">/crosshotbar copy 召喚士  6 current  6</div><div class="line">/crosshotbar copy 召喚士  7 current  7</div><div class="line">/hotbar      copy 召喚士  9 current  9</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/crosshotbar copy current  1 召喚士  1</div><div class="line">/crosshotbar copy current  2 召喚士  2</div><div class="line">/crosshotbar copy current  3 召喚士  3</div><div class="line">/crosshotbar copy current  4 召喚士  4</div><div class="line">/crosshotbar copy current  5 召喚士  5</div><div class="line">/crosshotbar copy current  6 召喚士  6</div><div class="line">/crosshotbar copy current  7 召喚士  7</div><div class="line">/crosshotbar copy 機工士  1 current  1</div><div class="line">/crosshotbar copy 機工士  2 current  2</div><div class="line">/crosshotbar copy 機工士  3 current  3</div><div class="line">/crosshotbar copy 機工士  4 current  4</div><div class="line">/crosshotbar copy 機工士  5 current  5</div><div class="line">/crosshotbar copy 機工士  6 current  6</div><div class="line">/crosshotbar copy 機工士  7 current  7</div><div class="line">/hotbar      copy 機工士  9 current  9</div></pre></td></tr></table></figure><p>ひと工夫して、ホットーバー9のスロット12あたりに上記マクロをセットして、同じボタンでトグルできるようにすると、便利＆確実です。上記マクロは同じものを２回実行すると他方が上書きされてしまう危険があるので・・・。あるいは、保存用マクロと切り替えマクロは分けたほうが安全かもしれません（ホットバーも同時に切り替えようとするとそもそも15行に収まらないし）。</p><h2><span id="ピーアンマクロ">ピーアンマクロ</span></h2><ul><li>FF14 固定PT用ピーアンマクロ - Eorzean<br><a href="http://www.eorzean.info/archives/2785161.html" target="_blank" rel="external">http://www.eorzean.info/archives/2785161.html</a></li></ul><h2><span id="ギルドリーヴ納品用移動マクロ">ギルドリーヴ納品用移動マクロ</span></h2><p>同じマップに受注 NPC と納品先 NPC がいる場合、自動で起動できるみたいです。</p><ul><li>FF14 ギルドリーヴ納品用移動マクロ<br><a href="http://www.eorzean.info/archives/3135969.html" target="_blank" rel="external">http://www.eorzean.info/archives/3135969.html</a></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;FF14 のマクロに関するメモです。&lt;/p&gt;
+      
+      
+        &lt;p&gt;FF14 のマクロに関するメモです。&lt;/p&gt;
 &lt;div class=&quot;toc&quot;&gt;
 
 &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#グラウンドターゲットスキル発動マクロ&quot;&gt;グラウンドターゲットスキル発動マクロ&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#マ
+      
     
     </summary>
     
@@ -688,20 +423,15 @@ XHB1-3 は常に非共有モードです。</p>
     <published>2017-02-13T07:34:46.000Z</published>
     <updated>2017-02-13T07:34:46.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2017/02/13/ff14-grand-company-rank-up/CaptureSTAFF_20170211_214002_597a0.jpg" alt="スクリーンショット" title="スクリーンショット">
-<p>グランドカンパニー黒渦団の中尉（中甲士）に昇級しました。</p>
-<p>ずーーーと放置していた冒険者小隊でしたが、昨年末くらいからちょっとずつ育て始めてました。メンバーのレベルはどんどん上がるのですが、なかなかステータスが伸びずにランクアップ任務にトライできず・・・</p>
-<p><a href="http://ff14wiki.info/?%E5%86%92%E9%99%BA%E8%80%85%E5%B0%8F%E9%9A%8A" target="_blank" rel="external">Wiki によれば</a>、ランクアップ任務の場合、３種のパラメータのひとつでも条件を満たしていないと失敗するらしいです。</p>
-<p>で、このたびめでたく条件を満たしたので、ランクアップ任務にトライ。あっさり１回目で成功しました。</p>
-<p>自動的に（中甲士）に昇級。</p>
-<p>これまで、初期メンバー４人のまま志願者を無視して育ててきたのですが、そろそろメンバーを選抜しようかと思っています。</p>
-<p>ララ小隊とかいいですよねー</p>
-]]></content>
+    <content type="html"><![CDATA[<img src="/2017/02/13/ff14-grand-company-rank-up/CaptureSTAFF_20170211_214002_597a0.jpg" alt="スクリーンショット" title="スクリーンショット"><p>グランドカンパニー黒渦団の中尉（中甲士）に昇級しました。</p><p>ずーーーと放置していた冒険者小隊でしたが、昨年末くらいからちょっとずつ育て始めてました。メンバーのレベルはどんどん上がるのですが、なかなかステータスが伸びずにランクアップ任務にトライできず・・・</p><p><a href="http://ff14wiki.info/?%E5%86%92%E9%99%BA%E8%80%85%E5%B0%8F%E9%9A%8A" target="_blank" rel="external">Wiki によれば</a>、ランクアップ任務の場合、３種のパラメータのひとつでも条件を満たしていないと失敗するらしいです。</p><p>で、このたびめでたく条件を満たしたので、ランクアップ任務にトライ。あっさり１回目で成功しました。</p><p>自動的に（中甲士）に昇級。</p><p>これまで、初期メンバー４人のまま志願者を無視して育ててきたのですが、そろそろメンバーを選抜しようかと思っています。</p><p>ララ小隊とかいいですよねー</p>]]></content>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2017/02/13/ff14-grand-company-rank-up/CaptureSTAFF_20170211_214002_597a0.jpg&quot; alt=&quot;スクリーンショット&quot; title=&quot;スクリーンショット&quot;&gt;
+      
+      
+        &lt;img src=&quot;/2017/02/13/ff14-grand-company-rank-up/CaptureSTAFF_20170211_214002_597a0.jpg&quot; alt=&quot;スクリーンショット&quot; title=&quot;スクリーンショット&quot;&gt;
 &lt;p&gt;グランドカンパニー黒渦団の
+      
     
     </summary>
     
@@ -717,55 +447,20 @@ XHB1-3 は常に非共有モードです。</p>
     <published>2017-02-04T04:51:32.000Z</published>
     <updated>2017-03-07T23:05:01.000Z</updated>
     
-    <content type="html"><![CDATA[<p>まりすのサブジョブである吟遊詩人のメモです。</p>
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#旅神のメヌエットは必須">「旅神のメヌエット」は必須</a></li>
-<li><a href="#サブステータスの影響">サブステータスの影響</a></li>
-<li><a href="#歌い方">歌い方</a></li>
-<li><a href="#スキル回し">スキル回し</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-
-<h2 id="旅神のメヌエットは必須"><a href="#「旅神のメヌエット」は必須" class="headerlink" title="「旅神のメヌエット」は必須"></a>「旅神のメヌエット」は必須</h2><ul>
-<li>FF14 3.2詩人 メヌエット有無でのDPS差 - Eorzean<br><a href="http://www.eorzean.info/archives/2868702.html" target="_blank" rel="external">http://www.eorzean.info/archives/2868702.html</a></li>
-</ul>
-<blockquote>
-<p>メヌエット無しだと大幅に火力が落ちることがわかります。クリが1000以上になるとレッターの回転率が目に見えて上がってくるので、メヌエット有りではレッターが1回分無駄になったり、GCDへの食い込みが気になりますが切ってしまうとデメリットの方が圧倒的に大きいようです。</p>
-</blockquote>
-<h2 id="サブステータスの影響"><a href="#サブステータスの影響" class="headerlink" title="サブステータスの影響"></a>サブステータスの影響</h2><p>とりあえずクリティカル最優先でよいみたい。</p>
-<ul>
-<li>FF14 3.3修正版 詩人サブステータス換算値【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/4723183.html" target="_blank" rel="external">http://www.eorzean.info/archives/4723183.html</a></li>
-<li>エリュシオンRinchan NauさんのASKfm回答、詩人/機工開幕スキル回し【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/5326029.html" target="_blank" rel="external">http://www.eorzean.info/archives/5326029.html</a></li>
-</ul>
-<blockquote>
-<p>装備を揃える最中でSS700維持は最優先事項ではないです。
-700を維持するためにアイテムレベルを下げたりはしません。命中を満たし、ある程度のクリを維持することの方が大事です。</p>
-</blockquote>
-<p>ちなみに、メヌエット中は Auto Attack (AA) が発動しないので、メヌエット入れっぱなしなら意思力を上げてもあまり意味がないらしい。詩人だけなら「クリティカル＞スキスピ＞意思力」で良さそう。</p>
-<h2 id="歌い方"><a href="#歌い方" class="headerlink" title="歌い方"></a>歌い方</h2><ul>
-<li>FF14 3.3版 バトルボイスのリキャストタイムとレクイエムの歌い方 - Eorzean<br><a href="http://www.eorzean.info/archives/3908530.html" target="_blank" rel="external">http://www.eorzean.info/archives/3908530.html</a></li>
-</ul>
-<p>とりあえずキャスターの猛者に合わせればよいらしい（パッチ 3.3 で合わせられるようになった）</p>
-<h2 id="スキル回し"><a href="#スキル回し" class="headerlink" title="スキル回し"></a>スキル回し</h2><ul>
-<li>エリュシオンRinchan NauさんのASKfm回答、詩人/機工開幕スキル回し【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/5326029.html" target="_blank" rel="external">http://www.eorzean.info/archives/5326029.html</a></li>
-<li>FF14 Aiurily Ariさんの3.3詩人開幕スキル回し【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/4045847.html" target="_blank" rel="external">http://www.eorzean.info/archives/4045847.html</a></li>
-</ul>
-]]></content>
+    <content type="html"><![CDATA[<p>まりすのサブジョブである吟遊詩人のメモです。</p><div class="toc"><!-- toc --><ul><li><a href="#旅神のメヌエットは必須">「旅神のメヌエット」は必須</a></li><li><a href="#サブステータスの影響">サブステータスの影響</a></li><li><a href="#歌い方">歌い方</a></li><li><a href="#スキル回し">スキル回し</a></li></ul><!-- tocstop --></div><h2><span id="旅神のメヌエットは必須">「旅神のメヌエット」は必須</span></h2><ul><li>FF14 3.2詩人 メヌエット有無でのDPS差 - Eorzean<br><a href="http://www.eorzean.info/archives/2868702.html" target="_blank" rel="external">http://www.eorzean.info/archives/2868702.html</a></li></ul><blockquote><p>メヌエット無しだと大幅に火力が落ちることがわかります。クリが1000以上になるとレッターの回転率が目に見えて上がってくるので、メヌエット有りではレッターが1回分無駄になったり、GCDへの食い込みが気になりますが切ってしまうとデメリットの方が圧倒的に大きいようです。</p></blockquote><h2><span id="サブステータスの影響">サブステータスの影響</span></h2><p>とりあえずクリティカル最優先でよいみたい。</p><ul><li>FF14 3.3修正版 詩人サブステータス換算値【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/4723183.html" target="_blank" rel="external">http://www.eorzean.info/archives/4723183.html</a></li><li>エリュシオンRinchan NauさんのASKfm回答、詩人/機工開幕スキル回し【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/5326029.html" target="_blank" rel="external">http://www.eorzean.info/archives/5326029.html</a></li></ul><blockquote><p>装備を揃える最中でSS700維持は最優先事項ではないです。700を維持するためにアイテムレベルを下げたりはしません。命中を満たし、ある程度のクリを維持することの方が大事です。</p></blockquote><p>ちなみに、メヌエット中は Auto Attack (AA) が発動しないので、メヌエット入れっぱなしなら意思力を上げてもあまり意味がないらしい。詩人だけなら「クリティカル＞スキスピ＞意思力」で良さそう。</p><h2><span id="歌い方">歌い方</span></h2><ul><li>FF14 3.3版 バトルボイスのリキャストタイムとレクイエムの歌い方 - Eorzean<br><a href="http://www.eorzean.info/archives/3908530.html" target="_blank" rel="external">http://www.eorzean.info/archives/3908530.html</a></li></ul><p>とりあえずキャスターの猛者に合わせればよいらしい（パッチ 3.3 で合わせられるようになった）</p><h2><span id="スキル回し">スキル回し</span></h2><ul><li>エリュシオンRinchan NauさんのASKfm回答、詩人/機工開幕スキル回し【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/5326029.html" target="_blank" rel="external">http://www.eorzean.info/archives/5326029.html</a></li><li>FF14 Aiurily Ariさんの3.3詩人開幕スキル回し【翻訳】 - Eorzean<br><a href="http://www.eorzean.info/archives/4045847.html" target="_blank" rel="external">http://www.eorzean.info/archives/4045847.html</a></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;まりすのサブジョブである吟遊詩人のメモです。&lt;/p&gt;
+      
+      
+        &lt;p&gt;まりすのサブジョブである吟遊詩人のメモです。&lt;/p&gt;
 &lt;div class=&quot;toc&quot;&gt;
 
 &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#旅神のメヌエットは必須&quot;&gt;「旅神のメヌエット」は必須&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#サブステータスの影
+      
     
     </summary>
     
@@ -785,105 +480,20 @@ XHB1-3 は常に非共有モードです。</p>
     <published>2017-02-04T04:15:37.000Z</published>
     <updated>2017-06-02T02:00:24.000Z</updated>
     
-    <content type="html"><![CDATA[<p>ギャザラーに関するメモです。</p>
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#未知の採集での赤貨集め">未知の採集での赤貨集め</a></li>
-<li><a href="#未知じゃない赤貨集め">未知じゃない赤貨集め</a></li>
-<li><a href="#青貨の集め方">青貨の集め方</a></li>
-<li><a href="#ギャザラー青貨装備キープ装備-il180">ギャザラー青貨装備（キープ装備、IL180）</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-
-<h2 id="未知の採集での赤貨集め"><a href="#未知の採集での赤貨集め" class="headerlink" title="未知の採集での赤貨集め"></a>未知の採集での赤貨集め</h2><ul>
-<li>ギャザラー用蒐集品スキル回し | 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-249.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-249.html</a></li>
-</ul>
-<p>採掘師での「アダマン鉱」や園芸師での「カベイジの野菜」の蒐集品（蒐集価値 470 以上）は、イディルシャイアのロウェナ商会でギャザラー赤貨と交換してもらえます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 09:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div><div class="line">ET 21:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 11:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div><div class="line">ET 23:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div></pre></td></tr></table></figure>
-<p>蒐集価値 470 以上の蒐集品を2～4個採集できるスキル回しは以下のとおり：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">審美眼</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
-<h2 id="未知じゃない赤貨集め"><a href="#未知じゃない赤貨集め" class="headerlink" title="未知じゃない赤貨集め"></a>未知じゃない赤貨集め</h2><ul>
-<li>FF14 ペリウィンクル／イブニングジェードでのギャザラー赤貨集め（1時間未満）<br><a href="http://www.eorzean.info/archives/4152778.html" target="_blank" rel="external">http://www.eorzean.info/archives/4152778.html</a></li>
-</ul>
-<p>コーディアルをリキャストごとに使えば１時間未満で赤貨 450 集まるらしいです。</p>
-<p>スキル回しは青貨と同じもので大丈夫です。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
-<h2 id="青貨の集め方"><a href="#青貨の集め方" class="headerlink" title="青貨の集め方"></a>青貨の集め方</h2><ul>
-<li>ギャザラースクリップの稼ぎ方 - 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-346.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-346.html</a></li>
-</ul>
-<p>低地ドラヴァニア（イディルシャイア）で30分おきに園芸＆採掘するだけ。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ET 00:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 02:00 採掘 未知 ２段目 赤銅鉱</div><div class="line">ET 12:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 14:00 採掘 未知 ２段目 赤銅鉱</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
-<p>このスキル回しは GP650 必要ですが、園芸と採掘の間が ET で２時間（地球時間で６分弱）あいているので、園芸をすぐやればコーディアルを使わなくても採掘の時間内に GP が回復します。</p>
-<h2 id="ギャザラー青貨装備キープ装備-il180"><a href="#ギャザラー青貨装備（キープ装備、IL180）" class="headerlink" title="ギャザラー青貨装備（キープ装備、IL180）"></a>ギャザラー青貨装備（キープ装備、IL180）</h2><p>ギャザラー青貨装備（キープ装備、IL180）はイディルシャイアのロウェナ商会で交換してもらえます。</p>
-<p>装備品1個ごとに、何枚かのギャザラー青貨手形と、クラスごとに異なる「○○受領証：第1種」が1個必要です。「○○受領証：第1種」は、イディルシャイアのロウェナ商会で蒐集品と交換してもらえます。</p>
-<ul>
-<li>採掘師「石材受領証：第1種」は蒐集価値380以上の「アダマン鉱」（アジス・ラーの未知）×1個で交換。</li>
-<li>園芸師「草木受領証：第1種」は蒐集価値380以上の「カベイジの野菜」（クルザス西部高地の未知）×1個で交換。</li>
-<li>漁師「水産受領証：第1種」は蒐集価値579以上の「サンダーボルト」×1個で交換。</li>
-</ul>
-<p>採掘と園芸については、必要な蒐集価値が（青貨や赤貨の納品に比べて）低いので、次のようなスキル回しで1回に3～5個採集できます。運がよければ「採集回数+2」の Location Effect がついて最大7個採集できます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>
-]]></content>
+    <content type="html"><![CDATA[<p>ギャザラーに関するメモです。</p><div class="toc"><!-- toc --><ul><li><a href="#未知の採集での赤貨集め">未知の採集での赤貨集め</a></li><li><a href="#未知じゃない赤貨集め">未知じゃない赤貨集め</a></li><li><a href="#青貨の集め方">青貨の集め方</a></li><li><a href="#ギャザラー青貨装備キープ装備-il180">ギャザラー青貨装備（キープ装備、IL180）</a></li></ul><!-- tocstop --></div><h2><span id="未知の採集での赤貨集め">未知の採集での赤貨集め</span></h2><ul><li>ギャザラー用蒐集品スキル回し | 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-249.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-249.html</a></li></ul><p>採掘師での「アダマン鉱」や園芸師での「カベイジの野菜」の蒐集品（蒐集価値 470 以上）は、イディルシャイアのロウェナ商会でギャザラー赤貨と交換してもらえます。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 09:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div><div class="line">ET 21:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 11:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div><div class="line">ET 23:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div></pre></td></tr></table></figure><p>蒐集価値 470 以上の蒐集品を2～4個採集できるスキル回しは以下のとおり：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">審美眼</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure><h2><span id="未知じゃない赤貨集め">未知じゃない赤貨集め</span></h2><ul><li>FF14 ペリウィンクル／イブニングジェードでのギャザラー赤貨集め（1時間未満）<br><a href="http://www.eorzean.info/archives/4152778.html" target="_blank" rel="external">http://www.eorzean.info/archives/4152778.html</a></li></ul><p>コーディアルをリキャストごとに使えば１時間未満で赤貨 450 集まるらしいです。</p><p>スキル回しは青貨と同じもので大丈夫です。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure><h2><span id="青貨の集め方">青貨の集め方</span></h2><ul><li>ギャザラースクリップの稼ぎ方 - 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-346.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-346.html</a></li></ul><p>低地ドラヴァニア（イディルシャイア）で30分おきに園芸＆採掘するだけ。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ET 00:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 02:00 採掘 未知 ２段目 赤銅鉱</div><div class="line">ET 12:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 14:00 採掘 未知 ２段目 赤銅鉱</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure><p>このスキル回しは GP650 必要ですが、園芸と採掘の間が ET で２時間（地球時間で６分弱）あいているので、園芸をすぐやればコーディアルを使わなくても採掘の時間内に GP が回復します。</p><h2><span id="ギャザラー青貨装備キープ装備-il180">ギャザラー青貨装備（キープ装備、IL180）</span></h2><p>ギャザラー青貨装備（キープ装備、IL180）はイディルシャイアのロウェナ商会で交換してもらえます。</p><p>装備品1個ごとに、何枚かのギャザラー青貨手形と、クラスごとに異なる「○○受領証：第1種」が1個必要です。「○○受領証：第1種」は、イディルシャイアのロウェナ商会で蒐集品と交換してもらえます。</p><ul><li>採掘師「石材受領証：第1種」は蒐集価値380以上の「アダマン鉱」（アジス・ラーの未知）×1個で交換。</li><li>園芸師「草木受領証：第1種」は蒐集価値380以上の「カベイジの野菜」（クルザス西部高地の未知）×1個で交換。</li><li>漁師「水産受領証：第1種」は蒐集価値579以上の「サンダーボルト」×1個で交換。</li></ul><p>採掘と園芸については、必要な蒐集価値が（青貨や赤貨の納品に比べて）低いので、次のようなスキル回しで1回に3～5個採集できます。運がよければ「採集回数+2」の Location Effect がついて最大7個採集できます。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;ギャザラーに関するメモです。&lt;/p&gt;
+      
+      
+        &lt;p&gt;ギャザラーに関するメモです。&lt;/p&gt;
 &lt;div class=&quot;toc&quot;&gt;
 
 &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#未知の採集での赤貨集め&quot;&gt;未知の採集での赤貨集め&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#未知じゃない赤貨集め&quot;&gt;未知じゃない赤
-    
-    </summary>
-    
-    
-      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
-    
-      <category term="Memo" scheme="https://quercus2011.github.io/tags/Memo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FreeCompany めも</title>
-    <link href="https://quercus2011.github.io/2017/02/04/ff14-fc-memo/"/>
-    <id>https://quercus2011.github.io/2017/02/04/ff14-fc-memo/</id>
-    <published>2017-02-04T04:09:21.000Z</published>
-    <updated>2017-03-07T23:47:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>FreeCompany (FC) に関するメモです。</p>
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#カンパニークレジットの稼ぎ方">カンパニークレジットの稼ぎ方</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-
-<h2 id="カンパニークレジットの稼ぎ方"><a href="#カンパニークレジットの稼ぎ方" class="headerlink" title="カンパニークレジットの稼ぎ方"></a>カンパニークレジットの稼ぎ方</h2><p>FF14 クラフターでのカンパニークレジットの稼ぎ方<br><a href="http://www.eorzean.info/archives/2930924.html" target="_blank" rel="external">http://www.eorzean.info/archives/2930924.html</a></p>
-<blockquote>
-<p>フリーカンパニーに所属しているキャラがクラフターでHQ品を製作すると、レシピのレベルに応じてカンパニークレジットが入ります。（NQは0ポイント）</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;FreeCompany (FC) に関するメモです。&lt;/p&gt;
-&lt;div class=&quot;toc&quot;&gt;
-
-&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#カンパニークレジットの稼ぎ方&quot;&gt;カンパニークレジットの稼ぎ方&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- tocs
+      
     
     </summary>
     

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://quercus2011.github.io/2018/02/28/how-to-measure-ping-value/</loc>
+    
+    <lastmod>2018-02-27T23:58:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://quercus2011.github.io/2017/07/01/ff14-heavensward-complete/</loc>
     
     <lastmod>2017-07-01T11:56:17.000Z</lastmod>
@@ -156,13 +163,6 @@
   </url>
   
   <url>
-    <loc>https://quercus2011.github.io/2013/08/31/ff14-arr-fate-joined/</loc>
-    
-    <lastmod>2017-02-04T10:29:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://quercus2011.github.io/2013/10/23/ff14-arr-goodbye-summer-days/</loc>
     
     <lastmod>2017-02-04T10:29:08.000Z</lastmod>
@@ -177,6 +177,13 @@
   </url>
   
   <url>
+    <loc>https://quercus2011.github.io/2013/08/31/ff14-arr-fate-joined/</loc>
+    
+    <lastmod>2017-02-04T10:29:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://quercus2011.github.io/2016/04/19/ff14-calca/</loc>
     
     <lastmod>2017-02-04T06:37:48.000Z</lastmod>
@@ -184,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://quercus2011.github.io/2011/03/26/old-ff14-toujyutsu-r20/</loc>
+    <loc>https://quercus2011.github.io/2014/06/05/video-bandicam-to-aftereffects/</loc>
     
     <lastmod>2017-02-04T05:54:25.000Z</lastmod>
     
@@ -192,13 +199,6 @@
   
   <url>
     <loc>https://quercus2011.github.io/2013/09/30/ff14-arr-archer-lv50/</loc>
-    
-    <lastmod>2017-02-04T05:54:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://quercus2011.github.io/2013/10/01/ff14-arr-bard-af-equipment/</loc>
     
     <lastmod>2017-02-04T05:54:25.000Z</lastmod>
     
@@ -219,20 +219,6 @@
   </url>
   
   <url>
-    <loc>https://quercus2011.github.io/2013/08/27/ff14-arr-main-story/</loc>
-    
-    <lastmod>2017-02-04T05:54:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://quercus2011.github.io/2014/06/05/video-bandicam-to-aftereffects/</loc>
-    
-    <lastmod>2017-02-04T05:54:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://quercus2011.github.io/2011/02/08/old-ff14-hello/</loc>
     
     <lastmod>2017-02-04T05:54:25.000Z</lastmod>
@@ -240,9 +226,23 @@
   </url>
   
   <url>
-    <loc>https://quercus2011.github.io/2017/02/03/about-new-system/</loc>
+    <loc>https://quercus2011.github.io/2013/08/27/ff14-arr-main-story/</loc>
     
-    <lastmod>2017-02-04T05:31:51.000Z</lastmod>
+    <lastmod>2017-02-04T05:54:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://quercus2011.github.io/2013/10/01/ff14-arr-bard-af-equipment/</loc>
+    
+    <lastmod>2017-02-04T05:54:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://quercus2011.github.io/2011/03/26/old-ff14-toujyutsu-r20/</loc>
+    
+    <lastmod>2017-02-04T05:54:25.000Z</lastmod>
     
   </url>
   
@@ -255,6 +255,13 @@
   
   <url>
     <loc>https://quercus2011.github.io/2013/08/08/ff14-arr-hello/</loc>
+    
+    <lastmod>2017-02-04T05:31:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://quercus2011.github.io/2017/02/03/about-new-system/</loc>
     
     <lastmod>2017-02-04T05:31:51.000Z</lastmod>
     
