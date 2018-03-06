@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="ja"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV (FF14) プレイ日記です。"><title>FF14 サーバの IP アドレスを調べる方法（Windows 版限定） - さまよえるクエルクス</title><link rel="canonical" href="/2018/03/06/how-to-get-ip-address-of-ff14-server/"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.2.0"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=1.2.0"><!-- START FAVICON =============================================================--><link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#000000"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><!-- END FAVICON ===============================================================--><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>'use strict';
+document.addEventListener('DOMContentLoaded', function() {
+  var config_root = '/'.trim();
+  var config_external_link = 'true'.trim().toLowerCase();
+  if (config_root[0] !== '/') {
+    console.warn('WARNING: Hexo: the value of "root:" in _config.yml is invalid (should start with "/").');
+    config_root = '/' + config_root;
+  }
+  if (config_root[config_root.length-1] !== '/') {
+    console.warn('WARNING: Hexo: the value of "root:" in _config.yml is invalid (should end with "/").');
+    config_root = config_root + '/';
+  }
+  if (! config_external_link.match(/^(?:true|false|)$/)) {
+    console.warn('WARNING: Hexo: the value of "external_link:" in _config.yml is invalid (should be true or false).');
+  }
+  var is_aggressive_mode = config_external_link === 'true';
+  var is_allowed_different_root = false;
+  var is_allowed_other_scheme = true;
+  Array.prototype.forEach.call(document.getElementsByTagName('a'), function(e) {
+    var href = (e.getAttribute('href') || '').trim();
+    if (! href) return;
+    var is_external_link = href.match(/^(https?:)?\/\//i) ||
+                           (href[0] === '/' && ! is_allowed_different_root && href.substr(0, config_root.length) !== config_root) ||
+                           (href[0] !== '/' && ! is_allowed_other_scheme && ! herf.match(/^(?:javascript|data|file|urn):/i));
+    var is_opening_new_window = e.getAttribute('target') ? ! e.getAttribute('target').match(/^(?:_self|_parent|_top)$/)
+                                                         : (is_aggressive_mode && is_external_link);
+    var obj = (e.getAttribute('rel') || '')
+      .toLowerCase()
+      .split(/\s+/)
+      .filter(function(e) { return e; })
+      .reduce(function(acc, val) { acc[val] = true; return acc; }, {});
+    if (obj['noreferer']) {
+      console.warn('maybe typo: "noreferer" should be "noreferrer".');
+      console.warn(e);
+      obj['noreferrer'] = true;
+    }
+    if (is_aggressive_mode && is_external_link) obj['external'] = true;
+    if (is_opening_new_window) obj['noopener'] = true;
+    if (obj['noreferrer'] || obj['nofollow']) {
+      obj['noreferrer'] = true;
+      obj['nofollow'] = true;
+    }
+    var result = Object.keys(obj).join(' ');
+    if (result) {
+      e.setAttribute('rel', result);
+    }
+    if (is_opening_new_window && ! e.getAttribute('target')) {
+      e.setAttribute('target', '_blank');
+    }
+  });
+}, false);
+</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1><a href="/">さまよえるクエルクス</a></h1><p class="description">Quercus Maris （クエルクス・マリス）の FINAL FANTASY XIV プレイ日記</p></div><div id="nav-menu"></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">FF14 サーバの IP アドレスを調べる方法（Windows 版限定）</h1><div class="post-meta">2018-03-06</div><div class="post-content"><p>Windows 版 FF14 クライアントでプレイ中に、通信相手の FF14 サーバの IP アドレスを調べる方法を解説します。特別なツールは要りません。Windows に最初からインストールされているプログラムだけで可能です。</p>
+<p>なお、FF14 クライアントプログラムやメモリ上のデータには一切触らないので、
+FF14 規約には抵触しないと思います。</p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#まえがき">まえがき</a></li>
+<li><a href="#ff14-サーバの-ip-アドレスを調べる方法">FF14 サーバの IP アドレスを調べる方法</a></li>
+<li><a href="#おまけスクリプト化">おまけ（スクリプト化）</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+
+<h2><span id="まえがき">まえがき</span></h2><p>FF14 に限らずオンラインゲームの分野で広く使われる「ping 値」という言葉があります。「ping 値」は、ゲームクライアントとサーバとの通信状態を表す指標のひとつです。</p>
+<p>サーバの「ホスト名」か「IP アドレス」がわかれば、「ping 値」は Windows 標準のツールで簡単に測定できます。</p>
+<p>⇒ <a href="/2018/02/28/how-to-measure-ping-value/" title="Windows PC で ping 値を測る方法">Windows PC で ping 値を測る方法</a></p>
+<p>FF14 のプレイ中に正確な「ping 値」を測定するためには、
+FF14 のゲームサーバの IP アドレスを知る必要があります。</p>
+<p>いちおうデータセンターごとの IP アドレスを掲載してくれている非公式サイトもあるのですが、わたしの環境では異なる IP アドレスのサーバと通信していたので、あくまで参考程度にしかならない模様です。</p>
+<ul>
+<li>ARRstatus - FFXIV Server Status<br><a href="https://arrstatus.com" target="_blank" rel="external">https://arrstatus.com</a></li>
+</ul>
+<h2><span id="ff14-サーバの-ip-アドレスを調べる方法">FF14 サーバの IP アドレスを調べる方法</span></h2><p>Windows にデフォルトでインストールされている <code>netstat</code> コマンドを使うと、現在 Windows 上で行われているすべてのネットワーク通信をリストアップしてくれます。そのリストには、「通信相手の IP アドレス」や「どのプログラムが通信しているのか」という情報も含まれています。</p>
+<p>普通に <code>netstat</code> コマンドを実行すると、大量のログが出力されてしまって読めません。そこで、出力をテキストファイルに「リダイレクト」して、そのテキストファイルをメモ帳で開いて「検索」します。</p>
+<p>まず、適当なフォルダで「コマンドプロンプト」を開きます。たとえば、エクスプローラーで「マイドキュメント」を開いて、そのアドレス欄に「<code>cmd</code>」と入力して ENTER キーを押します。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208a0a_explorer_Documents.png" alt="エクスプローラーで「マイドキュメント」を開く" title="エクスプローラーで「マイドキュメント」を開く">
+<p>↓</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208b0a_explorer_input_cmd.png" alt="アドレス欄に「cmd」と入力して ENTER" title="アドレス欄に「cmd」と入力して ENTER">
+<p>↓</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208c0a_cmd_initial.png" alt="「コマンドプロンプト」が開く" title="「コマンドプロンプト」が開く">
+<p>コマンドプロンプト上で、<code>netstat -a -b -n &gt; z.txt</code> と入力して ENTER キーを押します。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208d0a_cmd_netstat_input.png" alt="コマンドを入力" title="コマンドを入力">
+<p>実行しても何も表示されず、数秒以内に完了して、新しいプロンプトが表示されるハズです。（<code>netstat</code> コマンドの出力先をディスプレイからテキストファイル <code>z.txt</code> に変更しているため、何も表示されないのです）</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208e0a_cmd_netstat_done.png" alt="実行した結果" title="実行した結果">
+<p>次に、このテキストファイル <code>z.txt</code> を「メモ帳」で開きます。</p>
+<p>エクスプローラーで <code>z.txt</code> を開いてもいいのですが、コマンドプロンプト上で <code>notepad z.txt</code> と打ち込んだほうが早いです。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208f0a_cmd_notepad_input.png" alt="メモ帳を起動" title="メモ帳を起動">
+<p>「メモ帳」が起動すると、次のようなウインドウが表示されるハズです。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208g0a_notepad_initial.png" alt="メモ帳の初期画面" title="メモ帳の初期画面">
+<p>ここで <code>Ctrl-F</code> を押すと、「検索」ダイアログが開くので、「<code>ffxiv</code>」と入力します。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208h0a_notepad_searching.png" alt="「検索」ダイアログに「ffxiv」と入力" title="「検索」ダイアログに「ffxiv」と入力">
+<p>ENTER キーを押すと、検索先に飛びます。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208i0a_notepad_searched.png" alt="検索先に飛ぶ" title="検索先に飛ぶ">
+<p>DirectX11 版のクライアントを起動していれば、このように「<code>ffxiv_dx11.exe</code>」がヒットするハズです。</p>
+<p>検索にヒットした行の前の行の3列目が、FF14 クライアントの通信相手（つまり FF14 サーバ）のアドレスです。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208j0a_notepad_marking.png" alt="FF14 サーバのアドレスが読める" title="FF14 サーバのアドレスが読める">
+<p>サーバのアドレスは、「IP アドレス + コロン (<code>:</code>) + ポート番号」という表記になっています。コロンの直前までの「ピリオドで区切られた4個の数字の組」が IP アドレスです。上記の例では「<code>124.150.157.25</code>」ということになります。</p>
+<p>試しに <code>ping</code> コマンドを実行してみると、「ping 値」が測定できます。</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208k0a_cmd_ping_input.png" alt="ping コマンドを入力" title="ping コマンドを入力">
+<p>↓ （最後に ENTER キーを押すと実行される）</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208l0a_cmd_ping_running.png" alt="ping コマンドを実行すると測定が始まる" title="ping コマンドを実行すると測定が始まる">
+<p>↓ （<code>Ctrl-C</code> で停止）</p>
+<img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208m0a_cmd_ping_stopped.png" alt="ping コマンドによる測定結果" title="ping コマンドによる測定結果">
+<p>この例では、「ping 値」は「16ms」ということになります。</p>
+<h2><span id="おまけスクリプト化">おまけ（スクリプト化）</span></h2><p>Git for Windows というフリーソフトをインストールした環境では、シェルスクリプトを利用できます。</p>
+<p>※ Windows 10 公式機能の Bash on Windows (BoW) / Windows Subsystem for Linux (WSL) とは別モノです。<em>Windows 7 でも使えます。</em></p>
+<ul>
+<li>Git for Windows<br><a href="https://gitforwindows.org" target="_blank" rel="external">https://gitforwindows.org</a></li>
+</ul>
+<p>わたしの使っている「FF14 サーバとの ping 値を5分おきに自動測定するシェルスクリプト」を GitHub で公開しています：</p>
+<ul>
+<li><a href="https://gist.github.com/quercus2011/4e9b92a54181a3eb559e4936dcaa4d1a" target="_blank" rel="external">https://gist.github.com/quercus2011/4e9b92a54181a3eb559e4936dcaa4d1a</a></li>
+</ul>
+<p>このシェルスクリプトを実行すると、5分おきに FF14 クライアントが起動しているかチェックして、起動していたら、その通信相手（FF14 サーバ）に ping を10回投げて、結果を CSV ファイルに追記していきます。</p>
+<p>別の <code>bash</code> ウインドウで <code>tail -f</code> コマンドとか使えば、その CSV ファイルを監視できます。</p>
+<p>このスクリプトは MIT ライセンスとしますので、ご自由にお使いください。改造などもお好きなように。もちろん無保証・自己責任なのはお約束です。</p>
+</div><div class="tags"><a href="/tags/FF14/">FF14</a><a href="/tags/Technical/">Technical</a></div><div class="post-nav"><a href="/2018/02/28/how-to-measure-ping-value/" class="next">Windows PC で ping 値を測る方法</a></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="widget"><div id="search-form"><label><input id="search-key" type="text" autocomplete="off" placeholder="サイト内検索"/></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div class="widget"><img src="/img/self-photo-20170717a_512x512.png" alt="self photo"/><p><a href="/">Quercus Maris</a></p><hr/><p><span>「クエルクス・マリス」です。お気軽に「まりす」とお呼びください。</span><span>ハイランダー♀です。</span><span>Beta3 から新生 FF14 で遊んでいます。</span><span>サーバは Garuda (Elemental)。</span><a href="http://omisokingdom.ikaduchi.com">FC「OMISO KINGDOM」</a><span>所属。</span><span>園芸＆採掘が好きです。クラフターもひととおりやってます。</span><span>バトルは白魔道士がメインでサブが吟遊詩人。</span><span>SS 加工にちょっと興味があります。</span></p><hr/><p><span>FC2 blog から移転しました。 (2017/Jan/22)</span></p><p><span class="fa fa-right"> </span><a href="http://quercus2011.blog.fc2.com">旧ブログ</a></p><hr/><ul><li><span class="fa fa-right"> Lodestone: </span><a href="http://jp.finalfantasyxiv.com/lodestone/character/1662597/">1662597</a></li><li><span class="fa fa-right"> Twitter: </span><a href="https://twitter.com/quercus_maris">@quercus_maris</a></li><li><span class="fa fa-right"> GitHub: </span><a href="https://github.com/quercus2011">quercus2011</a></li></ul><img src="/img/hogehoge-g-20170201a.png" alt=""/></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> Tags</i></div><div class="tagcloud"><a href="/tags/FF14/" style="font-size: 15px;">FF14</a> <a href="/tags/ImportedFromFC2/" style="font-size: 15px;">ImportedFromFC2</a> <a href="/tags/Technical/" style="font-size: 15px;">Technical</a> <a href="/tags/Blog/" style="font-size: 15px;">Blog</a> <a href="/tags/OMISO/" style="font-size: 15px;">OMISO</a> <a href="/tags/Bard/" style="font-size: 15px;">Bard</a> <a href="/tags/Memo/" style="font-size: 15px;">Memo</a> <a href="/tags/BeforeMeteor/" style="font-size: 15px;">BeforeMeteor</a> <a href="/tags/Video/" style="font-size: 15px;">Video</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-fei"> Archive</i></div><p><a href="/archives">All posts</a></p><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">2018年3月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">2018年2月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">2017年7月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">2017年6月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年3月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年2月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年1月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年4月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年6月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年9月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年8月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">2011年4月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">2011年3月</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">2011年2月</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/06/how-to-get-ip-address-of-ff14-server/">FF14 サーバの IP アドレスを調べる方法（Windows 版限定）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/28/how-to-measure-ping-value/">Windows PC で ping 値を測る方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/ff14-heavensward-complete/">3.x メインストーリーをコンプリート</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/29/ff14-dragonsong-complete/">「竜詩戦争」コンプリート</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/28/ff14-beast-tribe-sidequest-moogle/">モーグリ族デイリークエ完了</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/ff14-chocobo-color-snowwhite/">ひさしぶりにチョコボの染色</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/22/ff14-fisher-lv60/">漁師 Lv60</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/21/ff14-mirapri-spring-2017/">春のミラプリ 2017</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/20/ff14-complete-gathering-log/">採集手帳コンプリート</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/18/ff14-crafter-heavensward-class-quest/">クラフターの 3.x クラスクエ</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> Blogroll</i></div><ul></ul><a href="http://finalfantasyxiv.com" title="FINAL FANTASY XIV 公式">FINAL FANTASY XIV 公式</a><ul></ul><a href="http://jp.finalfantasyxiv.com/lodestone/" title="The Lodestone">The Lodestone</a><ul></ul><a href="https://www.youtube.com/user/FINALFANTASYXIV" title="YouTube 公式チャンネル">YouTube 公式チャンネル</a><ul></ul><a href="https://eriones.com" title="FF14 ERIONES">FF14 ERIONES</a><ul></ul><a href="http://ff14n.wikiwiki.jp" title="FINAL FANTASY XIV n Wiki">FINAL FANTASY XIV n Wiki</a><ul></ul><a href="http://ff14wiki.info" title="FF14 Online Wiki">FF14 Online Wiki</a><ul></ul><a href="http://mirapri.com" title="MIRAPRI SNAP">MIRAPRI SNAP</a><ul></ul><a href="http://www.finalfantasyxiv.com/14channel/" title="FF14 チャンネル（公式）">FF14 チャンネル（公式）</a><ul></ul><a href="http://www.finalfantasyxiv.com/gakuen_eorzea/" title="学園エオルゼア（公式）">学園エオルゼア（公式）</a><ul></ul><a href="https://www.youtube.com/channel/UClCX07C8RPjVRqXzS8H0Y3g" title="俺の嫁にFF14をヤらせてみた">俺の嫁にFF14をヤらせてみた</a></div><div class="widget"><div class="widget-title"><i class="fa fa-commt"> Notice</i></div><p>記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。</p><hr/><p><a href="http://finalfantasyxiv.com">ファイナルファンタジーXIV</a>に関する著作物の著作権は株式会社スクウェア・エニックスにあり、<a href="http://support.jp.square-enix.com/rule.php?id=5381&amp;la=0&amp;tag=authc" rel="license">「ファイナルファンタジーXIV 著作物利用許諾条件」</a>に従って利用を許諾されています。</p><p>Copyright (C) 2010-2017 SQUARE ENIX CO., LTD. All Rights Reserved.</p><hr/><p>上記以外のコンテンツに関しては <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a> とします。</p><p>Copyright (C) 2011-2017 <a href="/">Quercus Maris</a></p><hr/><p><strong>すべてのコンテンツは「無保証」です。</strong>上記ライセンスを参照のこと。</p></div></div></div></div><div id="footer"><div class="footer-info"><p><a href="/sitemap.xml">Sitemap</a> |  <a href="/atom.xml">RSS</a> |  <span>Made by <a href="/">Quercus Maris</a></span> |  <span>Powered by <a href="https://hexo.io">Hexo</a></span> |  <span><a href="https://github.com/chaooo/hexo-theme-BlueLake">Theme</a> by <a href="https://github.com/chaooo">Charles</a></span></p></div></div></div><script type="text/javascript" src="/js/search.json.js?v=1.2.0" async></script></body></html>

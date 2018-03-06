@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2018-02-27T23:58:00.000Z</updated>
+  <updated>2018-03-06T02:29:00.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FF14 サーバの IP アドレスを調べる方法（Windows 版限定）</title>
+    <link href="https://quercus2011.github.io/2018/03/06/how-to-get-ip-address-of-ff14-server/"/>
+    <id>https://quercus2011.github.io/2018/03/06/how-to-get-ip-address-of-ff14-server/</id>
+    <published>2018-03-06T02:29:00.000Z</published>
+    <updated>2018-03-06T02:29:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Windows 版 FF14 クライアントでプレイ中に、通信相手の FF14 サーバの IP アドレスを調べる方法を解説します。特別なツールは要りません。Windows に最初からインストールされているプログラムだけで可能です。</p><p>なお、FF14 クライアントプログラムやメモリ上のデータには一切触らないので、FF14 規約には抵触しないと思います。</p><div class="toc"><!-- toc --><ul><li><a href="#まえがき">まえがき</a></li><li><a href="#ff14-サーバの-ip-アドレスを調べる方法">FF14 サーバの IP アドレスを調べる方法</a></li><li><a href="#おまけスクリプト化">おまけ（スクリプト化）</a></li></ul><!-- tocstop --></div><h2><span id="まえがき">まえがき</span></h2><p>FF14 に限らずオンラインゲームの分野で広く使われる「ping 値」という言葉があります。「ping 値」は、ゲームクライアントとサーバとの通信状態を表す指標のひとつです。</p><p>サーバの「ホスト名」か「IP アドレス」がわかれば、「ping 値」は Windows 標準のツールで簡単に測定できます。</p><p>⇒ <a href="/2018/02/28/how-to-measure-ping-value/" title="Windows PC で ping 値を測る方法">Windows PC で ping 値を測る方法</a></p><p>FF14 のプレイ中に正確な「ping 値」を測定するためには、FF14 のゲームサーバの IP アドレスを知る必要があります。</p><p>いちおうデータセンターごとの IP アドレスを掲載してくれている非公式サイトもあるのですが、わたしの環境では異なる IP アドレスのサーバと通信していたので、あくまで参考程度にしかならない模様です。</p><ul><li>ARRstatus - FFXIV Server Status<br><a href="https://arrstatus.com" target="_blank" rel="external">https://arrstatus.com</a></li></ul><h2><span id="ff14-サーバの-ip-アドレスを調べる方法">FF14 サーバの IP アドレスを調べる方法</span></h2><p>Windows にデフォルトでインストールされている <code>netstat</code> コマンドを使うと、現在 Windows 上で行われているすべてのネットワーク通信をリストアップしてくれます。そのリストには、「通信相手の IP アドレス」や「どのプログラムが通信しているのか」という情報も含まれています。</p><p>普通に <code>netstat</code> コマンドを実行すると、大量のログが出力されてしまって読めません。そこで、出力をテキストファイルに「リダイレクト」して、そのテキストファイルをメモ帳で開いて「検索」します。</p><p>まず、適当なフォルダで「コマンドプロンプト」を開きます。たとえば、エクスプローラーで「マイドキュメント」を開いて、そのアドレス欄に「<code>cmd</code>」と入力して ENTER キーを押します。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208a0a_explorer_Documents.png" alt="エクスプローラーで「マイドキュメント」を開く" title="エクスプローラーで「マイドキュメント」を開く"><p>↓</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208b0a_explorer_input_cmd.png" alt="アドレス欄に「cmd」と入力して ENTER" title="アドレス欄に「cmd」と入力して ENTER"><p>↓</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208c0a_cmd_initial.png" alt="「コマンドプロンプト」が開く" title="「コマンドプロンプト」が開く"><p>コマンドプロンプト上で、<code>netstat -a -b -n &gt; z.txt</code> と入力して ENTER キーを押します。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208d0a_cmd_netstat_input.png" alt="コマンドを入力" title="コマンドを入力"><p>実行しても何も表示されず、数秒以内に完了して、新しいプロンプトが表示されるハズです。（<code>netstat</code> コマンドの出力先をディスプレイからテキストファイル <code>z.txt</code> に変更しているため、何も表示されないのです）</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208e0a_cmd_netstat_done.png" alt="実行した結果" title="実行した結果"><p>次に、このテキストファイル <code>z.txt</code> を「メモ帳」で開きます。</p><p>エクスプローラーで <code>z.txt</code> を開いてもいいのですが、コマンドプロンプト上で <code>notepad z.txt</code> と打ち込んだほうが早いです。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208f0a_cmd_notepad_input.png" alt="メモ帳を起動" title="メモ帳を起動"><p>「メモ帳」が起動すると、次のようなウインドウが表示されるハズです。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208g0a_notepad_initial.png" alt="メモ帳の初期画面" title="メモ帳の初期画面"><p>ここで <code>Ctrl-F</code> を押すと、「検索」ダイアログが開くので、「<code>ffxiv</code>」と入力します。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208h0a_notepad_searching.png" alt="「検索」ダイアログに「ffxiv」と入力" title="「検索」ダイアログに「ffxiv」と入力"><p>ENTER キーを押すと、検索先に飛びます。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208i0a_notepad_searched.png" alt="検索先に飛ぶ" title="検索先に飛ぶ"><p>DirectX11 版のクライアントを起動していれば、このように「<code>ffxiv_dx11.exe</code>」がヒットするハズです。</p><p>検索にヒットした行の前の行の3列目が、FF14 クライアントの通信相手（つまり FF14 サーバ）のアドレスです。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208j0a_notepad_marking.png" alt="FF14 サーバのアドレスが読める" title="FF14 サーバのアドレスが読める"><p>サーバのアドレスは、「IP アドレス + コロン (<code>:</code>) + ポート番号」という表記になっています。コロンの直前までの「ピリオドで区切られた4個の数字の組」が IP アドレスです。上記の例では「<code>124.150.157.25</code>」ということになります。</p><p>試しに <code>ping</code> コマンドを実行してみると、「ping 値」が測定できます。</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208k0a_cmd_ping_input.png" alt="ping コマンドを入力" title="ping コマンドを入力"><p>↓ （最後に ENTER キーを押すと実行される）</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208l0a_cmd_ping_running.png" alt="ping コマンドを実行すると測定が始まる" title="ping コマンドを実行すると測定が始まる"><p>↓ （<code>Ctrl-C</code> で停止）</p><img src="/2018/03/06/how-to-get-ip-address-of-ff14-server/SS_20180208m0a_cmd_ping_stopped.png" alt="ping コマンドによる測定結果" title="ping コマンドによる測定結果"><p>この例では、「ping 値」は「16ms」ということになります。</p><h2><span id="おまけスクリプト化">おまけ（スクリプト化）</span></h2><p>Git for Windows というフリーソフトをインストールした環境では、シェルスクリプトを利用できます。</p><p>※ Windows 10 公式機能の Bash on Windows (BoW) / Windows Subsystem for Linux (WSL) とは別モノです。<em>Windows 7 でも使えます。</em></p><ul><li>Git for Windows<br><a href="https://gitforwindows.org" target="_blank" rel="external">https://gitforwindows.org</a></li></ul><p>わたしの使っている「FF14 サーバとの ping 値を5分おきに自動測定するシェルスクリプト」を GitHub で公開しています：</p><ul><li><a href="https://gist.github.com/quercus2011/4e9b92a54181a3eb559e4936dcaa4d1a" target="_blank" rel="external">https://gist.github.com/quercus2011/4e9b92a54181a3eb559e4936dcaa4d1a</a></li></ul><p>このシェルスクリプトを実行すると、5分おきに FF14 クライアントが起動しているかチェックして、起動していたら、その通信相手（FF14 サーバ）に ping を10回投げて、結果を CSV ファイルに追記していきます。</p><p>別の <code>bash</code> ウインドウで <code>tail -f</code> コマンドとか使えば、その CSV ファイルを監視できます。</p><p>このスクリプトは MIT ライセンスとしますので、ご自由にお使いください。改造などもお好きなように。もちろん無保証・自己責任なのはお約束です。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Windows 版 FF14 クライアントでプレイ中に、通信相手の FF14 サーバの IP アドレスを調べる方法を解説します。特別なツールは要りません。Windows に最初からインストールされているプログラムだけで可能です。&lt;/p&gt;
+&lt;p&gt;なお、FF14 クライアントプ
+      
+    
+    </summary>
+    
+    
+      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
+    
+      <category term="Technical" scheme="https://quercus2011.github.io/tags/Technical/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows PC で ping 値を測る方法</title>
@@ -468,37 +494,6 @@
       <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
     
       <category term="Bard" scheme="https://quercus2011.github.io/tags/Bard/"/>
-    
-      <category term="Memo" scheme="https://quercus2011.github.io/tags/Memo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ギャザラーめも</title>
-    <link href="https://quercus2011.github.io/2017/02/04/ff14-gatherer-memo/"/>
-    <id>https://quercus2011.github.io/2017/02/04/ff14-gatherer-memo/</id>
-    <published>2017-02-04T04:15:37.000Z</published>
-    <updated>2017-06-02T02:00:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>ギャザラーに関するメモです。</p><div class="toc"><!-- toc --><ul><li><a href="#未知の採集での赤貨集め">未知の採集での赤貨集め</a></li><li><a href="#未知じゃない赤貨集め">未知じゃない赤貨集め</a></li><li><a href="#青貨の集め方">青貨の集め方</a></li><li><a href="#ギャザラー青貨装備キープ装備-il180">ギャザラー青貨装備（キープ装備、IL180）</a></li></ul><!-- tocstop --></div><h2><span id="未知の採集での赤貨集め">未知の採集での赤貨集め</span></h2><ul><li>ギャザラー用蒐集品スキル回し | 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-249.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-249.html</a></li></ul><p>採掘師での「アダマン鉱」や園芸師での「カベイジの野菜」の蒐集品（蒐集価値 470 以上）は、イディルシャイアのロウェナ商会でギャザラー赤貨と交換してもらえます。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 09:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div><div class="line">ET 21:00 園芸 未知 Slot6 カベイジの野菜 クルザス西部高地</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ET 11:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div><div class="line">ET 23:00 採掘 未知（ETで1時間） Slot6 アダマン鉱 アジス・ラー</div></pre></td></tr></table></figure><p>蒐集価値 470 以上の蒐集品を2～4個採集できるスキル回しは以下のとおり：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">審美眼</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure><h2><span id="未知じゃない赤貨集め">未知じゃない赤貨集め</span></h2><ul><li>FF14 ペリウィンクル／イブニングジェードでのギャザラー赤貨集め（1時間未満）<br><a href="http://www.eorzean.info/archives/4152778.html" target="_blank" rel="external">http://www.eorzean.info/archives/4152778.html</a></li></ul><p>コーディアルをリキャストごとに使えば１時間未満で赤貨 450 集まるらしいです。</p><p>スキル回しは青貨と同じもので大丈夫です。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure><h2><span id="青貨の集め方">青貨の集め方</span></h2><ul><li>ギャザラースクリップの稼ぎ方 - 夢でもFF14<br><a href="http://yumemage.blog.fc2.com/blog-entry-346.html" target="_blank" rel="external">http://yumemage.blog.fc2.com/blog-entry-346.html</a></li></ul><p>低地ドラヴァニア（イディルシャイア）で30分おきに園芸＆採掘するだけ。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ET 00:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 02:00 採掘 未知 ２段目 赤銅鉱</div><div class="line">ET 12:00 園芸 未知 ７段目 モリーユ</div><div class="line">ET 14:00 採掘 未知 ２段目 赤銅鉱</div></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">審美眼</div><div class="line">慎重選別</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure><p>このスキル回しは GP650 必要ですが、園芸と採掘の間が ET で２時間（地球時間で６分弱）あいているので、園芸をすぐやればコーディアルを使わなくても採掘の時間内に GP が回復します。</p><h2><span id="ギャザラー青貨装備キープ装備-il180">ギャザラー青貨装備（キープ装備、IL180）</span></h2><p>ギャザラー青貨装備（キープ装備、IL180）はイディルシャイアのロウェナ商会で交換してもらえます。</p><p>装備品1個ごとに、何枚かのギャザラー青貨手形と、クラスごとに異なる「○○受領証：第1種」が1個必要です。「○○受領証：第1種」は、イディルシャイアのロウェナ商会で蒐集品と交換してもらえます。</p><ul><li>採掘師「石材受領証：第1種」は蒐集価値380以上の「アダマン鉱」（アジス・ラーの未知）×1個で交換。</li><li>園芸師「草木受領証：第1種」は蒐集価値380以上の「カベイジの野菜」（クルザス西部高地の未知）×1個で交換。</li><li>漁師「水産受領証：第1種」は蒐集価値579以上の「サンダーボルト」×1個で交換。</li></ul><p>採掘と園芸については、必要な蒐集価値が（青貨や赤貨の納品に比べて）低いので、次のようなスキル回しで1回に3～5個採集できます。運がよければ「採集回数+2」の Location Effect がついて最大7個採集できます。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">シングルマインド</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">直感選別</div><div class="line">審美眼（シングルマインド）</div><div class="line">慎重選別</div><div class="line">フィールドマスタリー</div><div class="line"></div><div class="line">※直感選別で審美眼が付与されていたらシングルマインドに変更</div><div class="line">※必要 GP=650</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;ギャザラーに関するメモです。&lt;/p&gt;
-&lt;div class=&quot;toc&quot;&gt;
-
-&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#未知の採集での赤貨集め&quot;&gt;未知の採集での赤貨集め&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#未知じゃない赤貨集め&quot;&gt;未知じゃない赤
-      
-    
-    </summary>
-    
-    
-      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
     
       <category term="Memo" scheme="https://quercus2011.github.io/tags/Memo/"/>
     
