@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://quercus2011.github.io/"/>
-  <updated>2019-11-12T07:56:20.000Z</updated>
+  <updated>2023-07-17T10:49:38.000Z</updated>
   <id>https://quercus2011.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ブラウザ拡張機能「Stylus」を使った Twitter カスタマイズ</title>
+    <link href="https://quercus2011.github.io/2023/07/17/stylus-for-twitter/"/>
+    <id>https://quercus2011.github.io/2023/07/17/stylus-for-twitter/</id>
+    <published>2023-07-17T09:39:31.000Z</published>
+    <updated>2023-07-17T10:49:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Twitter 運営の方針転換で 3rd-party の Twitter クライアントは全滅してしまったので、ウェブブラウザで Twitter を見るしか選択肢がなくなってしまったわけですが、その Twitter の見た目をちょっとカスタマイズしたい、というお話です。</p><p>アプローチとしては単純で、任意のウェブページに自作の CSS スタイルシートを適用できるブラウザ拡張機能「Stylus」を使います。</p><ul><li>Stylus - Chrome ウェブストア<br><a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne</a></li><li>【レビュー】Webページのデザインをカスタマイズして見やすくできる拡張機能「Stylus」 - 窓の杜<br><a href="https://forest.watch.impress.co.jp/docs/review/1132701.html" target="_blank" rel="noopener">https://forest.watch.impress.co.jp/docs/review/1132701.html</a></li></ul><h2><span id="自分のアカウントのフォロワー数フォロー数を非表示にしたい">自分のアカウントのフォロワー数／フォロー数を非表示にしたい</span></h2><p>人間、「数字」にはいろいろ振り回されるものです。</p><p>ついったーをやっていると、しばしばアカウントのフォロワー数とかが話題になりますが、<br>「フォロワー数とかどうでもいい。見たくもない。」<br>という<a href="https://twitter.com/game_9r0w/status/1680800534780059648" target="_blank" rel="noopener">意見もあったり</a>します。</p><p>それなら、ウェブブラウザでついったーを開いたときに独自 CSS スタイルシートで非表示にしちゃえばよいのでは？</p><p>以下、手順です：</p><ol><li>chrome ウェブストアから、ブラウザ拡張機能「Stylus」をインストールする。（上記 URL は直リンクです）</li><li>ウェブブラウザのツールバーにある「拡張機能」ボタンを押す。<img src="/2023/07/17/stylus-for-twitter/SS20230717e_toolbar_button.png" class=""></li><li>インストールされている拡張機能が表示されるので、「Stylus」を選択。</li><li>「該当するスタイルはありません」とか「このページではStylusは動作しません」とかいうウインドウが出るので、「管理」ボタンを押す。<img src="/2023/07/17/stylus-for-twitter/SS20230717f_toolbar_options.png" class=""></li><li>Stylus の管理画面に切り替わる。<img src="/2023/07/17/stylus-for-twitter/SS20230717g_Stylus_main_view.png" class=""></li><li>「新スタイルを作成」ボタンを押す。</li><li>画面左上の「名前を入力してください」欄にわかりやすい名前を入力する。たとえば、”Hide the number of folowing/followers on Twitter” とか。なお、この欄で日本語が使えるかどうかは未確認です。</li><li>画面下の「すべて」と書いてあるプルダウンをクリックして、「ドメイン上の URL」を選択。<img src="/2023/07/17/stylus-for-twitter/SS20230717h_select_target_by_domain.png" class=""></li><li>右隣の入力欄に「<code>twitter.com</code>」と入力。<img src="/2023/07/17/stylus-for-twitter/SS20230717i_write_domain_string.png" class=""></li><li>画面右の「コード 1:」の領域に、以下の3行のコードをコピペ：   <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:is(a</span><span class="selector-attr">[href="/quercus_maris/following"]</span><span class="selector-attr">[role="link"]</span>, <span class="selector-tag">a</span><span class="selector-attr">[href$="/quercus_maris/followers"]</span><span class="selector-attr">[role="link"]</span>) <span class="selector-tag">span</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><img src="/2023/07/17/stylus-for-twitter/SS20230717i2_paste_CSS_code.png" class=""></li><li>上記コード中の2箇所の「<code>quercus_maris</code>」を、自分の Twitter アカウント名に書き替える。たとえばアカウント名が「<code>ff14_hoge</code>」なら「<code>a[href=&quot;/ff14_hoge/following&quot;]</code>」みたいな記述になる。<img src="/2023/07/17/stylus-for-twitter/SS20230717i3_rewrite_accout_name.png" class=""></li><li>こんな画面になっているハズなので、「保存」ボタンを押す。<img src="/2023/07/17/stylus-for-twitter/SS20230717j_Stylus_final_view.png" class=""></li><li>おわり</li></ol><p>以上の手順を行うと、そのウェブブラウザでついったーを開いたとき、自分のアカウントのフォロワー数／フォロー数だけ非表示になっているハズです。</p><p>なお、2個以上のアカウントに対してフォロワー数を非表示にしたい場合は、上記3行コードをそのアカウントの数だけコピペして、2箇所の文字列「<code>quercus_maris</code>」をそれぞれのアカウント名に書き替えれば OK です。</p><p>うまくいかない場合は、まりすまでお気軽にご連絡ください。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Twitter 運営の方針転換で 3rd-party の Twitter クライアントは全滅してしまったので、ウェブブラウザで Twitter を見るしか選択肢がなくなってしまったわけですが、その Twitter の見た目をちょっとカスタマイズしたい、というお話です。&lt;/p
+      
+    
+    </summary>
+    
+    
+      <category term="Technical" scheme="https://quercus2011.github.io/tags/Technical/"/>
+    
+  </entry>
   
   <entry>
     <title>分解スキル上げ</title>
@@ -464,30 +487,6 @@
       <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
     
       <category term="Memo" scheme="https://quercus2011.github.io/tags/Memo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>グラカン中尉昇級</title>
-    <link href="https://quercus2011.github.io/2017/02/13/ff14-grand-company-rank-up/"/>
-    <id>https://quercus2011.github.io/2017/02/13/ff14-grand-company-rank-up/</id>
-    <published>2017-02-13T07:34:46.000Z</published>
-    <updated>2017-02-13T07:46:59.814Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/2017/02/13/ff14-grand-company-rank-up/CaptureSTAFF_20170211_214002_597a0.jpg" class="" title="スクリーンショット"><p>グランドカンパニー黒渦団の中尉（中甲士）に昇級しました。</p><p>ずーーーと放置していた冒険者小隊でしたが、昨年末くらいからちょっとずつ育て始めてました。メンバーのレベルはどんどん上がるのですが、なかなかステータスが伸びずにランクアップ任務にトライできず・・・</p><p><a href="http://ff14wiki.info/?%E5%86%92%E9%99%BA%E8%80%85%E5%B0%8F%E9%9A%8A" target="_blank" rel="noopener">Wiki によれば</a>、ランクアップ任務の場合、３種のパラメータのひとつでも条件を満たしていないと失敗するらしいです。</p><p>で、このたびめでたく条件を満たしたので、ランクアップ任務にトライ。あっさり１回目で成功しました。</p><p>自動的に（中甲士）に昇級。</p><p>これまで、初期メンバー４人のまま志願者を無視して育ててきたのですが、そろそろメンバーを選抜しようかと思っています。</p><p>ララ小隊とかいいですよねー</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;img src=&quot;/2017/02/13/ff14-grand-company-rank-up/CaptureSTAFF_20170211_214002_597a0.jpg&quot; class=&quot;&quot; title=&quot;スクリーンショット&quot;&gt;
-&lt;p&gt;グランドカンパニー黒渦団の中尉（中甲士）
-      
-    
-    </summary>
-    
-    
-      <category term="FF14" scheme="https://quercus2011.github.io/tags/FF14/"/>
     
   </entry>
   
